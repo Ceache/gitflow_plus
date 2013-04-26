@@ -55,5 +55,5 @@ except ImportError:
     sys.stderr.write("    - easy_install gitflow    (requires setuptools)\n")
     sys.stderr.write("    - cd /path/to/gitflow && python setup.py install\n")
     sys.stderr.write("\n")
-except (GitflowError, GitCommandError), e:
-    raise SystemExit('Error: %s' %e)
+#except (GitflowError, GitCommandError), e:
+#    raise SystemExit('Error: %s' %e)
