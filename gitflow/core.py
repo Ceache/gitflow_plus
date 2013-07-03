@@ -76,6 +76,9 @@ class GitFlow(object):
     When a :class:`GitFlow` class is instantiated, it auto-discovers all
     subclasses of :class:`gitflow.branches.BranchManager`, so there is no
     explicit registration required.
+    
+    The initialization looks for the GitFlow Plus config file.  If its there,
+    it will load.
     """
 
     def _discover_branch_managers(self):
@@ -98,7 +101,9 @@ class GitFlow(object):
             self.repo = Repo(self.working_dir)
         except InvalidGitRepositoryError:
             pass
-
+        
+        ## this checks that the workflow config file is present
+        ##http://sphinx-doc.org/
         self.managers = self._discover_branch_managers()
         self.defaults = {
             'gitflow.branch.master': 'master',
