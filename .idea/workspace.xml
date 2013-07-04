@@ -6,47 +6,162 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9c4817a-f54c-4870-87cb-848220c7739c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gitflow/conf/configobj.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/other.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/rest.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup_pygit2.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/testrunner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gitflow/conf/validate.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_manpage-footer.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_manpage-header.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_static/nature.css_t" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_subcmd-checkout.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_subcmd-diff.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_subcmd-finish.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_subcmd-finish_version.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_subcmd-list.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_subcmd-publish.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_subcmd-publish_version.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_subcmd-pull.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_subcmd-rebase.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_subcmd-start.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_subcmd-start_version.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_subcmd-track.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/_subcmd-track_version.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/conf.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/git-flow-feature.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/git-flow-hotfix.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/git-flow-init.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/git-flow-release.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/git-flow-status.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/git-flow-support.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/git-flow.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/index.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/reference/branches.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/reference/core.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/reference/index.rst" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Makefile" afterPath="$PROJECT_DIR$/Makefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gitflow/conf/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/gitflow/conf/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gitflow/conf/configmanager.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/gitflow/conf/test_ConfigManager.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/README.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/custom_repo/dot_git/COMMIT_EDITMSG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/custom_repo/dot_git/HEAD" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/custom_repo/dot_git/config" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/custom_repo/dot_git/description" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/custom_repo/dot_git/index" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/custom_repo/dot_git/info/exclude" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/custom_repo/dot_git/logs/HEAD" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/custom_repo/dot_git/logs/refs/heads/master" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/custom_repo/dot_git/logs/refs/heads/production" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/custom_repo/dot_git/objects/4b/825dc642cb6eb9a060e54bf8d69288fbee4904" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/custom_repo/dot_git/objects/84/f686f99db4345db7fbf069313caa4188c42cfc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/custom_repo/dot_git/refs/heads/master" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/custom_repo/dot_git/refs/heads/production" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/README.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/COMMIT_EDITMSG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/HEAD" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/ORIG_HEAD" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/config" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/description" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/index" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/info/exclude" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/info/refs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/logs/HEAD" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/logs/refs/heads/develop" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/logs/refs/heads/feature/even" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/logs/refs/heads/feature/recursion" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/logs/refs/heads/master" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/03/19e6f42eea8812258f9c74106ec12c580a9244" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/2b/34cd2e1617e5f0d4e077c6ec092b9f50ed49a3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/2c/a717f82f6d94c457b0d9ff1fbc5f101480bae1" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/2e/f2f362d02fb62999b742f439dab1320f64c7a0" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/54/d59c872469c7bf34d540d2fb3128a97502b73f" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/60/7a269563e0b8f77af67e63937da8e07d3f8571" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/8a/0c7ff0a3865d716f18aa7d33233925396c7694" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/9e/7695010e0a6713a003717074e48a563f930e29" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/bd/a71f6fe8f6afc732bcb044fc5412544ad99e6e" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/d4/51fdaf1ee21c57b25649dc8050efb4e7a06778" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/e1/10f016034a610045ca00633b1ef02f0d29859b" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/e5/6be18dada9e81ca7969760ddea357b0c4c9412" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/info/packs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/pack/pack-a9bf4f1e924819b86f3a8d03aaa6a75deb855349.idx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/objects/pack/pack-a9bf4f1e924819b86f3a8d03aaa6a75deb855349.pack" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/packed-refs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/refs/heads/develop" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/refs/heads/feature/even" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/refs/heads/feature/recursion" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/odd.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/gnupg/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/gnupg/gpg.conf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/gnupg/pubring.gpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/gnupg/secring.gpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/make-gpg-key.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/partly_inited/dot_git/COMMIT_EDITMSG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/partly_inited/dot_git/HEAD" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/partly_inited/dot_git/config" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/partly_inited/dot_git/description" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/partly_inited/dot_git/index" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/partly_inited/dot_git/info/exclude" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/partly_inited/dot_git/logs/HEAD" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/partly_inited/dot_git/logs/refs/heads/master" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/partly_inited/dot_git/logs/refs/heads/production" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/partly_inited/dot_git/objects/4b/825dc642cb6eb9a060e54bf8d69288fbee4904" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/partly_inited/dot_git/objects/84/f686f99db4345db7fbf069313caa4188c42cfc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/partly_inited/dot_git/refs/heads/master" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/partly_inited/dot_git/refs/heads/production" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/README.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/COMMIT_EDITMSG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/HEAD" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/ORIG_HEAD" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/config" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/description" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/index" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/info/exclude" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/info/refs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/logs/HEAD" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/logs/refs/heads/devel" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/logs/refs/heads/feat/even" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/logs/refs/heads/feat/recursion" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/logs/refs/heads/rel/1.0" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/logs/refs/heads/stable" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/19/4acd68a23a71df9c279ffe376a616756422d3a" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/19/4bba9e050a6c46636d28e3e5ce0048d7073d75" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/19/8acb256d7bdac728fb62d64d7f0b013a96efda" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/2b/34cd2e1617e5f0d4e077c6ec092b9f50ed49a3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/2c/a717f82f6d94c457b0d9ff1fbc5f101480bae1" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/2e/f2f362d02fb62999b742f439dab1320f64c7a0" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/54/d59c872469c7bf34d540d2fb3128a97502b73f" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/60/7a269563e0b8f77af67e63937da8e07d3f8571" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/8a/0c7ff0a3865d716f18aa7d33233925396c7694" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/9e/7695010e0a6713a003717074e48a563f930e29" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/ba/a605a2d4c6151943ac4d0a1abb3c78f5c6df96" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/bd/a71f6fe8f6afc732bcb044fc5412544ad99e6e" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/d3/827e75a5cadb9fe4a27e1cb9b6d192e7323120" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/d4/51fdaf1ee21c57b25649dc8050efb4e7a06778" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/e1/10f016034a610045ca00633b1ef02f0d29859b" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/e5/6be18dada9e81ca7969760ddea357b0c4c9412" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/f2/abd72a5b06b8525031420ecd0783c34a1f7091" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/info/packs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/pack/pack-a9bf4f1e924819b86f3a8d03aaa6a75deb855349.idx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/objects/pack/pack-a9bf4f1e924819b86f3a8d03aaa6a75deb855349.pack" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/packed-refs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/refs/heads/devel" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/refs/heads/feat/even" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/refs/heads/feat/recursion" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/refs/heads/rel/1.0" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/dot_git/refs/heads/stable" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/release/odd.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/README.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/COMMIT_EDITMSG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/HEAD" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/ORIG_HEAD" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/config" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/description" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/index" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/info/exclude" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/info/refs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/logs/HEAD" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/logs/refs/heads/devel" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/logs/refs/heads/feat/even" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/logs/refs/heads/feat/recursion" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/logs/refs/heads/stable" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/objects/2b/34cd2e1617e5f0d4e077c6ec092b9f50ed49a3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/objects/2c/a717f82f6d94c457b0d9ff1fbc5f101480bae1" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/objects/2e/f2f362d02fb62999b742f439dab1320f64c7a0" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/objects/54/d59c872469c7bf34d540d2fb3128a97502b73f" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/objects/60/7a269563e0b8f77af67e63937da8e07d3f8571" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/objects/8a/0c7ff0a3865d716f18aa7d33233925396c7694" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/objects/9e/7695010e0a6713a003717074e48a563f930e29" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/objects/bd/a71f6fe8f6afc732bcb044fc5412544ad99e6e" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/objects/d4/51fdaf1ee21c57b25649dc8050efb4e7a06778" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/objects/e1/10f016034a610045ca00633b1ef02f0d29859b" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/objects/e5/6be18dada9e81ca7969760ddea357b0c4c9412" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/objects/info/packs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/objects/pack/pack-a9bf4f1e924819b86f3a8d03aaa6a75deb855349.idx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/objects/pack/pack-a9bf4f1e924819b86f3a8d03aaa6a75deb855349.pack" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/packed-refs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/refs/heads/devel" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/refs/heads/feat/even" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/refs/heads/feat/recursion" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/sample_repo/odd.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fixtures/update.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/gitflow/test_bin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/gitflow/test_branches.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/gitflow/test_core.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/helpers/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/helpers/factory.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/gitflow/__init__.py" afterPath="$PROJECT_DIR$/tests/gitflow/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gitflow/core.py" afterPath="$PROJECT_DIR$/gitflow/core.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gitflow_plus.iml" afterPath="$PROJECT_DIR$/.idea/gitflow_plus.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gitflow_plus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,12 +181,15 @@
     <file path="/start_script.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372904812312" ignored="false" />
     <file path="/Bash" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372919179052" ignored="false" />
     <file path="/setup_pygit2.sh" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372917445855" ignored="false" />
-    <file path="/core.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372926112335" ignored="false" />
+    <file path="/core.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372927300912" ignored="false" />
     <file path="/Python Console" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372919339820" ignored="false" />
     <file path="$USER_HOME$/Code/server_admin_scripts/server_functions.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372922494612" ignored="false" />
     <file path="/configobj.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372923736657" ignored="false" />
     <file path="/a.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372924615485" ignored="false" />
     <file path="/.gitignore" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372926201718" ignored="false" />
+    <file path="/ConfigManager.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372928572418" ignored="false" />
+    <file path="/test_ConfigManager.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372930551067" ignored="false" />
+    <file path="/configmanager.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372930628242" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +197,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/gitflow_plus$Unittests_in_TestGitFlowBasics.coverage" NAME="Unittests in TestGitFlowBasics Coverage Results" MODIFIED="1372930004926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/gitflow/conf" />
+    <SUITE FILE_PATH="coverage/gitflow_plus$Unittest_TestGitFlowBasics_test_version_number_calculator.coverage" NAME="Unittest TestGitFlowBasics.test_version_number_calculator Coverage Results" MODIFIED="1372929492933" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/gitflow/conf" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -94,40 +216,29 @@
       <file leaf-file-name="core.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gitflow/core.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="21" selection-start="2350" selection-end="2350" vertical-scroll-proportion="0.0">
+            <state line="130" column="0" selection-start="3689" selection-end="3689" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#199#208#0" expanded="true" />
+                <element signature="e#199#218#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="configmanager.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gitflow/conf/configmanager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="16" selection-start="247" selection-end="247" vertical-scroll-proportion="0.518797">
+            <state line="12" column="50" selection-start="419" selection-end="419" vertical-scroll-proportion="0.2706767">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="validate.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gitflow/conf/validate.py">
+      <file leaf-file-name="test_ConfigManager.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/gitflow/conf/test_ConfigManager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="311" column="24" selection-start="9530" selection-end="9530" vertical-scroll-proportion="0.0">
+            <state line="27" column="60" selection-start="1062" selection-end="1062" vertical-scroll-proportion="0.0">
               <folding>
-                <marker date="1372923543666" expanded="true" signature="14269:15171" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="configobj.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gitflow/conf/configobj.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="838" selection-end="838" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1372924903600" expanded="true" signature="27240:27578" placeholder="..." />
+                <element signature="e#25#55#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -155,8 +266,11 @@
         <option value="$PROJECT_DIR$/setup_pygit2.sh" />
         <option value="$PROJECT_DIR$/gitflow/conf/validate.py" />
         <option value="$PROJECT_DIR$/gitflow/conf/configobj.py" />
-        <option value="$PROJECT_DIR$/gitflow/core.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/gitflow/conf/ConfigManager.py" />
+        <option value="$PROJECT_DIR$/gitflow/core.py" />
+        <option value="$PROJECT_DIR$/tests/gitflow/conf/test_ConfigManager.py" />
+        <option value="$PROJECT_DIR$/gitflow/conf/configmanager.py" />
       </list>
     </option>
   </component>
@@ -174,12 +288,18 @@
             <id />
           </State>
           <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript function metricsJavaScript</id>
+          </State>
+          <State>
             <id>Python</id>
           </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>PyCompatibilityInspection</id>
+            <id>StatementsPerFunctionJS</id>
           </State>
         </selected-state>
       </profile-state>
@@ -199,7 +319,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="Scope" currentSubView="All" proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -212,6 +332,7 @@
     </navigator>
     <panes>
       <pane id="Scope">
+        <subPane subId="Default" />
         <subPane subId="Project Files">
           <PATH>
             <PATH_ELEMENT USER_OBJECT="Root">
@@ -231,6 +352,78 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="gitflow_plus">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="gitflow_plus">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="tests">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="gitflow_plus">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="tests">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="usecases">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="gitflow_plus">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="tests">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="gitflow">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="gitflow_plus">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="tests">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="gitflow">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="conf">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -277,7 +470,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
   </component>
@@ -292,12 +485,70 @@
       <PyConsoleSettings />
     </option>
   </component>
+  <component name="PyCoverageOptionsProvider">
+    <option name="myUseBundledCoveragePy" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/gitflow/conf" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python tests.Unittests in TestGitFlowBasics">
+    <configuration default="false" name="Unittests in TestGitFlowBasics" type="tests" factoryName="Unittests" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/gitflow/conf" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="gitflow_plus" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/gitflow/conf/test_ConfigManager.py" />
+      <option name="CLASS_NAME" value="TestGitFlowBasics" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_CLASS" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonCover" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonCover" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest TestGitFlowBasics.test_version_number_calculator" type="tests" factoryName="Unittests" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/gitflow/conf" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="gitflow_plus" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/gitflow/conf/test_ConfigManager.py" />
+      <option name="CLASS_NAME" value="TestGitFlowBasics" />
+      <option name="METHOD_NAME" value="test_version_number_calculator" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonCover" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonCover" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -376,7 +627,16 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <list size="0" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TestGitFlowBasics" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest TestGitFlowBasics.test_version_number_calculator" />
+    </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TestGitFlowBasics" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest TestGitFlowBasics.test_version_number_calculator" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
@@ -428,15 +688,16 @@
     <frame x="-2" y="26" width="1924" height="1181" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.67087376" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3291262" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291262" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.67087376" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25773746" sideWeight="0.67087376" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291262" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291262" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3291262" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291262" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -508,48 +769,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/setup_pygit2.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="119" selection-start="259" selection-end="327" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gitflow_toimport/core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="39" selection-start="2725" selection-end="2729" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gitflow_toimport/bin/_init.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="20" selection-start="547" selection-end="547" vertical-scroll-proportion="0.2988048">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gitflow_toimport/core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="39" selection-start="2725" selection-end="2729" vertical-scroll-proportion="0.02255639" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup_pygit2.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="505" selection-end="505" vertical-scroll-proportion="0.15789473" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.3/dist-packages/pygit2/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="20" selection-start="2454" selection-end="2454" vertical-scroll-proportion="0.48120302" />
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharm20/system/python_stubs/-1247971766/_pygit2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -563,16 +782,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="0" selection-start="838" selection-end="838" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1372924903600" expanded="true" signature="27240:27578" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gitflow/conf/validate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="311" column="24" selection-start="9530" selection-end="9530" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1372923543666" expanded="true" signature="14269:15171" placeholder="..." />
+            <marker date="1372924903600" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -598,18 +808,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gitflow/core.py">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="21" selection-start="2350" selection-end="2350" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gitflow/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gitflow/conf/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="24" selection-end="24" vertical-scroll-proportion="0.02255639">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gitflow/conf/validate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="311" column="24" selection-start="9530" selection-end="9530" vertical-scroll-proportion="0.5022556">
           <folding>
-            <element signature="e#199#208#0" expanded="true" />
+            <marker date="1372923543666" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/tests/gitflow/conf/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="16" selection-start="247" selection-end="247" vertical-scroll-proportion="0.518797">
+        <state line="0" column="0" selection-start="0" selection-end="24" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gitflow/core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="130" column="0" selection-start="3689" selection-end="3689" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#199#218#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/usecases/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/usecases/test_creation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/gitflow/conf/test_ConfigManager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="60" selection-start="1062" selection-end="1062" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#25#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gitflow/conf/configmanager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="50" selection-start="419" selection-end="419" vertical-scroll-proportion="0.2706767">
           <folding />
         </state>
       </provider>

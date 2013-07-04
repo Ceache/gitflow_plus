@@ -5,7 +5,7 @@ Copyright (c) 2012-2013 Hartmut Goebel
 Distributed under a BSD-like license. For full terms see the file LICENSE.txt
 """
 
-import os
+from os import path
 import sys
 import time
 import datetime
@@ -39,7 +39,7 @@ def datetime_to_timestamp(d):
 def requires_repo(f):
     """
     This is an annotation method that is used to check that
-    a git repository actually exists.  if it doesn't, an exception is raised
+    a git repository is initialized.  if it doesn't, an exception is raised
     :param f:
     :return boolean:
     :raise NotInitialized:
@@ -114,31 +114,37 @@ class GitFlow(object):
     it will load.
     """
 
-    def _discover_branch_managers(self):
-        managers = {}
-        for cls in itersubclasses(BranchManager):
-            # TODO: Initialize managers with the gitflow branch prefixes
-            managers[cls.identifier] = cls(self)
-        return managers
-
     def __init__(self, working_dir='.'):
-        # Allow Repos to be passed in instead of strings
 
         self.repo = None
+        # repository has a property called workingdir.
+        # this block is saying if what you passed is a repo object
+        # then set the working_dir field to the path in the object
+        # otherwise we are assuming you sent a directory path
         if isinstance(working_dir, Repository):
             self.working_dir = working_dir.working_dir
         else:
             self.working_dir = working_dir
 
+        # todo : not sure if this is still needed, if not get rid of it
         #self.git = Git(self.working_dir)
 
+        # try to initialize the repo object.  if it fails, keep going
+        # the field will just be null and other error checks take care
+        # of making sure the repo exists before trying to put anything
+        # in it.
         try:
-            self.repo = Repository('self.working_dir')
+            self.repo = Repository(self.working_dir)
         except GitError:
             pass
 
         ## this checks that the workflow config file is present
-        ##http://sphinx-doc.org/
+        if path.isdir(path.join(self.working_dir, self.flowDir)):
+            config manager load
+        else:
+            config manager init
+            config manager load
+
         self.managers = self._discover_branch_managers()
         self.defaults = {
             'gitflow.branch.master': 'master',
@@ -149,6 +155,12 @@ class GitFlow(object):
         for identifier, manager in self.managers.items():
             self.defaults['gitflow.prefix.%s' % identifier] = manager.DEFAULT_PREFIX
 
+    def _discover_branch_managers(self):
+        managers = {}
+        for cls in itersubclasses(BranchManager):
+            # TODO: This needs completely redone to reflect the configured array in the config system
+            managers[cls.identifier] = cls(self)
+        return managers
 
     def _init_config(self, master=None, develop=None, prefixes={}, names={},
                      force_defaults=False):
