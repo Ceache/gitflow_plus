@@ -2,6 +2,9 @@ __author__ = 'scphantm'
 
 from unittest2 import TestCase
 from conf.configmanager import ConfigManager
+from tests.helpers import (copy_from_fixture, remote_clone_from_fixture,
+                           all_commits, sandboxed, fake_commit)
+from tests.helpers.factory import create_sandbox, create_git_repo
 
 
 class TestGitFlowBasics(TestCase):
@@ -26,3 +29,7 @@ class TestGitFlowBasics(TestCase):
         self.assertEquals(c._compareVersion('1.1.3', '1.1.3'), 0)
         self.assertEquals(c._compareVersion('3.1.1', '3.1.2'), -1)
         self.assertEquals(c._compareVersion('1.1.0', '1.10.0'), -1)
+
+    @copy_from_fixture('sample_repo')
+    def testInitializeFolder(self):
+        pass

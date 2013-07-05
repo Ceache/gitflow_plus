@@ -140,10 +140,12 @@ class GitFlow(object):
 
         ## this checks that the workflow config file is present
         if path.isdir(path.join(self.working_dir, self.flowDir)):
-            config manager load
+            #config manager load
+            pass
         else:
-            config manager init
-            config manager load
+            #config manager init
+            #config manager load
+            pass
 
         self.managers = self._discover_branch_managers()
         self.defaults = {

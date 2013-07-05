@@ -1,20 +1,21 @@
-#
-# This file is part of `gitflow`.
-# Copyright (c) 2010-2011 Vincent Driessen
-# Copyright (c) 2012-2013 Hartmut Goebel
-# Distributed under a BSD-like license. For full terms see the file LICENSE.txt
-#
+"""
+ This file is part of `gitflow`.
+ Copyright (c) 2010-2011 Vincent Driessen
+ Copyright (c) 2012-2013 Hartmut Goebel
+ Distributed under a BSD-like license. For full terms see the file LICENSE.txt
 
+"""
 import os
 import shutil
 import tempfile
 from functools import wraps
 
 from unittest2 import TestCase
-from git import Repo
+from pygit2 import Repository
 
 __copyright__ = "2010-2011 Vincent Driessen; 2012-2013 Hartmut Goebel"
 __license__ = "BSD"
+
 
 def sandboxed(f):
     """
@@ -22,15 +23,16 @@ def sandboxed(f):
     switches the current directory to it.  The name of the directory is stored
     in self.sandbox attribute.  Files created/modified outside of the sandbox
     aren't cleaned up by this method.
+    :param f:
     """
     @wraps(f)
     def _inner(self, *args, **kwargs):
         assert isinstance(self, TestCase)
         ram_disk = '/Volumes/RAM_Disk'
-        dir = None
+        rdir = None
         if os.path.exists(ram_disk):
-            dir = ram_disk
-        self.sandbox = tempfile.mkdtemp(dir=dir)
+            rdir = ram_disk
+        self.sandbox = tempfile.mkdtemp(dir=rdir)
         self.addCleanup(shutil.rmtree, self.sandbox)
 
         os.chdir(self.sandbox)
@@ -45,6 +47,7 @@ def set_gnupg_home(func):
     Decorator which changes the current working dir to the one of the
     git repository in order to assure relative paths are handled
     correctly.
+    :param func:
     """
     @wraps(func)
     def _inner(*args, **kwargs):
@@ -66,6 +69,7 @@ def copy_from_fixture(fixture_name):
     a given fixture into it.  The repo is accessible inside the function via the
     self.repo attribute.  This is useful for fixtures that represent changes in
     the configuration or dirty working directories.
+    :param fixture_name:
     """
     def _outer(f):
         @wraps(f)
@@ -77,10 +81,11 @@ def copy_from_fixture(fixture_name):
             shutil.copytree(src, dest)
             os.chdir(dest)
             shutil.move('dot_git', '.git')
-            self.repo = Repo(dest)
+            self.repo = Repository(dest)
             f(self, *args, **kwargs)
         return _inner
     return _outer
+
 
 def clone_from_fixture(fixture_name):
     """
@@ -89,6 +94,8 @@ def clone_from_fixture(fixture_name):
     configuration and a clean working directory.
 
     The repo is accesible via the self.repo attribute inside the tests.
+    :type fixture_name: object
+    :param fixture_name:
     """
     def _outer(f):
         @wraps(f)
@@ -96,13 +103,18 @@ def clone_from_fixture(fixture_name):
         def _inner(self, *args, **kwargs):
             root = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
             git_dir = os.path.join(root, 'fixtures', fixture_name, 'dot_git')
-            self.repo = Repo(git_dir).clone(self.sandbox)
+            self.repo = Repository(git_dir).clone(self.sandbox)
             f(self, *args, **kwargs)
         return _inner
     return _outer
 
 
 def copy_gitflow_config(src, dest):
+    """
+
+    :param src:
+    :param dest:
+    """
     reader = src.config_reader(config_level='repository')
     writer = dest.config_writer(config_level='repository')
     for section in reader.sections():
@@ -111,12 +123,14 @@ def copy_gitflow_config(src, dest):
                 writer.set_value(section, item, value)
     del writer
 
+
 def remote_clone_from_fixture(fixture_name, copy_config=True):
     """
     This decorator sets up a temporary, self-destructing sandbox,
     cloned from a sandboxed copy of the fixture.  In contrast to a
     filesystem copy, the clone always has a clean working directory.
 
+    :param fixture_name:
     :param copy_config:
          Copy the `gitflow` parts of the original repo into the clone.
 
@@ -133,7 +147,7 @@ def remote_clone_from_fixture(fixture_name, copy_config=True):
             shutil.copytree(src, dest)
             os.chdir(dest)
             shutil.move('dot_git', '.git')
-            self.remote = Repo(dest)
+            self.remote = Repository(dest)
             clone = os.path.join(self.sandbox, 'clone')
             self.repo = self.remote.clone(clone, origin='my-remote')
             if copy_config:
@@ -151,6 +165,7 @@ def git_working_dir(func):
     Decorator which changes the current working dir to the one of the
     git repository in order to assure relative paths are handled
     correctly.
+    :param func:
     """
     # Adopted from GitPython's git.index.util.git_working_dir
     # Copyright (C) 2008, 2009 Michael Trier (mtrier@gmail.com) and
@@ -171,6 +186,14 @@ def git_working_dir(func):
 
 @git_working_dir
 def fake_commit(repo, message, append=True, filename='newfile.py'):
+    """
+    Simply changes a file to create a commit
+    :param repo:
+    :param message:
+    :param append:
+    :param filename:
+    :return:
+    """
     if append:
         f = open(filename, 'a')
     else:
@@ -184,6 +207,12 @@ def fake_commit(repo, message, append=True, filename='newfile.py'):
 
 
 def all_commits(repo, heads=None):
+    """
+    Gets a list of all commits in the repo
+    :param repo:
+    :param heads:
+    :return:
+    """
     s = set([])
     if heads:
         heads = [h for h in repo.heads if h.name in heads]

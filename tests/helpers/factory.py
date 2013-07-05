@@ -15,9 +15,11 @@ from git import Repo
 __copyright__ = "2010-2011 Vincent Driessen; 2012-2013 Hartmut Goebel"
 __license__ = "BSD"
 
+
 def create_sandbox(testcase):
     """
     Sets up a temporary, self-destructing directory and chdir to it.
+    :param testcase:
     """
     assert isinstance(testcase, TestCase)
 
@@ -37,6 +39,7 @@ def create_git_repo(testcase):
     """
     Sets up a temporary, self-destructing empty Git repository using "git init".
     There hasn't been any git flow initialization yet.
+    :param testcase:
     """
     create_sandbox(testcase)
     repo = Repo.init()
