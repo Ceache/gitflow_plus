@@ -24,7 +24,7 @@ import argparse, os
 
 from gitflow.core import GitFlow, info, GitCommandError
 from gitflow.util import itersubclasses
-from gitflow.exceptions import (GitflowError, AlreadyInitialized,
+from gitflow.flow_exceptions import (GitflowError, AlreadyInitialized,
                                 NotInitialized, BranchTypeExistsError,
                                 BaseNotOnBranch)
 from gitflow.util import StringFormatter

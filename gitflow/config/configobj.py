@@ -1,4 +1,4 @@
-__author__ = 'scphantm'
+
 
 # configobj.py
 # A config file reader/writer that supports nested sections in config files.
@@ -19,6 +19,7 @@ __author__ = 'scphantm'
 # Comments, suggestions and bug reports welcome.
 
 from __future__ import generators
+__author__ = 'scphantm'
 
 import os
 import re

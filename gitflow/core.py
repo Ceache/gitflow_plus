@@ -17,7 +17,7 @@ from pygit2 import Repository, GitError
 from gitflow.branches import BranchManager
 from gitflow.util import itersubclasses
 
-from gitflow.exceptions import (NotInitialized, BranchExistsError,
+from gitflow.flow_exceptions import (NotInitialized, BranchExistsError,
                                 BranchTypeExistsError, MergeConflict,
                                 NoSuchRemoteError, NoSuchBranchError,
                                 Usage, BadObjectError)
@@ -148,12 +148,7 @@ class GitFlow(object):
             pass
 
         self.managers = self._discover_branch_managers()
-        self.defaults = {
-            'gitflow.branch.master': 'master',
-            'gitflow.branch.develop': 'develop',
-            'gitflow.prefix.versiontag': '',
-            'gitflow.origin': 'origin',
-        }
+
         for identifier, manager in self.managers.items():
             self.defaults['gitflow.prefix.%s' % identifier] = manager.DEFAULT_PREFIX
 
@@ -163,25 +158,6 @@ class GitFlow(object):
             # TODO: This needs completely redone to reflect the configured array in the config system
             managers[cls.identifier] = cls(self)
         return managers
-
-    def _init_config(self, master=None, develop=None, prefixes={}, names={},
-                     force_defaults=False):
-        for setting, default in self.defaults.items():
-            if force_defaults:
-                value = default
-            elif setting == 'gitflow.branch.master':
-                value = master
-            elif setting == 'gitflow.branch.develop':
-                value = develop
-            elif setting.startswith('gitflow.prefix.'):
-                name = setting[len('gitflow.prefix.'):]
-                value = prefixes.get(name, None)
-            else:
-                name = setting[len('gitflow.'):]
-                value = names.get(name, None)
-            if value is None:
-                value = self.get(setting, default)
-            self.set(setting, value)
 
     def _init_initial_commit(self):
         master = self.master_name()
@@ -242,15 +218,7 @@ class GitFlow(object):
         self._init_develop_branch()
         return self
 
-    def is_initialized(self):
-        return (self.repo and
-                self.is_set('gitflow.branch.master') and
-                self.is_set('gitflow.branch.develop') and
-                self.is_set('gitflow.prefix.feature') and
-                self.is_set('gitflow.prefix.release') and
-                self.is_set('gitflow.prefix.hotfix') and
-                self.is_set('gitflow.prefix.support') and
-                self.is_set('gitflow.prefix.versiontag'))
+
 
     def _parse_setting(self, setting):
         groups = setting.split('.', 2)

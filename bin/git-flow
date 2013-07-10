@@ -43,7 +43,7 @@
 
 try:
     from gitflow.bin import main, GitCommandError
-    from gitflow.exceptions import GitflowError
+    from gitflow.flow_exceptions import GitflowError
     main()
 except ImportError:
     raise

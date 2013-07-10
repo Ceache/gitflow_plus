@@ -32,9 +32,14 @@ class ObjectError(GitflowError):
     pass
 
 
+class ConstError(GitflowError):
+    """
+    This indicates that someone has tried to set the value of a constant twice.
+    """
+    pass
+
 
 """
-
 class Usage(GitflowError):
     def __str__(self):
         return '\n'.join(map(str, self.args))

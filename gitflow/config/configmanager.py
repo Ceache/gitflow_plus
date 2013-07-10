@@ -3,9 +3,16 @@ __author__ = 'scphantm'
 import os
 from os import path
 from distutils.version import StrictVersion
-from pygit2 import Repository
-from exceptions import NoRepositoryObject
+
+import i18n
+from flow_exceptions import NoRepositoryObject
 from configobj import ConfigObj
+from const import CONFIG_VERSION, BRANCH_MASTER, BRANCH_DEVELOP, REMOTE_ORIGIN, MAINLINE_BRANCHES, \
+    FLOW_DIR, SYS_CONFIG_FILE, PERC_CONFIG_FILE
+
+
+#use ugettext instead of getttext to avoid unicode errors
+_ = i18n.language.ugettext
 
 
 class ConfigManager:
@@ -32,10 +39,7 @@ class ConfigManager:
         self.version = "0.0.1"
 
         # set the flow directory name here until I figure out a better way
-        self.flowDir = ".flow"
-
-        # the file name for the configuration settings
-        self.configFile = "gitflowplus.ini"
+        self.flowDir = FLOW_DIR
 
         #make sure we got a copy of the repository object
         if repo is None:
@@ -43,43 +47,113 @@ class ConfigManager:
         else:
             self.repo = repo
 
-    def initializeNewConfig(self):
-        """
-        This method will configure a new blank system and load it with
-        the default settings
+        # the file name for the configuration settings
+        self.configFolder = path.join(self.repo.workdir, self.flowDir)
+        self.systemConfigFile = path.join(self.configFolder, SYS_CONFIG_FILE)
+        self.personalConfigFile = path.join(self.configFolder, PERC_CONFIG_FILE)
 
-        """
-        filename = path.join(self.repo.working_dir, self.flowDir, self.configFile)
+        # Check that the folder exist and load the files
+        if not path.isdir(self.configFolder):
+            os.mkdir(self.configFolder)
 
-        # create the config folder if it doesn't exist
-        if not self._isFolderExist(self):
-            os.mkdir(path.join(self.repo.working_dir, self.flowDir))
+        # these are the system config initializers
+        if path.isfile(self.systemConfigFile):
+            print(_('Loading existing system configuration file'))
+            self.systemConfig = ConfigObj(self.systemConfigFile, unrepr=False)
+        else:
+            print(_('Creating new system configuration file'))
+            self.systemConfig = self._buildNewDefaultSystemConfigFile(
+                ConfigObj(self.systemConfigFile, unrepr=False, create_empty=True))
 
-        # create the blank file
-        self.config = ConfigObj(filename, unrepr=False, create_empty=True)
+        # these are the personal configs
+        if path.isfile(self.personalConfigFile):
+            print(_('Loading existing personal configuration file'))
+            self.personalConfig = ConfigObj(self.personalConfigFile, unrepr=False)
+        else:
+            print(_('Creating new personal configuration file'))
+            self.personalConfig = self._buildNewDefaultPersonalConfigFile(
+                ConfigObj(self.personalConfigFile, unrepr=False, create_empty=True))
 
-    def loadConfig(self):
-        """
-        This takes all the information given during the initialization of the
-        object and loads the configuration system so it can be used elseware in
-        the system.
-        :return:
-        """
+            # This checks the configuration system
+            #self._sanityCheck()
 
-        pass
+    def _buildNewDefaultSystemConfigFile(self, config):
+        """
+        This method is designed to write the basic config settings to a file
 
-    def _isFolderExist(self):
+        This is
         """
-        This checks the repository and determines if the configuration folder
-        exists
-        :return boolean:
-        """
-        return path.isdir(path.join(self.repo.working_dir, self.flowDir))
+        config[CONFIG_VERSION] = self.version
 
-    def _isConfigFileExist(self):
+        config[BRANCH_MASTER] = 'master'
+        config[BRANCH_DEVELOP] = 'develop'
+
+        config[MAINLINE_BRANCHES] = {'master', 'develop'}
+        config[REMOTE_ORIGIN] = 'origin'
+
+        #write the settings to the file
+        config.write()
+        return config
+
+    def _buildNewDefaultPersonalConfigFile(self, config):
         """
-        This checks to see if the configuation file exists and can be properly
-        parsed
-        :return boolean:
+        This method is designed to write the basic config settings to a file
+
+        This is
         """
-        return path.isfile(path.join(self.repo.working_dir, self.flowDir, self.configFile))
+        config[REMOTE_ORIGIN] = 'origin'
+
+        #write the settings to the file
+        config.write()
+        return config
+
+
+"""
+
+    def _init_config(self, master=None, develop=None, prefixes={}, names={},
+                     force_defaults=False):
+        for setting, default in self.defaults.items():
+            if force_defaults:
+                value = default
+            elif setting == 'gitflow.branch.master':
+                value = master
+            elif setting == 'gitflow.branch.develop':
+                value = develop
+            elif setting.startswith('gitflow.prefix.'):
+                name = setting[len('gitflow.prefix.'):]
+                value = prefixes.get(name, None)
+            else:
+                name = setting[len('gitflow.'):]
+                value = names.get(name, None)
+            if value is None:
+                value = self.get(setting, default)
+            self.set(setting, value)
+
+Here we show creating an empty ConfigObj, setting a filename and some values, and then writing to file :
+
+from configobj import ConfigObj
+config = ConfigObj()
+config.filename = filename
+#
+config['keyword1'] = value1
+config['keyword2'] = value2
+#
+config['section1'] = {}
+config['section1']['keyword3'] = value3
+config['section1']['keyword4'] = value4
+#
+section2 = {
+    'keyword5': value5,
+    'keyword6': value6,
+    'sub-section': {
+        'keyword7': value7
+        }
+}
+config['section2'] = section2
+#
+config['section3'] = {}
+config['section3']['keyword 8'] = [value8, value9, value10]
+config['section3']['keyword 9'] = [value11, value12, value13]
+#
+config.write()
+"""

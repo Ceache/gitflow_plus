@@ -6,17 +6,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9c4817a-f54c-4870-87cb-848220c7739c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gitflow/config/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gitflow/config/configmanager.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gitflow/conf/configmanager.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/gitflow/conf/__init__.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gitflow/conf/__init__.py" afterPath="$PROJECT_DIR$/tests/gitflow/config/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gitflow/conf/configobj.py" afterPath="$PROJECT_DIR$/gitflow/config/configobj.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gitflow/conf/validate.py" afterPath="$PROJECT_DIR$/gitflow/config/validate.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/gitflow/conf/test_ConfigManager.py" afterPath="$PROJECT_DIR$/tests/gitflow/config/test_ConfigManager.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gitflow/const.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gitflow/i18n.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/gitflow/exceptions.py" afterPath="$PROJECT_DIR$/gitflow/flow_exceptions.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.requirements" afterPath="$PROJECT_DIR$/.requirements" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gitflow/bin/__init__.py" afterPath="$PROJECT_DIR$/gitflow/bin/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gitflow/config/__init__.py" afterPath="$PROJECT_DIR$/gitflow/config/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gitflow/bin/_init.py" afterPath="$PROJECT_DIR$/gitflow/bin/_init.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gitflow/branches.py" afterPath="$PROJECT_DIR$/gitflow/branches.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gitflow/config/configmanager.py" afterPath="$PROJECT_DIR$/gitflow/config/configmanager.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gitflow/config/configobj.py" afterPath="$PROJECT_DIR$/gitflow/config/configobj.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gitflow/core.py" afterPath="$PROJECT_DIR$/gitflow/core.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gitflow/exceptions.py" afterPath="$PROJECT_DIR$/gitflow/exceptions.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gitflow_plus.iml" afterPath="$PROJECT_DIR$/.idea/gitflow_plus.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/git-flow" afterPath="$PROJECT_DIR$/bin/git-flow" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/gitflow/config/test_ConfigManager.py" afterPath="$PROJECT_DIR$/tests/gitflow/config/test_ConfigManager.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gitflow_plus.iws" />
@@ -34,20 +36,25 @@
     <file path="$APPLICATION_HOME_DIR$/lib/openapi.jar!/standardSchemas/xslt-1_0.xsd" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372903265417" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/openapi.jar!/standardSchemas/xml.xsd" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372903265417" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/openapi.jar!/standardSchemas/xinclude.xsd" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372903265417" ignored="false" />
-    <file path="/start_script.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373046669019" ignored="false" />
+    <file path="/start_script.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373059038317" ignored="false" />
     <file path="/Bash" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372919179052" ignored="false" />
     <file path="/setup_pygit2.sh" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372917445855" ignored="false" />
     <file path="/core.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373036396727" ignored="false" />
-    <file path="/Python Console" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373054358375" ignored="false" />
+    <file path="/Python Console" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373073318925" ignored="false" />
     <file path="$USER_HOME$/Code/server_admin_scripts/server_functions.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372922494612" ignored="false" />
     <file path="/configobj.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373046125654" ignored="false" />
     <file path="/a.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372924615485" ignored="false" />
     <file path="/.gitignore" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372926201718" ignored="false" />
     <file path="/ConfigManager.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1372928572418" ignored="false" />
-    <file path="/test_ConfigManager.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373008478902" ignored="false" />
-    <file path="/configmanager.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373047098323" ignored="false" />
+    <file path="/test_ConfigManager.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373185935491" ignored="false" />
+    <file path="/configmanager.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373190489802" ignored="false" />
     <file path="/exceptions.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373001939465" ignored="false" />
-    <file path="/__init__.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373044861240" ignored="false" />
+    <file path="/__init__.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373054919218" ignored="false" />
+    <file path="/const.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373188418700" ignored="false" />
+    <file path="/flow_exceptions.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373070143304" ignored="false" />
+    <file path="/i18n.py" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373188811692" ignored="false" />
+    <file path="/a.dummy" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373188172114" ignored="false" />
+    <file path="/GitFlow_Plus.pot" changelist="a9c4817a-f54c-4870-87cb-848220c7739c" time="1373188564805" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,21 +78,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/helpers/__init__.py">
+      <file leaf-file-name="core.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gitflow/core.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="49" selection-start="1015" selection-end="1015" vertical-scroll-proportion="0.0">
+            <state line="220" column="0" selection-start="7192" selection-end="7192" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#203#212#0" expanded="true" />
+                <element signature="e#199#218#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gitflow/config/__init__.py">
+      <file leaf-file-name="configmanager.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gitflow/config/configmanager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="52" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0">
+            <state line="59" column="46" selection-start="2070" selection-end="2070" vertical-scroll-proportion="0.18045112">
+              <folding>
+                <element signature="e#25#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GitFlow_Plus.pot" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gitflow/po/GitFlow_Plus.pot">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="29" selection-start="688" selection-end="688" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.po" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gitflow/po/default.po">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="30" selection-start="831" selection-end="831" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="const.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gitflow/const.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="43" column="0" selection-start="1030" selection-end="1030" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -94,50 +130,10 @@
       <file leaf-file-name="test_ConfigManager.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/gitflow/config/test_ConfigManager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="34" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0">
+            <state line="42" column="15" selection-start="1624" selection-end="1624" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#25#55#0" expanded="true" />
+                <element signature="e#25#44#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="factory.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/helpers/factory.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="763" selection-end="763" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="configmanager.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gitflow/config/configmanager.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="63" selection-start="1012" selection-end="1012" vertical-scroll-proportion="0.47368422">
-              <folding>
-                <element signature="e#25#34#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="configobj.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gitflow/config/configobj.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="19" selection-start="2130" selection-end="2130" vertical-scroll-proportion="-3.12">
-              <folding>
-                <marker date="1373046127214" expanded="true" signature="27240:27578" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_creation.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/usecases/test_creation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="0" selection-start="771" selection-end="771" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -160,20 +156,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/setup_pygit2.sh" />
-        <option value="$PROJECT_DIR$/gitflow/conf/validate.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/gitflow/conf/ConfigManager.py" />
-        <option value="$PROJECT_DIR$/gitflow/exceptions.py" />
-        <option value="$PROJECT_DIR$/gitflow/conf/configmanager.py" />
-        <option value="$PROJECT_DIR$/tests/gitflow/helpers/factory.py" />
-        <option value="$PROJECT_DIR$/tests/gitflow/helpers/__init__.py" />
         <option value="$PROJECT_DIR$/tests/gitflow/conf/test_ConfigManager.py" />
         <option value="$PROJECT_DIR$/tests/helpers/__init__.py" />
-        <option value="$PROJECT_DIR$/gitflow/core.py" />
         <option value="$PROJECT_DIR$/gitflow/conf/__init__.py" />
         <option value="$PROJECT_DIR$/gitflow/conf/configobj.py" />
+        <option value="$PROJECT_DIR$/gitflow/__init__.py" />
+        <option value="$PROJECT_DIR$/gitflow/config/__init__.py" />
+        <option value="$PROJECT_DIR$/gitflow/config/configobj.py" />
+        <option value="$PROJECT_DIR$/gitflow/flow_exceptions.py" />
+        <option value="$PROJECT_DIR$/gitflow/core.py" />
+        <option value="$PROJECT_DIR$/.requirements" />
+        <option value="$PROJECT_DIR$/tests/gitflow/config/test_ConfigManager.py" />
+        <option value="$PROJECT_DIR$/gitflow/po/GitFlow_Plus.pot" />
+        <option value="$PROJECT_DIR$/gitflow/i18n.py" />
+        <option value="$PROJECT_DIR$/gitflow/po/default.po" />
+        <option value="$PROJECT_DIR$/gitflow/const.py" />
         <option value="$PROJECT_DIR$/gitflow/config/configmanager.py" />
       </list>
     </option>
@@ -203,7 +200,7 @@
         </expanded-state>
         <selected-state>
           <State>
-            <id>StatementsPerFunctionJS</id>
+            <id>PyDocstringInspection</id>
           </State>
         </selected-state>
       </profile-state>
@@ -394,24 +391,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gitflow_plus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gitflow_plus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="gitflow" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -427,6 +406,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="gitflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="po" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -448,20 +431,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gitflow_plus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gitflow_plus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -470,7 +439,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="PyConsoleConfigurable.Python Console" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/gitflow" />
     <property name="last.edited.regexp" value="Sample Text" />
@@ -501,7 +470,57 @@
       <recent name="$PROJECT_DIR$/tests" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python tests.Unittests in TestGitFlowBasics">
+    <configuration default="false" name="Unittests in TestGitFlowBasics" type="tests" factoryName="Unittests" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/gitflow/config" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="gitflow_plus" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/gitflow/config/test_ConfigManager.py" />
+      <option name="CLASS_NAME" value="TestGitFlowBasics" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_CLASS" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest TestGitFlowBasics.testInitializeFolder" type="tests" factoryName="Unittests" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/gitflow/config" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="gitflow_plus" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/gitflow/config/test_ConfigManager.py" />
+      <option name="CLASS_NAME" value="TestGitFlowBasics" />
+      <option name="METHOD_NAME" value="testInitializeFolder" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -580,7 +599,16 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <list size="0" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TestGitFlowBasics" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest TestGitFlowBasics.testInitializeFolder" />
+    </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TestGitFlowBasics" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest TestGitFlowBasics.testInitializeFolder" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
@@ -635,18 +663,18 @@
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.67087376" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291262" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.67087376" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25773746" sideWeight="0.67087376" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291262" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3291262" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291262" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291262" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -720,7 +748,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/fixtures/partly_inited/dot_git/config">
+    <entry file="file://$PROJECT_DIR$/.requirements">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="13" selection-end="13" vertical-scroll-proportion="0.02255639">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DEVELOPERS.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/make.bat">
       <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
         <state />
       </provider>
@@ -730,83 +779,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/fixtures/sample_repo/dot_git/config">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/setup.cfg">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/fixtures/dirty_sample_repo/dot_git/config">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/tox.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/fixtures/custom_repo/dot_git/config">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/gitflow/config/test_ConfigManager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="34" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#25#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gitflow/bin/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.2760736">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gitflow/bin/_init.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gitflow/core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="499" column="15" selection-start="17553" selection-end="17553" vertical-scroll-proportion="11.255639">
-          <folding>
-            <element signature="e#199#218#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/helpers/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="49" selection-start="1015" selection-end="1015" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#203#212#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gitflow/config/configobj.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="19" selection-start="2130" selection-end="2130" vertical-scroll-proportion="-3.12">
-          <folding>
-            <marker date="1373046127214" expanded="true" signature="27240:27578" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -817,30 +800,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/git-flow">
+    <entry file="file://$PROJECT_DIR$/gitflow/config/configobj.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="45" selection-start="571" selection-end="571" vertical-scroll-proportion="-0.12781955">
+        <state line="1261" column="0" selection-start="40294" selection-end="40294" vertical-scroll-proportion="0.33233082">
+          <folding>
+            <marker date="1373057911338" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gitflow/core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="220" column="0" selection-start="7192" selection-end="7192" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#199#218#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/gitflow/config/test_ConfigManager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="15" selection-start="1624" selection-end="1624" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#25#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gitflow/i18n.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="58" selection-start="526" selection-end="526" vertical-scroll-proportion="0.49624062">
+          <folding>
+            <element signature="e#26#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gitflow/const.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="0" selection-start="1030" selection-end="1030" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gitflow/config/__init__.py">
+    <entry file="file://$PROJECT_DIR$/gitflow/po/default.po">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="52" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0">
+        <state line="31" column="30" selection-start="831" selection-end="831" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gitflow/__init__.py">
+    <entry file="file://$PROJECT_DIR$/gitflow/po/GitFlow_Plus.pot">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="23" column="29" selection-start="688" selection-end="688" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gitflow/config/configmanager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="63" selection-start="1012" selection-end="1012" vertical-scroll-proportion="0.47368422">
+        <state line="59" column="46" selection-start="2070" selection-end="2070" vertical-scroll-proportion="0.18045112">
           <folding>
             <element signature="e#25#34#0" expanded="true" />
           </folding>

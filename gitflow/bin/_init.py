@@ -18,7 +18,7 @@ except:
 
 from gitflow.core import GitFlow as CoreGitFlow, warn, info
 
-from gitflow.exceptions import (AlreadyInitialized, NotInitialized,
+from gitflow.flow_exceptions import (AlreadyInitialized, NotInitialized,
                                 NoSuchLocalBranchError, NoSuchBranchError)
 
 __copyright__ = "2013 Willie Slepecki; Based on code written by: 2010-2011 Vincent Driessen; 2012-2013 Hartmut Goebel"

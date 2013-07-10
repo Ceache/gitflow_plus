@@ -11,7 +11,7 @@ except ImportError:
     from StringIO import StringIO
 
 from git import GitCommandError, Reference
-from gitflow.exceptions import (NoSuchBranchError, BranchExistsError,
+from gitflow.flow_exceptions import (NoSuchBranchError, BranchExistsError,
                                 PrefixNotUniqueError, BaseNotOnBranch,
                                 WorkdirIsDirtyError, BranchTypeExistsError,
                                 TagExistsError, MergeError)
