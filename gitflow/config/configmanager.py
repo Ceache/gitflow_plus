@@ -26,7 +26,7 @@ class ConfigManager:
     # that upgrades versions from one to the next.
     _compareVersion = lambda self, version1, version2: StrictVersion(version1).__cmp__(version2)
 
-    def __init__(self, repo):
+    def __init__(self, repo, initializeBlank=True):
         """
         This is the constructor.  Here we set the initial fields for the
         configuration system
@@ -57,6 +57,38 @@ class ConfigManager:
             os.mkdir(self.configFolder)
 
         # these are the system config initializers
+        if initializeBlank:
+            self._initializeSystemConfig()
+
+        # these are the personal configs
+        if initializeBlank:
+            self._initializePersonalConfig()
+
+            # This checks the configuration system
+            #self._sanityCheck()
+        self.checkEntryInGitIgnore(".flow")
+        
+    def checkEntryInGitIgnore(self, entry):
+        """ 
+        This checks the git ignore file for the entry you specify.  If it doesn't exists
+        it adds it, if it does exist, it ignores it and leaves everything untouched
+        """
+        
+        f = open(path.join(self.repo.workdir, '.gitignore'),'rw')
+        
+        for line in f:
+            if line === entry:
+                return True
+                
+        f.write(entry)
+        f.close
+
+    def _initializeSystemConfig(self):
+        """
+        This is used to load the system config file into the
+        object.  If it doesn't exist, it will create a new one from
+        the default methods, save it to the file, and load it
+        """
         if path.isfile(self.systemConfigFile):
             print(_('Loading existing system configuration file'))
             self.systemConfig = ConfigObj(self.systemConfigFile, unrepr=False)
@@ -64,8 +96,13 @@ class ConfigManager:
             print(_('Creating new system configuration file'))
             self.systemConfig = self._buildNewDefaultSystemConfigFile(
                 ConfigObj(self.systemConfigFile, unrepr=False, create_empty=True))
-
-        # these are the personal configs
+               
+    def _initializePersonalConfig(self):
+        """
+        This loads the personal config file into the system.  If it doesn't exist, it 
+        will initialize the config file from the defaults and then loads them
+        into the object
+        """
         if path.isfile(self.personalConfigFile):
             print(_('Loading existing personal configuration file'))
             self.personalConfig = ConfigObj(self.personalConfigFile, unrepr=False)
@@ -73,10 +110,7 @@ class ConfigManager:
             print(_('Creating new personal configuration file'))
             self.personalConfig = self._buildNewDefaultPersonalConfigFile(
                 ConfigObj(self.personalConfigFile, unrepr=False, create_empty=True))
-
-            # This checks the configuration system
-            #self._sanityCheck()
-
+                
     def _buildNewDefaultSystemConfigFile(self, config):
         """
         This method is designed to write the basic config settings to a file

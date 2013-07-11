@@ -67,4 +67,6 @@ class TestGitFlowBasics(TestCase):
 
         #now make sure the folder exists
         self.assertTrue(path.isdir(flowdir))
+        
+        #make sure the version number at least matches on the newly formed config file.
         self.assertEquals(c.systemConfig[CONFIG_VERSION], c.version)
