@@ -32,9 +32,23 @@ class ObjectError(GitflowError):
     pass
 
 
+class StateError(GitflowError):
+    """
+    Base object error for the work flow system to indicate something was wrong with the state
+    """
+    pass
+
+
 class ConstError(GitflowError):
     """
     This indicates that someone has tried to set the value of a constant twice.
+    """
+    pass
+
+
+class WorkflowInitializationError(StateError):
+    """
+    indicates that the workflow system hasn't been issued a start state
     """
     pass
 

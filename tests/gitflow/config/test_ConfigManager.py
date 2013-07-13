@@ -1,12 +1,10 @@
-__author__ = 'scphantm'
-
 from os import path
 from unittest2 import TestCase
 from config.configmanager import ConfigManager
 from tests.helpers import (copy_from_fixture, remote_clone_from_fixture,
                            all_commits, sandboxed, fake_commit)
 from tests.helpers.factory import create_sandbox, create_git_repo
-from const import CONFIG_VERSION
+from const import CONFIG_VERSION, FLOW_DIR
 
 
 class TestGitFlowBasics(TestCase):
@@ -40,16 +38,7 @@ class TestGitFlowBasics(TestCase):
 
         :return:
         """
-        # make sure the config folder doesn't exist
-        flowdir = path.join(self.repo.workdir, '.flow')
-
-        # real quick, make sure nothing is there first
-        self.assertFalse(path.isdir(flowdir))
-
-        c = ConfigManager(self.repo)
-
-        #now make sure the folder exists
-        self.assertTrue(path.isdir(flowdir))
+        self._initRepo()
 
     @copy_from_fixture('blank_repo')
     def testInitializeFolder2(self):
@@ -58,15 +47,58 @@ class TestGitFlowBasics(TestCase):
 
         :return:
         """
+        c = self._initRepo()
+        
+        #make sure the version number at least matches on the newly formed config file.
+        self.assertEquals(c.systemConfig[CONFIG_VERSION], c.version)
+
+    @copy_from_fixture('blank_repo')
+    def testverifyGitIgnoreAdded(self):
+        """
+        We are ensuring that the gitignore file is being updated correctly
+        :return:
+        """
+        c = self._initRepo()
+        ignoreFilename = path.join(self.repo.workdir, '.gitignore')
+
+        #if path.isfile(ignoreFilename):
+
+        f = open(ignoreFilename, 'r')
+
+        i = 0
+
+        for line in f:
+            if line == c.personalConfigFile:
+                i += 1
+
+        f.close()
+        if i != 1:
+            self.assertFalse(True)
+
+        # now create another copy and make sure there is only one entry
+        d = self._initRepo(True)
+
+        f = open(ignoreFilename, 'r')
+
+        i = 0
+
+        for line in f:
+            if line == c.personalConfigFile:
+                i += 1
+
+        if i != 1:
+            self.assertFalse(True)
+
+    def _initRepo(self, existing = False):
+        # make sure the config folder doesn't exist
         flowdir = path.join(self.repo.workdir, '.flow')
 
-        # make sure the config folder doesn't exist
-        self.assertFalse(path.isdir(flowdir))
+        if not existing:
+            # real quick, make sure nothing is there first
+            self.assertFalse(path.isdir(flowdir))
 
         c = ConfigManager(self.repo)
 
         #now make sure the folder exists
         self.assertTrue(path.isdir(flowdir))
-        
-        #make sure the version number at least matches on the newly formed config file.
-        self.assertEquals(c.systemConfig[CONFIG_VERSION], c.version)
+        return c

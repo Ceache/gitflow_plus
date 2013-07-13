@@ -37,7 +37,7 @@ const.MAINLINE_BRANCHES = 'mainline_branches'
 const.REMOTE_ORIGIN = 'remote_origin'
 
 # These are configuration values
-const.FLOW_DIR = ".flow"
+const.FLOW_DIR = '.flow'
 
 const.SYS_CONFIG_FILE = 'gitflowplus.ini'
 const.PERC_CONFIG_FILE = 'personal.ini'

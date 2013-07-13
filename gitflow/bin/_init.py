@@ -18,9 +18,6 @@ except:
 
 from gitflow.core import GitFlow as CoreGitFlow, warn, info
 
-from gitflow.flow_exceptions import (AlreadyInitialized, NotInitialized,
-                                NoSuchLocalBranchError, NoSuchBranchError)
-
 __copyright__ = "2013 Willie Slepecki; Based on code written by: 2010-2011 Vincent Driessen; 2012-2013 Hartmut Goebel"
 __license__ = "BSD"
 
@@ -30,7 +27,7 @@ class GitFlow(CoreGitFlow):
     def _has_configured(branch_func):
         try:
             branch_func()
-        except (NotInitialized, IndexError):
+        except (IndexError):
             return False
         return True
 
@@ -95,7 +92,7 @@ def _ask_branch(args, name, desc1, desc2, suggestions, filter=[]):
                 info("Created local branch %s based on %s."
                      % (branch_name, remote_name))
             else:
-                raise NoSuchLocalBranchError(branch_name)
+                pass
 
     # store the name of the develop branch
     gitflow.set(name, branch_name)
@@ -132,7 +129,7 @@ def run_default(args):
 
     if gitflow.is_initialized():
         if not args.force:
-            raise AlreadyInitialized()
+            pass
 
     if args.use_defaults:
         warn("Using default branch names.")

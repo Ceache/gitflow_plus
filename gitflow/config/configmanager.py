@@ -7,11 +7,10 @@ from distutils.version import StrictVersion
 import i18n
 from flow_exceptions import NoRepositoryObject
 from configobj import ConfigObj
-from const import CONFIG_VERSION, BRANCH_MASTER, BRANCH_DEVELOP, REMOTE_ORIGIN, MAINLINE_BRANCHES, \
-    FLOW_DIR, SYS_CONFIG_FILE, PERC_CONFIG_FILE
+from const import CONFIG_VERSION, BRANCH_MASTER, BRANCH_DEVELOP, REMOTE_ORIGIN, MAINLINE_BRANCHES, FLOW_DIR, SYS_CONFIG_FILE, PERC_CONFIG_FILE
 
 
-#use ugettext instead of getttext to avoid unicode errors
+# use ugettext instead of getttext to avoid unicode errors
 _ = i18n.language.ugettext
 
 
@@ -66,18 +65,21 @@ class ConfigManager:
 
             # This checks the configuration system
             #self._sanityCheck()
-        self.checkEntryInGitIgnore(".flow")
+        self.checkEntryInGitIgnore(self.personalConfigFile)
         
     def checkEntryInGitIgnore(self, entry):
         """ 
         This checks the git ignore file for the entry you specify.  If it doesn't exists
         it adds it, if it does exist, it ignores it and leaves everything untouched
+        :param entry:
+            The entry you want added to the ignore file.
         """
-        
-        f = open(path.join(self.repo.workdir, '.gitignore'),'rw')
+        ignoreFilename = path.join(self.repo.workdir, '.gitignore')
+
+        f = open(ignoreFilename, 'a+')
         
         for line in f:
-            if line === entry:
+            if line == entry:
                 return True
                 
         f.write(entry)
