@@ -8,11 +8,14 @@
 import sys
 import re
 from functools import wraps
-
+import gitflow
+from gitflow.config.configmanager import ConfigManager
+from tests.helpers import copy_from_fixture
 
 from unittest2 import TestCase
 
-import gitflow
+
+from const import CONFIG_VERSION, MAINLINE_BRANCHES
 #from gitflow.core import GitFlow
 
 #from gitflow.bin import (main as Main,
@@ -23,6 +26,7 @@ import gitflow
 #                           all_commits, sandboxed, fake_commit)
 #from tests.helpers.factory import create_sandbox, create_git_repo
 
+# noinspection PyBroadException
 try:
     from cStringIO import StringIO
 except:
@@ -31,14 +35,23 @@ except:
 __copyright__ = "2010-2011 Vincent Driessen; 2012-2013 Hartmut Goebel"
 __license__ = "BSD"
 
+
 def runGitFlow(*argv, **kwargs):
+    """
+    This is a helper method for testing that replicates executing the command git flow {bla}
+    :param argv:
+    :param kwargs:
+    :return:
+    """
     capture = kwargs.get('capture', False)
     _argv, sys.argv = sys.argv, ['git-flow'] + list(argv)
     _stdout = sys.stdout
     try:
         if not capture:
+            print(sys.argv)
             gitflow.bin.main()
         else:
+            print(sys.argv)
             sys.stdout = StringIO()
             gitflow.bin.main()
             return sys.stdout.getvalue()
@@ -48,7 +61,18 @@ def runGitFlow(*argv, **kwargs):
 
 
 class TestCase(TestCase):
+    """
+    A class intended to add another check to the base testcase class
+    """
     def assertArgparseError(self, expected_regexp, func, *args, **kwargs):
+        """
+        this method is used to verify that the arguments for a command
+        are being parsed correctly
+        :param expected_regexp:
+        :param func:
+        :param args:
+        :param kwargs:
+        """
         _stderr, sys.stderr = sys.stderr, StringIO()
         try:
             self.assertRaises(SystemExit, func, *args, **kwargs)
@@ -60,11 +84,37 @@ class TestCase(TestCase):
         finally:
             sys.stderr = _stderr
 
-class TestVersionCommand(TestCase):
 
+class TestVersionCommand(TestCase):
+    """
+    the test version command is not a workflow command, but a concrete command.
+    this class tests the methods in the version command
+    """
     def test_version(self):
+        """
+        run the version command and ensure we get the correct result
+        """
         stdout = runGitFlow('version', capture=1)
         self.assertEqual(gitflow.__version__+'\n', stdout)
+
+
+class TestBasicWorkflowAssembly(TestCase):
+    """
+    These test cases are built to verify that the workflow system
+    is assembling commands correctly
+    """
+    @copy_from_fixture('sample_repo')
+    def testLoadConfigFile(self):
+        """
+        first verify that the config system can load the repository and config file correctly
+        """
+        c = ConfigManager(self.repo)
+        self.assertEquals(c.systemConfig[CONFIG_VERSION], c.version)
+
+        for s in c.systemConfig[MAINLINE_BRANCHES]:
+            print(s)
+
+
 
 """
 class TestStatusCommand(TestCase):

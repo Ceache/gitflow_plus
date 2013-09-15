@@ -127,6 +127,8 @@ class ConfigManager:
         config[MAINLINE_BRANCHES] = {'master', 'develop'}
         config[REMOTE_ORIGIN] = 'origin'
 
+        config['workflows']['version'] = {'VersionCommand'}
+
         #write the settings to the file
         config.write()
         return config

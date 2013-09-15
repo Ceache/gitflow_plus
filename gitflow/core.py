@@ -14,7 +14,7 @@ from functools import wraps
 import pygit2
 from pygit2 import Repository, GitError
 
-from gitflow.branches import BranchManager
+from gitflow.branchmanager import BranchManager
 from gitflow.util import itersubclasses
 
 from gitflow.flow_exceptions import (NotInitialized, BranchExistsError,

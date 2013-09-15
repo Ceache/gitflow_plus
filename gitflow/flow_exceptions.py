@@ -53,6 +53,12 @@ class WorkflowInitializationError(StateError):
     pass
 
 
+class GitCommandError(GitflowError):
+    """
+    this indicates that there was an error executing a git command within gitflow
+    """
+    pass
+
 """
 class Usage(GitflowError):
     def __str__(self):

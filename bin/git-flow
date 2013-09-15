@@ -41,13 +41,23 @@
 # Vincent Driessen, Hartmut Goebel or any of the contributors.
 #
 
+
+"""
+sys.path.extend(['/home/scphantm/code/gitflow_plus', '/home/scphantm/code/gitflow_plus/gitflow', '/home/scphantm/code/gitflow_plus/bin'])
+
+%load_ext autoreload
+%autoreload 2
+"""
 try:
-    from gitflow.bin import main, GitCommandError
-    from gitflow.flow_exceptions import GitflowError
+    # noinspection PyUnresolvedReferences
+    from gitflow.bin import main
+    # noinspection PyUnresolvedReferences
+    from gitflow.flow_exceptions import GitflowError, GitCommandError
+
     main()
 except ImportError:
-    raise
     import sys
+
     sys.stderr.write("Could not find the gitflow classes. Did you install gitflow?\n")
     sys.stderr.write("To install, use one of these commands:\n")
     sys.stderr.write("\n")
@@ -55,5 +65,7 @@ except ImportError:
     sys.stderr.write("    - easy_install gitflow    (requires setuptools)\n")
     sys.stderr.write("    - cd /path/to/gitflow && python setup.py install\n")
     sys.stderr.write("\n")
-#except (GitflowError, GitCommandError), e:
-#    raise SystemExit('Error: %s' %e)
+    raise
+
+except (GitflowError, GitCommandError) as e:
+    raise SystemExit('Error: %s' % e)
