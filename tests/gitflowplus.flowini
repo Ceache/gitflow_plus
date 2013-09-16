@@ -1,0 +1,109 @@
+config_version=0.0.1
+branch_master=master
+branch_develop=develop
+mainline_branches=master,develop
+push_all_remotes=true
+
+# condition statements:
+#   Condition statements take in a boolean value.  The codition statement
+#   comes back with a boolean value.  That boolean value is checked against
+#   the input parameter indicated in the workflow to determine if the check 
+#   passed or not.  
+#   for example:
+#       branch_exist(true, false)
+#   Say the above condition method returns true, indicating that the branch does
+#   already exist.  The first parameter indicates if the condition is critical or
+#   not.  Critical is defined as does the processing stop if the condition fails
+#   The second parameter indicates that for the condition 
+#   to pass, it must return false.  Therefore the condition would fail and
+#   the workflow would stop.
+
+#   cond_branch_exist(boolean, boolean) - Checks that the input branch exists or not
+#   cond_isClean(boolean, boolean) - Checks that the repo is clean or not.
+#   cond_push_remote(boolean, boolean) - 
+
+# Predefined Steps
+#   trans_finish - Finishes off the transaction by displaying the steps that was done
+#   trans_error - rolls back the transaction and displays the errors.  If any 
+#       commits occured, it will rebase them out and return it to the previous
+#       state
+#   trans_gup - this does a fetch/rebase instead of a pull.  A pull creates a new commit
+#       for the branch, this does not.  This keeps the commit tree clean in comparison
+#       This is only done if there is a remote configured
+
+# Prebuilt Transitions
+#   createBranch(newBranch, branchFrom)
+#       Throws errors if:
+#           The newBranch doesn't exist yet.
+#           The repo is dirty.
+#   checkoutBranch(branch)
+#   mergeBranch(fromBranch, intoBranch)
+#   deleteBranch(branch)
+# http://manual.macromates.com/en/language_grammars
+# http://www.sublimetext.com/forum/viewtopic.php?f=3&t=6381
+
+[workflows]
+    [[gup]]
+        description=This is the gup that does a fetch/rebase instead of a pull
+        [[[default]]]
+            [[[[step1]]]]
+                condition=cond_isClean(true, true)
+                transition=trans_gup
+                successNext=trans_finish
+                failNext=trans_error
+
+    [[feature]]
+        description=This is the first
+        [[[start]]]
+            [[[[step1]]]]
+                condition=cond_isClean(true, true)
+                condFailNext=trans_error
+                transition=trans_gup
+                transFailNext=trans_error
+        	[[[[step2]]]]
+	            condition=cond_branch_exist(true, false)
+                condFailNext=trans_error
+	            transition=checkout -b {1} branch_develop
+	            transFailNext=trans_error
+	        [[[[step3]]]]
+	            condition=cond_push_remote(true, true)
+                condFailNext=trans_error
+	            transition=push <remote-name> <branch-name>
+	            transFailNext=trans_error
+        [[[finish]]]
+            [[[[step1]]]]
+                condition=cond_isClean(true, true)
+                condFailNext=trans_error
+                transition=mergeBranch()
+                transFailNext=trans_error
+            [[[[step2]]]]
+                condition=cond_isClean(true, true)
+                condFailNext=trans_error
+                transition=checkout -b {1} branch_develop
+                transFailNext=trans_error
+            [[[[step3]]]]
+                condition=cond_isClean(true, true)
+                condFailNext=trans_error
+                transition=deleteBranch(branch)
+                transFailNext=trans_error
+            [[[[step4]]]]
+                condition=cond_isClean(true, true)
+                condFailNext=trans_error
+                transition=push <remote-name> <branch-name>
+                transFailNext=trans_error
+        [[[testing]]]
+            [[[[step1]]]]
+                condition=cond_isClean(true, true),cond_branch_exist(true, false)
+                condFailNext=trans_error
+                transition=checkoutBranch(qa)
+                transFailNext=trans_error
+            [[[[step2]]]]
+                condition=cond_isClean(true, true),cond_branch_exist(true, false)
+                condFailNext=trans_error
+                transition=mergeBranch({1}, qa)
+                transFailNext=trans_error
+            [[[[step3]]]]
+                condition=cond_isClean(true, true),cond_branch_exist(true, false)
+                condFailNext=trans_error
+                transition=mergeBranch({1}, qa)
+                transFailNext=trans_error
