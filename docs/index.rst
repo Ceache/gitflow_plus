@@ -11,6 +11,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   workflow
+   configfile
+
 
 
 Indices and tables
