@@ -7,4 +7,7 @@
    
    index
    workflow
+   builtinCmd
    configfile
+   README
+   DEVELOPERS

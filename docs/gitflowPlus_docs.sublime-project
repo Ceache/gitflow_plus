@@ -2,8 +2,14 @@
 	"folders":
 	[
 		{
-			"path": "/C/Users/lid4ec9/apps/gitflow_plus/docs",
-            "folder_exclude_patterns": ["_build"]
+			"folder_exclude_patterns":
+			[
+				"_build"
+			],
+			"path": "/C/Users/lid4ec9/apps/gitflow_plus/docs"
+		},
+		{
+			"path": "/C/Users/lid4ec9/apps/gitflow_plus/gitflow"
 		}
 	]
 }

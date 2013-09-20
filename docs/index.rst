@@ -58,7 +58,7 @@ feedback.
 Feel free to fork this repo and to commit your additions. For a list
 of all contributors, please see the :file:`AUTHORS.txt`.
 
-You will need :module:`unittest2` to run the tests.
+You will need :data:`unittest2` to run the tests.
 
 History of the Project
 =========================

@@ -1,8 +1,8 @@
 .. _configFile:
 
-******************************************
-Gitflow Plus Workflow Configuration System
-******************************************
+*****************************
+Workflow Configuration System
+*****************************
 
 .. index:: config, configuration, workflow
 
@@ -172,62 +172,144 @@ condDefault
     In your workflow, if you don't specify a condition, this is run by default.  This default condition consits of a chain of the frequently used conditions.  This method chains ``condIsClean`` and ``condIsNextMaster`` both set with ``(true, true)`` parameters.
 
 Transition Commands
--------------------
+===================
 
+Transition command are actions.  If a condition statement comes back as true, then a transition is executed that does a specific task and moves to the next step.
 
-# Predefined Steps
-#   trans_finish - Finishes off the transaction by displaying the steps that was done
-#   transError - rolls back the transaction and displays the errors.  If any 
-#       commits occured, it will rebase them out and return it to the previous
-#       state
-#   trans_gup - this does a fetch/rebase instead of a pull.  A pull creates a new commit
-#       for the branch, this does not.  This keeps the commit tree clean in comparison
-#       This is only done if there is a remote configured
+Transitions
+-----------
 
-# Transition Commands
-#   transCreateBranch(newBranch, branchFrom)
-#       Throws errors if:
-#           The newBranch doesn't exist yet.
-#           The repo is dirty.
-#   transCheckoutBranch(branch)
-#   transtransMergeBranch(fromBranch, intoBranch)
-#   transDeleteBranch(branch)
-#   transGitCommand(gitcommand)
-#   transPushToRemote()
-#   transError()
-#   transFinish()
-#   transGup()
-# http://manual.macromates.com/en/language_grammars
-# http://www.sublimetext.com/forum/viewtopic.php?f=3&t=6381
-# https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=18&cad=rja&ved=0CGYQFjAHOAo&url=https%3A%2F%2Fdocs.google.com%2Fdocument%2Fd%2F1jPflAMP-HT1594MQWwcipEJekrmRBoHyTU2YLtmwMLM%2Fedit%3Fusp%3Dsharing&ei=NYQ4UpzGEKfD4AO1jICwCQ&usg=AFQjCNFRQBs-op3Vjl4TK2Ape-A71Oo_CA&sig2=wlO9NVR77SwEJf8zjI_JTw
+transCreateBranch
+^^^^^^^^^^^^^^^^^
+.. method:: transCreateBranch(newBranch, branchFrom)
 
+    | Params:
+    | ``newBranch`` (:data:`boolean`): 
+    | ``branchFrom`` (:data:`boolean`): 
 
-# [workflows] - This indicates the workflow begins here.  There can be only one workflow statement
-#    [[command]]
-#        [[[subcommand]]]
-#            [[[[steps]]]]
-#                condition= - the condition to check before transition, if
-#                                   not included, will default to condDefault
-#                condCriticalFailNext= - the command to execute if condition fails, if
-#                                   not included, will default to transError
-#                condNonCriticalFailNext - 
-#                transition= - the command to be executed if the condition passes
-#                transFailNext= - the command to execute if transition fails, if
-#                                   not included, will default to transError
-[workflows]
-    [[gup]]
-        description=This is the gup that does a fetch/rebase instead of a pull
-        [[[default]]]
-            [[[[step1]]]]
-                condition=
-                transition=transGup('bla')
+    description
 
-    [[command_{0}]]
+transCheckoutBranch
+^^^^^^^^^^^^^^^^^^^
+.. method:: transCheckoutBranch(branch)
+
+    | Params:
+    | ``branch`` (:data:`boolean`): 
+
+    description
+
+transMergeBranch
+^^^^^^^^^^^^^^^^
+.. method:: transMergeBranch(branch)
+
+    | Params:
+    | ``branch`` (:data:`boolean`): 
+    | ``branch`` (:data:`boolean`): 
+
+    description
+
+transDeleteBranch
+^^^^^^^^^^^^^^^^^
+.. method:: transDeleteBranch(branch)
+
+    | Params:
+    | ``branch`` (:data:`boolean`): 
+    | ``branch`` (:data:`boolean`): 
+
+    description
+
+transGitCommand
+^^^^^^^^^^^^^^^
+.. method:: transGitCommand(branch)
+
+    | Params:
+    | ``branch`` (:data:`boolean`): 
+    | ``branch`` (:data:`boolean`): 
+
+    description
+
+transPushToRemote
+^^^^^^^^^^^^^^^^^
+.. method:: transPushToRemote(branch)
+
+    | Params:
+    | ``branch`` (:data:`boolean`): 
+    | ``branch`` (:data:`boolean`): 
+
+    description
+
+transError
+^^^^^^^^^^
+.. method:: transError(branch)
+
+    | Params:
+    | ``branch`` (:data:`boolean`): 
+    | ``branch`` (:data:`boolean`): 
+
+    description
+
+transFinish
+^^^^^^^^^^^
+.. method:: transFinish(branch)
+
+    | Params:
+    | ``branch`` (:data:`boolean`): 
+    | ``branch`` (:data:`boolean`): 
+
+    description
+
+transGup
+^^^^^^^^
+.. method:: transGup(branch)
+
+    | Params:
+    | ``branch`` (:data:`boolean`): 
+    | ``branch`` (:data:`boolean`): 
+
+    description
+
+File Format
+===========
+
+The ``gitflowplus.flowini`` follows a modified INI file format.  For specifics on the file format itself, see the `ConfigObj document page <http://www.voidspace.org.uk/python/configobj.html>`_.
+
+The workflow format itself is four levels deep::
+
+    [workflows] - This indicates the workflow begins here.  There can be only one workflow statement
+       [[command]]
+           [[[subcommand]]]
+               [[[[steps]]]]
+                   condition= - the condition to check before transition, if
+                                      not included, will default to condDefault
+                   condCriticalFailNext= - the command to execute if condition fails, if
+                                      not included, will default to transError
+                   condNonCriticalFailNext - 
+                   transition= - the command to be executed if the condition passes
+                   transFailNext= - the command to execute if transition fails, if
+                                      not included, will default to transError
+
+The :data:`workflows` section is the main container.  
+
+Commands
+--------
+
+The first level down, :data:`command` is mapped to the commands entered at the command line.  In the example below, the first second level section is ``gup``, this creates the command ``git flow gup``.::
+
+    [workflows]
+        [[gup]]
+            description=This is the gup that does a fetch/rebase instead of a pull
+            [[[default]]]
+                [[[[step1]]]]
+                    condition=
+                    transition=transGup('bla')
+
+Most commands you would use in Gitflow Plus are variations of the same workflow.  For this reason, Gitflow Plus includes a construct to build a common workflow for multiple commands.  You can specify multiple commands to follow the same command branch by simply comma separating them like so::
+
+    [[bug,feature]]
         description=This is the first
         [[[start]]]
             [[[[step1]]]]
                 transition=trans_gup
-
             [[[[step2]]]]
                 condition=condBranchExist(true, false)
                 transition=transCreateBranch(checkout -b {1} branch_develop)
@@ -247,28 +329,14 @@ Transition Commands
                 transition=transDeleteBranch(branch)
             [[[[step5]]]]
                 transition=transPushToRemote(push <remote-name> <branch-name>)
-    [[command_hotfix]]
-        [[[start]]]
-            [[[[step1]]]]
-                transition=trans_gup
-            [[[[step2]]]]
-                condition=condBranchExist(true, false)
-                transition=transCreateBranch(checkout -b {1} branch_develop)
-            [[[[step3]]]]
-                condition=condPushRemote(true, true)
-                transition=transPushToRemote(push <remote-name> <branch-name>)
-        [[[finish]]]
-            [[[[step1]]]]
-                transition=transMergeBranch
-            [[[[step2]]]]
-                transition=transGitCommand(checkout -b {1} branch_develop)
-            [[[[step3]]]]
-                transition=transDeleteBranch(branch)
-            [[[[step4]]]]
-                transition=transPushToRemote(push <remote-name> <branch-name>)
-    [[release]]
-        description=This creates releases to move groups thru the workflows
-        [[[start]]]
-            [[[[step1]]]]
-                transition=checkout -b release-1.2 develop
 
+The resulting workflow will generate commands ``git flow bug start``, ``git flow bug next``, ``git flow feature start``, ``git flow feature next``.  In both commands, the ``start`` and ``next`` commands will do the exact same steps, but use the appropriate branch prefixes.
+
+Subcommands
+-----------
+
+The third level of configs are subcommands.  Examples of this would be like ``git flow bug start`` or ``git flow bug next`` where ``start`` and ``next`` are subcommands.  The above example has the keyword ``default``.  ``default`` is an optional subtask.  If you do not specify a default subtask, the response will be a help screen displaying the available subcommands for the specified commands.  But in the case of ``git flow gup``, there are no arguments, there are no subcommands, so we redefine the ``default`` subcommand and implement the steps we want to run.  
+
+`langGrammer <http://manual.macromates.com/en/language_grammars>`_.
+`sublimePlugins <http://www.sublimetext.com/forum/viewtopic.php?f=3&t=6381>`_.
+`googleSearch <https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=18&cad=rja&ved=0CGYQFjAHOAo&url=https%3A%2F%2Fdocs.google.com%2Fdocument%2Fd%2F1jPflAMP-HT1594MQWwcipEJekrmRBoHyTU2YLtmwMLM%2Fedit%3Fusp%3Dsharing&ei=NYQ4UpzGEKfD4AO1jICwCQ&usg=AFQjCNFRQBs-op3Vjl4TK2Ape-A71Oo_CA&sig2=wlO9NVR77SwEJf8zjI_JTw>`_.

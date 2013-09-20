@@ -3,6 +3,8 @@ This file contains all the tasks that can be used to assemble workflows
 
 The config file specifies the task chain that is executed for each transition
 """
+from gitflow.config.configmanager import ConfigManager
+from gitflow.core import GitFlow
 
 
 class GitFlowCommand(object):
@@ -111,4 +113,5 @@ class InitCommand(GitFlowCommand):
         :param args:
         :return:
         """
+        c = ConfigManager(GitFlow())
         print('executed InitCommand')

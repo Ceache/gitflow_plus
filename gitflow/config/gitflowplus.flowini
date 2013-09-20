@@ -1,0 +1,71 @@
+config_version=0.0.1
+branch_master=master
+branch_develop=develop
+mainline_branches=${branch_develop},it,alpha,beta,${branch_master}
+flow_commands=
+{'bug', 'cmdGeneric', ${branch_develop}}, 
+{'feature', 'cmdGeneric', ${branch_develop}}, 
+{'support', 'cmdGeneric', ${branch_develop}}, 
+{'hotfix', 'hotfix', ${branch_master}}, 
+{'release', 'release', ${branch_master}}
+autopush_remotes=true
+remote_name=origin
+
+[workflows]
+    [[gup]]
+        description=This is the gup that does a fetch/rebase instead of a pull
+        [[[default]]]
+            [[[[step1]]]]
+                condition=
+                transition=transGup('bla')
+
+    [[cmdGeneric]]
+        description=This is the first
+        [[[start]]]
+            [[[[step1]]]]
+                transition=trans_gup
+
+        	[[[[step2]]]]
+	            condition=condBranchExist(true, false)
+	            transition=transCreateBranch(checkout -b {1} branch_develop)
+	        [[[[step3]]]]
+	            condition=condPushRemote(true, true)
+                condFailNext=transFinish()
+	            transition=transPushToRemote(push <remote-name> <branch-name>)
+        [[[next]]]
+            [[[[step1]]]]
+                condition=condDefault(),condIsNextMaster(true, true)
+                transition=transMergeBranch(${branch_develop})
+            [[[[step2]]]]
+                transition=transMergeBranch(${branch_next})
+            [[[[step3]]]]
+                transition=transGitCommand(checkout -b {1} branch_develop)
+            [[[[step4]]]]
+                transition=transDeleteBranch(branch)
+            [[[[step5]]]]
+                transition=transPushToRemote(push <remote-name> <branch-name>)
+    [[hotfix]]
+        [[[start]]]
+            [[[[step1]]]]
+                transition=trans_gup
+            [[[[step2]]]]
+                condition=condBranchExist(true, false)
+                transition=transCreateBranch(checkout -b {1} branch_develop)
+            [[[[step3]]]]
+                condition=condPushRemote(true, true)
+                transition=transPushToRemote(push <remote-name> <branch-name>)
+        [[[finish]]]
+            [[[[step1]]]]
+                transition=transMergeBranch
+            [[[[step2]]]]
+                transition=transGitCommand(checkout -b {1} branch_develop)
+            [[[[step3]]]]
+                transition=transDeleteBranch(branch)
+            [[[[step4]]]]
+                transition=transPushToRemote(push <remote-name> <branch-name>)
+    [[release]]
+        description=This creates releases to move groups thru the workflows
+        [[[start]]]
+            [[[[step1]]]]
+                transition=checkout -b release-1.2 develop
+

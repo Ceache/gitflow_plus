@@ -12,45 +12,50 @@
 	"buffers":
 	[
 		{
-			"contents": ".. Git Flow Plus documentation master file, created by\n   sphinx-quickstart on Thu Jul  4 02:25:07 2013.\n   You can adapt this file completely to your liking, but it should at least\n   contain the root `toctree` directive.\n\nWelcome to Git Flow Plus's documentation!\n=========================================\n\nContents:\n\n\n\n\n\nIndices and tables\n==================\n\n* :ref:`genindex`\n* :ref:`modindex`\n* :ref:`search`\n\n",
-			"file": "index.rst",
-			"file_size": 471,
-			"file_write_time": 130240143091256087,
+			"file": "/C/Users/lid4ec9/apps/gitflow_plus/gitflow/config/gitflowplus.flowini",
 			"settings":
 			{
-				"buffer_size": 416,
+				"buffer_size": 2648,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/lid4ec9/apps/gitflow_plus/gitflow/config/configmanager.py",
+			"settings":
+			{
+				"buffer_size": 7150,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/C/Users/lid4ec9/apps/Python-3.3.2/Doc/reference/import.rst",
+			"file": "/C/Users/lid4ec9/apps/gitflow_plus/gitflow/flow_tasks.py",
 			"settings":
 			{
-				"buffer_size": 32542,
-				"line_ending": "Windows"
+				"buffer_size": 3634,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/C/Users/lid4ec9/apps/Python-3.3.2/Doc/reference/lexical_analysis.rst",
+			"file": "/C/Users/lid4ec9/apps/gitflow_plus/tests/gitflow/config/test_ConfigManager.py",
 			"settings":
 			{
-				"buffer_size": 28059,
-				"line_ending": "Windows"
+				"buffer_size": 3260,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "configfile.rst",
+			"file": "/C/Users/lid4ec9/apps/gitflow_plus/gitflow/core.py",
 			"settings":
 			{
-				"buffer_size": 8100,
-				"line_ending": "Windows"
+				"buffer_size": 29591,
+				"line_ending": "Unix"
 			}
 		}
 	],
-	"build_system": "Packages/AAAPackageDev/Support/Convert to ....sublime-build",
+	"build_system": "Packages/Makefile/Make.sublime-build",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 35.0,
 		"selected_items":
 		[
 			[
@@ -123,12 +128,48 @@
 	},
 	"file_history":
 	[
+		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/__init__.py",
+		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/const.py",
+		"/C/Users/lid4ec9/apps/gitflow_plus/setup.py",
+		"/C/Users/lid4ec9/apps/gitflow_plus/setup_pygit2.sh",
+		"/C/Users/lid4ec9/apps/gitflow_plus/setup.cfg",
+		"/C/Users/lid4ec9/apps/cygwin/lib/python2.7/site-packages/htmltmpl.py",
+		"/C/Users/lid4ec9/apps/cygwin/lib/python2.7/site-packages/gitflow-0.0.1-py2.7.egg-info",
+		"/C/Users/lid4ec9/apps/cygwin/lib/python2.7/site-packages/gitdb-0.5.4-py2.7.egg-info",
+		"/C/Users/lid4ec9/apps/gitflow_plus/bin/git-flow",
+		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/flow_exceptions.py",
+		"/C/Users/lid4ec9/apps/cygwin/lib/python2.7/site-packages/paramiko/__init__.py",
+		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/i18n.py",
+		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/gitflow",
+		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/config/__init__.py",
+		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/bin/__init__.py",
+		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/bin/_init.py",
+		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/config/validate.py",
 		"/C/Users/lid4ec9/apps/gitflow_plus/docs/contents.rst",
-		"/C/Users/lid4ec9/apps/gitflow_plus/docs/workflow.rst",
-		"/C/Users/lid4ec9/apps/gitflow_plus/tests/fixtures/gitflowplus_0.0.1.flowini",
-		"/C/Users/lid4ec9/apps/gitflow_plus/docs/conf.py",
+		"/C/Users/lid4ec9/apps/gitflow_plus/docs/index.rst",
+		"/C/Users/lid4ec9/apps/Python-3.3.2/Doc/reference/expressions.rst",
+		"/C/Users/lid4ec9/apps/gitflow_plus/docs/configfile.rst",
 		"/C/Users/lid4ec9/apps/Python-3.3.2/Doc/conf.py",
+		"/C/Users/lid4ec9/apps/Python-3.3.2/Doc/reference/lexical_analysis.rst",
+		"/C/Users/lid4ec9/apps/gitflow_plus/docs/README.rst",
+		"/C/Users/lid4ec9/apps/gitflow_plus/docs/builtinCmd.rst",
+		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/flow_tasks.py",
+		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/core.py",
 		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/config/configmanager.py",
+		"/C/Users/lid4ec9/Code/RP40/cmcRestS/src/main/java/com/highmark/cmcsvc/retail/consumereffectivedate/resource/ConsumerEffectiveDateResource.java",
+		"/C/Users/lid4ec9/Code/RP40/cmcXSD/src/main/java/com/highmark/cmcsvc/retail/messages/consumereffectivedate/ConsumerEffectiveDateRequestMessage.java",
+		"/C/Users/lid4ec9/apps/gitflow_plus/docs/workflow.rst",
+		"/C/Users/lid4ec9/apps/Python-3.3.2/Doc/includes/email-headers.py",
+		"/C/Users/lid4ec9/apps/Python-3.3.2/Doc/includes/email-dir.py",
+		"/C/Users/lid4ec9/apps/Python-3.3.2/Doc/library/ctypes.rst",
+		"/C/Users/lid4ec9/apps/Python-3.3.2/Doc/tools/rstlint.py",
+		"/C/Users/lid4ec9/apps/Python-3.3.2/Doc/tools/sphinx-build.py",
+		"/C/Users/lid4ec9/apps/gitflow_plus/docs/conf.py",
+		"/C/Users/lid4ec9/apps/Python-3.3.2/Doc/reference/import.rst",
+		"/C/Users/lid4ec9/apps/scripts/apps/sublime/Data/Packages/Makefile/Make.sublime-build",
+		"/C/Users/lid4ec9/apps/gitflow_plus/docs/gitflowPlus_docs.sublime-project",
+		"/C/Users/lid4ec9/apps/gitflow_plus/docs/gitflowPlus_docs.sublime-workspace",
+		"/C/Users/lid4ec9/apps/gitflow_plus/tests/fixtures/gitflowplus_0.0.1.flowini",
 		"/C/Users/lid4ec9/apps/scripts/apps/sublime/Data/Packages/User/Gitflow Plus INI.YAML-tmLanguage",
 		"/C/Users/lid4ec9/apps/scripts/apps/sublime/Data/Packages/ShellScript/Shell-Unix-Generic.tmLanguage",
 		"/C/Users/lid4ec9/apps/Python-3.3.2/Doc/contents.rst",
@@ -170,17 +211,8 @@
 		"/C/Users/lid4ec9/apps/scripts/apps/sublime/Data/Packages/Java/Java.tmLanguage",
 		"/C/Users/lid4ec9/apps/scripts/python/server_scripts.ini",
 		"/C/Users/lid4ec9/apps/gitflow_plus/git_docs/GIT-CHECKOUT",
-		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/config/validate.py",
-		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/config/__init__.py",
-		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/bin/_init.py",
-		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/bin/__init__.py",
 		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/tempLocation.py",
-		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/flow_tasks.py",
-		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/flow_exceptions.py",
-		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/core.py",
-		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/const.py",
 		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/branchmanager.py",
-		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/__init__.py",
 		"/C/Users/lid4ec9/apps/scripts/apps/sublime/Data/Installed Packages/Package Control.sublime-package",
 		"/C/Users/lid4ec9/Code/RP30/cmcRP30Client/README.txt",
 		"/C/Users/lid4ec9/apps/scripts/apps/sublime/Data/Packages/gitflow_plus/Gitflow Plus INI.tmLanguage.cache",
@@ -201,7 +233,6 @@
 		"/C/Users/lid4ec9/apps/gitflow_plus/gitflow/util.py",
 		"/C/Users/lid4ec9/apps/gitflow_plus/tests/gitflow/test_bin.py",
 		"/C/Users/lid4ec9/apps/gitflow_plus/tests/gitflow/test_statemachine.py",
-		"/C/Users/lid4ec9/apps/gitflow_plus/setup.py",
 		"/C/Users/lid4ec9/Desktop/sendfile.html",
 		"/C/Users/lid4ec9/apps/scripts/java/CodeTools/README.txt",
 		"/C/Users/lid4ec9/apps/scripts/java/CodeTools/build.gradle",
@@ -224,33 +255,7 @@
 		"/C/Users/lid4ec9/apps/scripts/bash_aliases.sh",
 		"/C/Users/lid4ec9/apps/scripts/.git/config",
 		"/C/Users/lid4ec9/apps/scripts/.gitmodules",
-		"/C/Users/lid4ec9/apps/scripts/java/podam/.git",
-		"/C/Users/lid4ec9/apps/scripts/.git/modules/java/podam/config",
-		"/C/Users/lid4ec9/apps/scripts/apps/sublime/Data/Packages/sublime-java-decompilation/.git/config",
-		"/C/Users/lid4ec9/ServerFolder/2013-09-10 16-59-37/chln430/ldev72/cmc/logs/cmcsnr/seniorPortal.log",
-		"/C/Users/lid4ec9/apps/scripts/java/CodeTools/src/main/java/com/onuspride/codetools/xdoclet/JSONOutputMessageTaglet.java",
-		"/C/Users/lid4ec9/apps/scripts/java/CodeTools/src/main/java/com/onuspride/codetools/xdoclet/JSONMessageTaglet.java",
-		"/C/Users/lid4ec9/apps/scripts/java/CodeTools/src/main/java/com/onuspride/codetools/xdoclet/TagPrefs.java",
-		"/C/Users/lid4ec9/apps/scripts/java/CodeTools/src/main/java/com/onuspride/codetools/xdoclet/ListTag.java",
-		"/C/Users/lid4ec9/apps/scripts/java/CodeTools/src/main/java/com/onuspride/codetools/xdoclet/JSONInputMessageTaglet.java",
-		"/C/Users/lid4ec9/apps/scripts/java/CodeTools/src/main/java/com/onuspride/codetools/xdoclet/ToDo.java",
-		"/C/Users/lid4ec9/apps/scripts/java/CodeTools/src/main/java/com/onuspride/codetools/xdoclet/ReviewedBy.java",
-		"/C/Users/lid4ec9/Code/RP40/cmcXSD/src/main/java/com/highmark/cmcsvc/retail/constants/CodeEnums.java",
-		"/C/Users/lid4ec9/Code/RP40/cmcBL/src/main/java/com/highmark/cmcsvc/retail/common/startup/WorkManagerMonitor.java",
-		"/C/Users/lid4ec9/AppData/Local/Temp/wz04db/org/tullmann/taglets/ListTag.java",
-		"/C/Users/lid4ec9/AppData/Local/Temp/wz65ee/org/tullmann/taglets/ToDo.java",
-		"/C/Users/lid4ec9/Code/RP30/cmcRP30Msg/src/main/java/com/highmark/sdk/internal/rest/ARestMessage.java",
-		"/C/Users/lid4ec9/AppData/Local/Temp/wzc6cc/p01/data/tenv2/cmc/snr/logs/harvBuild201309101242.log",
-		"/C/Users/lid4ec9/Code/RP40/cmcXSD/src/main/java/com/highmark/cmcsvc/retail/messages/RuntimeParms.xsd",
-		"/C/Users/lid4ec9/Code/RP40/cmcXSD/src/main/java/com/highmark/cmcsvc/retail/messages/RegionResponse.xsd",
-		"/C/Users/lid4ec9/Code/RP40/cmcXSD/src/main/java/com/highmark/cmcsvc/retail/messages/QueryMetaSend.xsd",
-		"/C/Users/lid4ec9/Code/RP40/cmcXSD/src/main/java/com/highmark/cmcsvc/retail/messages/QueryMetaReply.xsd",
-		"/C/Users/lid4ec9/Code/RP40/cmcXSD/src/main/java/com/highmark/cmcsvc/retail/messages/ProcessTimings.xsd",
-		"/C/Users/lid4ec9/Code/RP40/cmcXSD/src/main/java/com/highmark/cmcsvc/retail/messages/ProcessTiming.xsd",
-		"/C/Users/lid4ec9/Code/RP40/cmcXSD/src/main/java/com/highmark/cmcsvc/retail/messages/NameValue.xsd",
-		"/C/Users/lid4ec9/Code/RP40/cmcXSD/src/main/java/com/highmark/cmcsvc/retail/messages/CommonMap.xsd",
-		"/C/Users/lid4ec9/Code/RP40/cmcXSD/src/main/java/com/highmark/cmcsvc/retail/messages/BaseMessage.xsd",
-		"/C/Users/lid4ec9/Code/RP40/cmcXSD/src/main/java/com/highmark/cmcsvc/retail/messages/StatusMessage.xsd"
+		"/C/Users/lid4ec9/apps/scripts/java/podam/.git"
 	],
 	"find":
 	{
@@ -258,9 +263,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 90.0,
 		"where_history":
 		[
+			"C:\\Users\\lid4ec9\\apps\\gitflow_plus",
 			"C:\\Users\\lid4ec9\\ServerFolder\\2013-09-18 13-41-13",
 			"C:\\Users\\lid4ec9\\Code\\RP40",
 			"C:\\Users\\lid4ec9\\apps\\scripts",
@@ -274,6 +280,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"executed InitCommand",
+			"param",
 			"master_doc",
 			"sphinx-build",
 			"condPushRemote",
@@ -327,23 +335,23 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "index.rst",
+					"file": "/C/Users/lid4ec9/apps/gitflow_plus/gitflow/config/gitflowplus.flowini",
 					"settings":
 					{
-						"buffer_size": 416,
+						"buffer_size": 2648,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								318,
-								318
+								365,
+								365
 							]
 						],
 						"settings":
@@ -437,7 +445,9 @@
 								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/RestructuredText/reStructuredText.tmLanguage"
+							"syntax": "Packages/User/Gitflow Plus INI.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -447,18 +457,18 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/C/Users/lid4ec9/apps/Python-3.3.2/Doc/reference/import.rst",
+					"file": "/C/Users/lid4ec9/apps/gitflow_plus/gitflow/config/configmanager.py",
 					"settings":
 					{
-						"buffer_size": 32542,
+						"buffer_size": 7150,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								11242,
-								11248
+								4008,
+								4008
 							]
 						],
 						"settings":
@@ -552,30 +562,31 @@
 								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/SublimeReStructuredText/reStructuredText.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3852.0,
+						"translation.y": 941.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "/C/Users/lid4ec9/apps/Python-3.3.2/Doc/reference/lexical_analysis.rst",
+					"file": "/C/Users/lid4ec9/apps/gitflow_plus/gitflow/flow_tasks.py",
 					"settings":
 					{
-						"buffer_size": 28059,
+						"buffer_size": 3634,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1187,
-								1187
+								231,
+								231
 							]
 						],
 						"settings":
@@ -669,8 +680,8 @@
 								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/SublimeReStructuredText/reStructuredText.tmLanguage",
-							"tab_size": 2,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -681,18 +692,18 @@
 				},
 				{
 					"buffer": 3,
-					"file": "configfile.rst",
+					"file": "/C/Users/lid4ec9/apps/gitflow_plus/tests/gitflow/config/test_ConfigManager.py",
 					"settings":
 					{
-						"buffer_size": 8100,
+						"buffer_size": 3260,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								513,
-								513
+								684,
+								656
 							]
 						],
 						"settings":
@@ -786,13 +797,129 @@
 								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/SublimeReStructuredText/reStructuredText.tmLanguage",
+							"syntax": "Packages/Python/Python.tmLanguage",
 							"tab_size": 4,
-							"translate_tabs_to_spaces": true,
-							"word_wrap": true
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/lid4ec9/apps/gitflow_plus/gitflow/core.py",
+					"settings":
+					{
+						"buffer_size": 29591,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2602,
+								2609
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1215.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -853,6 +980,26 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"cor",
+				"gitflow/core.py"
+			],
+			[
+				"inde",
+				"index.rst"
+			],
+			[
+				"cont",
+				"contents.rst"
+			],
+			[
+				"",
+				"contents.rst"
+			],
+			[
+				"wo",
+				"workflow.rst"
+			]
 		],
 		"width": 0.0
 	},

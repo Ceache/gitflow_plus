@@ -52,7 +52,7 @@ try:
     # noinspection PyUnresolvedReferences
     from gitflow.bin import main
     # noinspection PyUnresolvedReferences
-    from gitflow.flow_exceptions import GitflowError, GitCommandError
+    #from gitflow.flow_exceptions import GitflowError, GitCommandError
 
     main()
 except ImportError:
@@ -67,5 +67,5 @@ except ImportError:
     sys.stderr.write("\n")
     raise
 
-except (GitflowError, GitCommandError) as e:
-    raise SystemExit('Error: %s' % e)
+#except (GitflowError, GitCommandError) as e:
+#    raise SystemExit('Error: %s' % e)

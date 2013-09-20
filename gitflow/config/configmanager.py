@@ -1,14 +1,13 @@
 __author__ = 'scphantm'
 
 import os
+import shutil
 from os import path
 from distutils.version import StrictVersion
 
-import i18n
-from flow_exceptions import NoRepositoryObject
+from gitflow import i18n
+from gitflow.flow_exceptions import NoRepositoryObject
 from configobj import ConfigObj
-from const import CONFIG_VERSION, BRANCH_MASTER, BRANCH_DEVELOP, REMOTE_ORIGIN, MAINLINE_BRANCHES, FLOW_DIR, SYS_CONFIG_FILE, PERC_CONFIG_FILE
-
 
 # use ugettext instead of getttext to avoid unicode errors
 _ = i18n.language.ugettext
@@ -20,6 +19,19 @@ class ConfigManager:
     class handles everything that the ConfigObj does not do like
     configuring a new system
     """
+    # configuration constants
+    CONFIG_VERSION = "config_version"
+    BRANCH_MASTER = 'branch_master'
+    BRANCH_DEVELOP = 'branch_develop'
+    MAINLINE_BRANCHES = 'mainline_branches'
+
+    REMOTE_ORIGIN = 'remote_origin'
+
+    # These are configuration values
+    FLOW_DIR = '.flow'
+
+    SYS_CONFIG_FILE = 'gitflowplus.flowini'
+    PERC_CONFIG_FILE = 'personal.flowini'
 
     # defining a new compare routine to check version numbers.  this is used for the system
     # that upgrades versions from one to the next.
@@ -96,8 +108,13 @@ class ConfigManager:
             self.systemConfig = ConfigObj(self.systemConfigFile, unrepr=False)
         else:
             print(_('Creating new system configuration file'))
-            self.systemConfig = self._buildNewDefaultSystemConfigFile(
-                ConfigObj(self.systemConfigFile, unrepr=False, create_empty=True))
+
+            print(self.systemConfigFile)
+            print(path.isfile(self.systemConfigFile))
+            shutil.copy(self.systemConfigFile, path.isfile(self.systemConfigFile))
+
+            #self.systemConfig = self._buildNewDefaultSystemConfigFile(
+            #    ConfigObj(self.systemConfigFile, unrepr=False, create_empty=True))
                
     def _initializePersonalConfig(self):
         """
@@ -119,18 +136,19 @@ class ConfigManager:
 
         This is
         """
-        config[CONFIG_VERSION] = self.version
 
-        config[BRANCH_MASTER] = 'master'
-        config[BRANCH_DEVELOP] = 'develop'
+        #config[CONFIG_VERSION] = self.version
 
-        config[MAINLINE_BRANCHES] = {'master', 'develop'}
-        config[REMOTE_ORIGIN] = 'origin'
+        #config[BRANCH_MASTER] = 'master'
+        #config[BRANCH_DEVELOP] = 'develop'
 
-        config['workflows']['version'] = {'VersionCommand'}
+        #config[MAINLINE_BRANCHES] = {'master', 'develop'}
+        #config[REMOTE_ORIGIN] = 'origin'
+
+        #config['workflows']['version'] = {'VersionCommand'}
 
         #write the settings to the file
-        config.write()
+        #config.write()
         return config
 
     def _buildNewDefaultPersonalConfigFile(self, config):
