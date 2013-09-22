@@ -10,7 +10,7 @@ try:
 except ImportError:
     from StringIO import StringIO
 
-from git import GitCommandError, Reference
+from pygit2 import GitCommandError, Reference
 from gitflow.flow_exceptions import (NoSuchBranchError, BranchExistsError,
                                 PrefixNotUniqueError, BaseNotOnBranch,
                                 WorkdirIsDirtyError, BranchTypeExistsError,

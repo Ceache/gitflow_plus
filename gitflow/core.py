@@ -14,7 +14,7 @@ from functools import wraps
 import pygit2
 from pygit2 import Repository, GitError
 
-from gitflow.branchmanager import BranchManager
+#from gitflow.branchmanager import BranchManager
 from gitflow.util import itersubclasses
 
 from gitflow.flow_exceptions import (NotInitialized, BranchExistsError,
@@ -139,25 +139,25 @@ class GitFlow(object):
             pass
 
         ## this checks that the workflow config file is present
-        if path.isdir(path.join(self.working_dir, self.flowDir)):
+        #if path.isdir(path.join(self.working_dir, self.flowDir)):
             #config manager load
-            pass
-        else:
+        #    pass
+        #else:
             #config manager init
             #config manager load
-            pass
+        #    pass
 
-        self.managers = self._discover_branch_managers()
+        # self.managers = self._discover_branch_managers()
 
-        for identifier, manager in self.managers.items():
-            self.defaults['gitflow.prefix.%s' % identifier] = manager.DEFAULT_PREFIX
+        # for identifier, manager in self.managers.items():
+           # self.defaults['gitflow.prefix.%s' % identifier] = manager.DEFAULT_PREFIX
 
     def _discover_branch_managers(self):
-        managers = {}
-        for cls in itersubclasses(BranchManager):
+        #managers = {}
+        #for cls in itersubclasses(BranchManager):
             # TODO: This needs completely redone to reflect the configured array in the config system
-            managers[cls.identifier] = cls(self)
-        return managers
+        #    managers[cls.identifier] = cls(self)
+        return None
 
     def _init_initial_commit(self):
         master = self.master_name()

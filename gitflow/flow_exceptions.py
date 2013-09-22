@@ -59,10 +59,41 @@ class GitCommandError(GitflowError):
     """
     pass
 
-"""
+class NotInitialized(GitflowError):
+    pass
+
+class StatusError(GitflowError):
+    pass
+
+class BranchExistsError(ObjectError):
+    pass
+
+class BranchTypeExistsError(ObjectError):
+    def __str__(self):
+        return ("There is an existing %s branch. "
+                "Finish that one first." % self.args[0])
+
+class MergeConflict(StatusError):
+    def __str__(self):
+        return '\n'.join([
+            "Merge conflicts not resolved yet, use:",
+            "    git mergetool",
+            "    git commit",
+        ])
+
+class NoSuchRemoteError(ObjectError):
+    pass
+class NoSuchBranchError(ObjectError):
+    pass
+
 class Usage(GitflowError):
     def __str__(self):
         return '\n'.join(map(str, self.args))
+
+class BadObjectError(ObjectError):
+    pass
+
+"""
 
 
 class OperationsError(GitflowError):
@@ -77,16 +108,12 @@ class MergeError(OperationsError):
     pass
 
 
-class StatusError(GitflowError):
-    pass
 
 
 class WorkdirIsDirtyError(StatusError):
     pass
 
 
-class NotInitialized(StatusError):
-    pass
 
 
 class AlreadyInitialized(StatusError):
@@ -95,28 +122,13 @@ class AlreadyInitialized(StatusError):
                 "To force reinitialization use: git flow init -f")
 
 
-class MergeConflict(StatusError):
-    def __str__(self):
-        return '\n'.join([
-            "Merge conflicts not resolved yet, use:",
-            "    git mergetool",
-            "    git commit",
-        ])
 
 
 
 
 
-class BadObjectError(ObjectError):
-    pass
 
 
-class NoSuchBranchError(ObjectError):
-    pass
-
-
-class NoSuchRemoteError(ObjectError):
-    pass
 
 
 class BaseNotOnBranch(ObjectError):
@@ -133,10 +145,6 @@ class TagExistsError(ObjectError):
     pass
 
 
-class BranchTypeExistsError(ObjectError):
-    def __str__(self):
-        return ("There is an existing %s branch. "
-                "Finish that one first." % self.args[0])
 
 
 class NoSuchLocalBranchError(NoSuchBranchError):

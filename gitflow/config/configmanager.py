@@ -2,9 +2,11 @@ __author__ = 'scphantm'
 
 import os
 import shutil
+import gitflow
+import re
+import distutils.util
 from os import path
 from distutils.version import StrictVersion
-
 from gitflow import i18n
 from gitflow.flow_exceptions import NoRepositoryObject
 from configobj import ConfigObj
@@ -24,8 +26,10 @@ class ConfigManager:
     BRANCH_MASTER = 'branch_master'
     BRANCH_DEVELOP = 'branch_develop'
     MAINLINE_BRANCHES = 'mainline_branches'
-
-    REMOTE_ORIGIN = 'remote_origin'
+    AUTOPUSH_REMOTES = 'autopush_remotes'
+    REMOTE_NAME = 'remote_name'
+    FLOW_COMMANDS = 'flow_commands'
+    WORKFLOWS = 'workflows'
 
     # These are configuration values
     FLOW_DIR = '.flow'
@@ -50,7 +54,7 @@ class ConfigManager:
         self.version = "0.0.1"
 
         # set the flow directory name here until I figure out a better way
-        self.flowDir = FLOW_DIR
+        self.flowDir = self.FLOW_DIR
 
         #make sure we got a copy of the repository object
         if repo is None:
@@ -59,9 +63,9 @@ class ConfigManager:
             self.repo = repo
 
         # the file name for the configuration settings
-        self.configFolder = path.join(self.repo.workdir, self.flowDir)
-        self.systemConfigFile = path.join(self.configFolder, SYS_CONFIG_FILE)
-        self.personalConfigFile = path.join(self.configFolder, PERC_CONFIG_FILE)
+        self.configFolder = path.join(self.repo.working_dir, self.flowDir)
+        self.systemConfigFile = path.join(self.configFolder, self.SYS_CONFIG_FILE)
+        self.personalConfigFile = path.join(self.configFolder, self.PERC_CONFIG_FILE)
 
         # Check that the folder exist and load the files
         if not path.isdir(self.configFolder):
@@ -86,7 +90,7 @@ class ConfigManager:
         :param entry:
             The entry you want added to the ignore file.
         """
-        ignoreFilename = path.join(self.repo.workdir, '.gitignore')
+        ignoreFilename = path.join(self.repo.working_dir, '.gitignore')
 
         f = open(ignoreFilename, 'a+')
         
@@ -100,22 +104,93 @@ class ConfigManager:
     def _initializeSystemConfig(self):
         """
         This is used to load the system config file into the
-        object.  If it doesn't exist, it will create a new one from
-        the default methods, save it to the file, and load it
+        object.  If it doesn't exist, it will copy over the template
+        file included in the source distribution and load it.
         """
         if path.isfile(self.systemConfigFile):
             print(_('Loading existing system configuration file'))
-            self.systemConfig = ConfigObj(self.systemConfigFile, unrepr=False)
+            
         else:
             print(_('Creating new system configuration file'))
 
-            print(self.systemConfigFile)
-            print(path.isfile(self.systemConfigFile))
-            shutil.copy(self.systemConfigFile, path.isfile(self.systemConfigFile))
+            templatePath = path.join(os.path.dirname(gitflow.__file__ ), "config/template.gitflowplus.flowini")
+            shutil.copy(templatePath, self.systemConfigFile)
 
-            #self.systemConfig = self._buildNewDefaultSystemConfigFile(
-            #    ConfigObj(self.systemConfigFile, unrepr=False, create_empty=True))
-               
+        self.systemConfig = ConfigObj(self.systemConfigFile, unrepr=False)
+        #self.printConfig()
+
+    def getMainlineBranches(self):
+        ret = []
+        for item in self.systemConfig[self.MAINLINE_BRANCHES]:
+            ret.append(self._resolveVariable(item.strip()))
+        return ret
+
+    def getAutopushRemotes(self):
+        return distutils.util.strtobool(self.systemConfig[self.AUTOPUSH_REMOTES])
+
+    def getConfigVersion(self):
+        return self._getVar(self.CONFIG_VERSION)
+
+    def getBranchMaster(self):
+        return self._getVar(self.BRANCH_MASTER)
+
+    def getBranchDevelop(self):
+        return self._getVar(self.BRANCH_DEVELOP)
+
+    def getRemoteName(self):
+        return self._getVar(self.REMOTE_NAME)
+
+    def getFlowCommands(self):
+        ret = []
+        for item in self._resolveVariable(self._getVar(self.FLOW_COMMANDS)).split('),('):
+            ret.append(self._resolveVariable(item).replace('(', '').replace(')', ''))
+        return ret
+        #return self._resolveVariable(self._getVar(self.FLOW_COMMANDS)).split('),(')
+
+    def getWorkflows(self):
+        return self.systemConfig[self.WORKFLOWS]
+
+    def getWorkflow(self, key):
+        return self.systemConfig[self.WORKFLOWS][key]
+
+    def _getVar(self, key):
+        return self.systemConfig[key].replace('\n', '').replace('\r', '').replace(' ', '').replace('\'', '')
+
+    def _resolveVariable(self, inputText):
+        p = re.compile( '\$\{branch_develop\}')
+        inputText = p.sub(self.getBranchDevelop(), inputText)
+
+        p = re.compile( '\$\{branch_master\}')
+        inputText = p.sub(self.getBranchMaster(), inputText)
+        return inputText
+        
+    def printConfig(self):
+        print("")
+        print(self.CONFIG_VERSION + ": " + self.getConfigVersion())
+        print(self.BRANCH_MASTER + ": " + self.getBranchMaster())
+        print(self.BRANCH_DEVELOP + ": " + self.getBranchDevelop())
+
+        if self.getAutopushRemotes():
+            print(self.AUTOPUSH_REMOTES + ": True")
+        else:
+            print(self.AUTOPUSH_REMOTES + ": False")
+
+        print(self.REMOTE_NAME + ": " + self.getRemoteName())
+        print("")
+        print("Mainline Branches:")
+
+        for item in self.getMainlineBranches():
+            print("  " + item)
+
+        print("")
+        print("Flow Commands:")
+
+        for item in self.getFlowCommands():
+            print("  " + item)
+
+        print(self.getWorkflows())
+        print(self.getWorkflow('gup'))
+
     def _initializePersonalConfig(self):
         """
         This loads the personal config file into the system.  If it doesn't exist, it 
@@ -129,27 +204,6 @@ class ConfigManager:
             print(_('Creating new personal configuration file'))
             self.personalConfig = self._buildNewDefaultPersonalConfigFile(
                 ConfigObj(self.personalConfigFile, unrepr=False, create_empty=True))
-                
-    def _buildNewDefaultSystemConfigFile(self, config):
-        """
-        This method is designed to write the basic config settings to a file
-
-        This is
-        """
-
-        #config[CONFIG_VERSION] = self.version
-
-        #config[BRANCH_MASTER] = 'master'
-        #config[BRANCH_DEVELOP] = 'develop'
-
-        #config[MAINLINE_BRANCHES] = {'master', 'develop'}
-        #config[REMOTE_ORIGIN] = 'origin'
-
-        #config['workflows']['version'] = {'VersionCommand'}
-
-        #write the settings to the file
-        #config.write()
-        return config
 
     def _buildNewDefaultPersonalConfigFile(self, config):
         """
@@ -157,7 +211,7 @@ class ConfigManager:
 
         This is
         """
-        config[REMOTE_ORIGIN] = 'origin'
+        config[self.REMOTE_NAME] = 'origin'
 
         #write the settings to the file
         config.write()

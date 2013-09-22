@@ -2,14 +2,17 @@ config_version=0.0.1
 branch_master=master
 branch_develop=develop
 mainline_branches=${branch_develop},it,alpha,beta,${branch_master}
-flow_commands=
-{'bug', 'cmdGeneric', ${branch_develop}}, 
-{'feature', 'cmdGeneric', ${branch_develop}}, 
-{'support', 'cmdGeneric', ${branch_develop}}, 
-{'hotfix', 'hotfix', ${branch_master}}, 
-{'release', 'release', ${branch_master}}
 autopush_remotes=true
 remote_name=origin
+
+flow_commands="""
+('bug', 'cmdGeneric', ${branch_develop}), 
+('feature', 'cmdGeneric', ${branch_develop}), 
+('support', 'cmdGeneric', ${branch_develop}), 
+('hotfix', 'hotfix', ${branch_master}), 
+('release', 'release', ${branch_master})"""
+
+
 
 [workflows]
     [[gup]]

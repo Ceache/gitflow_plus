@@ -6,10 +6,10 @@
 			[
 				"_build"
 			],
-			"path": "/C/Users/lid4ec9/apps/gitflow_plus/docs"
+			"path": "~/code/gitflow_plus/docs"
 		},
 		{
-			"path": "/C/Users/lid4ec9/apps/gitflow_plus/gitflow"
+			"path": "~/code/gitflow_plus/gitflow"
 		}
 	]
 }

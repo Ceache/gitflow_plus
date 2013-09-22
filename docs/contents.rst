@@ -11,3 +11,5 @@
    configfile
    README
    DEVELOPERS
+   install
+   reference

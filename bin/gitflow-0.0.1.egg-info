@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: gitflow
+Version: 2.6
+Summary: The Reportlab Toolkit
+Home-page: http://www.bla.com/
+Author: Willie Slepecki
+Author-email: scphantm@gmail.com
+License: BSD license (see license.txt for details), Copyright (c) 2000-2012, ReportLab Inc.
+Description: The ReportLab Toolkit. An Open Source Python library for generating PDFs and graphics.
+Platform: UNKNOWN

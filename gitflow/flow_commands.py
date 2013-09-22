@@ -96,13 +96,12 @@ class InitCommand(GitFlowCommand):
         :return:
         """
         initMsg = "Initialize a repository for gitflow."
-        p = parent.add_parser('init',
-                              help=initMsg)
-        p.add_argument('-f', '--force', action='store_true',
-                       help='Force reinitialization of the gitflow preferences.')
-        p.add_argument('-d', '--defaults', action='store_true',
-                       dest='use_defaults',
-                       help='Use default branch naming conventions and prefixes.')
+        p = parent.add_parser('init', help=initMsg)
+        # p.add_argument('-f', '--force', action='store_true',
+        #                help='Force reinitialization of the gitflow preferences.')
+        # p.add_argument('-d', '--defaults', action='store_true',
+        #                dest='use_defaults',
+        #                help='Use default branch naming conventions and prefixes.')
         p.set_defaults(func=cls.run)
         return p
 
@@ -113,5 +112,32 @@ class InitCommand(GitFlowCommand):
         :param args:
         :return:
         """
-        c = ConfigManager(GitFlow())
+        
         print('executed InitCommand')
+
+class DynamicCommand():
+
+    def __init__(self, inParams, confMan):
+        options = inParams.split(',')
+        self.name = options[0]
+        self.workflowName = options[1]
+        self.startBranch = options[2]
+
+        self.workflow = confMan.getWorkflow(options[1])
+
+    def register_parser(self, parent):
+
+        initMsg = self._getWorkVarFunc('description')
+
+        p = parent.add_parser(self.name, help=initMsg)
+        p.set_defaults(func=self.run)
+        return p
+
+    def run(self, args):
+        print('executed ' + self.name)
+
+    def _getWorkVarFunc(self, key):
+        try:
+            return self.workflow[key]
+        except KeyError:
+            return ''
