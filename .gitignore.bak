@@ -19,5 +19,6 @@
 /docs/html
 /docs/man
 _build
+_static
 _templates
 gitflow_toimport
