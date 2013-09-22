@@ -14,6 +14,34 @@ flow_commands="""
 
 
 
+##usage: git flow feature [list] [-v]
+##       git flow feature start [-F] <name> [<base>]
+#       git flow feature finish [-rFkDS] [<name|nameprefix>]
+#           DEFINE_boolean fetch false "fetch from $ORIGIN before performing finish" F
+#           DEFINE_boolean rebase false "rebase instead of merge" r
+#           DEFINE_boolean keep false "keep branch after performing finish" k
+#           DEFINE_boolean force_delete false "force delete feature branch after finish" D
+#           DEFINE_boolean squash false "squash feature during merge" S
+#       git flow feature publish <name>
+#       git flow feature track <name>
+#       git flow feature diff [<name|nameprefix>]
+#       git flow feature rebase [-i] [<name|nameprefix>]
+#       git flow feature checkout [<name|nameprefix>]
+#       git flow feature pull [-r] <remote> [<name>]
+#usage: git flow hotfix [list] [-v]
+#       git flow hotfix start [-F] <version> [<base>]
+#       git flow hotfix finish [-Fsumpk] <version>
+#       git flow hotfix publish <version>
+#       git flow hotfix track <version>
+#usage: git flow release [list] [-v]
+#       git flow release start [-F] <version> [<base>]
+#       git flow release finish [-FsumpkS] <version>
+#       git flow release publish <name>
+#       git flow release track <name>
+#usage: git flow support [list] [-v]
+#       git flow support start [-F] <version> <base>
+
+
 [workflows]
     [[gup]]
         description=This is the gup that does a fetch/rebase instead of a pull
@@ -21,13 +49,18 @@ flow_commands="""
             [[[[step1]]]]
                 condition=
                 transition=transGup('bla')
-
     [[cmdGeneric]]
         description=This is the first
+        [[[default]]]
+            options ="""{'list':'Lists the current command branches', 'v':'List the command branches in verbose output'}"""
+            usageHelp = git flow ${command_name} [list] [-v]
+            [[[[step1]]]]
+                transition=transHelp
         [[[start]]]
+            options = {'F': 'Do a fetch before starting the new branch'}"""
+            usageHelp = git flow ${command_name} start [-F] <name> [<base>]
             [[[[step1]]]]
                 transition=trans_gup
-
         	[[[[step2]]]]
 	            condition=condBranchExist(true, false)
 	            transition=transCreateBranch(checkout -b {1} branch_develop)

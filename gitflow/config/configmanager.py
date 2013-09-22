@@ -45,8 +45,19 @@ class ConfigManager:
         """
         This is the constructor.  Here we set the initial fields for the
         configuration system
-        :param repo:
+
+        Parameters:
+
+        repo : GitFlow
             An instance of the repository object
+
+        initializeBlank : boolean
+            Indicates to create a new repo of one doesnt exists.  Defaults to True.
+
+        Examples::
+
+            # Changes in the working tree not yet staged for the next commit
+            >>> diff()
         """
 
         #set the configuration system version.  This will be used to
