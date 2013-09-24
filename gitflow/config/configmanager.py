@@ -173,6 +173,7 @@ class ConfigManager:
 
         p = re.compile( '\$\{branch_master\}')
         inputText = p.sub(self.getBranchMaster(), inputText)
+        self.printConfig()
         return inputText
         
     def printConfig(self):

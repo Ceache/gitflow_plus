@@ -9,3 +9,5 @@ v0.5.0
 -----------
 
 * First public release
+http://www.samba.org/~jelmer/dulwich/\
+http://stackoverflow.com/questions/1456269/python-git-module-experiences

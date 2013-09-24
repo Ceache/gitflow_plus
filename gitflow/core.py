@@ -11,8 +11,8 @@ import time
 import datetime
 from functools import wraps
 
-import pygit2
-from pygit2 import Repository, GitError
+from git import *
+#from git import Repo, GitCommandError
 
 #from gitflow.branchmanager import BranchManager
 from gitflow.util import itersubclasses
@@ -121,7 +121,7 @@ class GitFlow(object):
         # this block is saying if what you passed is a repo object
         # then set the working_dir field to the path in the object
         # otherwise we are assuming you sent a directory path
-        if isinstance(working_dir, Repository):
+        if isinstance(working_dir, Repo):
             self.working_dir = working_dir.working_dir
         else:
             self.working_dir = working_dir
@@ -134,7 +134,7 @@ class GitFlow(object):
         # of making sure the repo exists before trying to put anything
         # in it.
         try:
-            self.repo = Repository(self.working_dir)
+            self.repo = Repo(self.working_dir)
         except GitError:
             pass
 

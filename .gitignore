@@ -21,3 +21,5 @@
 _build
 _templates
 gitflow_toimport
+gitflowPlus_docs.sublime-project
+gitflowPlus_docs.sublime-workspace
