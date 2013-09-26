@@ -54,6 +54,8 @@ class ConfigManager:
 
     pdev = re.compile('\$\{branch_develop\}')
     pmast = re.compile('\$\{branch_master\}')
+    pcmd = re.compile('\$\{command_name\}')
+
 
     # defining a new compare routine to check version numbers.  this is used for the system
     # that upgrades versions from one to the next.
@@ -214,10 +216,14 @@ class ConfigManager:
     def _getVar(self, key):
         return self.systemConfig[key].replace('\n', '').replace('\r', '').replace(' ', '').replace('\'', '')
 
+    def resolveConfig(self, inputText, replaceText):
+        if ((inputText is not None) and (replaceText is not None)):
+            inputText = self.pcmd.sub(replaceText, inputText)
+            return inputText
+
     def _resolveVariable(self, inputText):
         inputText = self.pdev.sub(self.getBranchDevelop(), inputText)
         inputText = self.pmast.sub(self.getBranchMaster(), inputText)
-
         return inputText
 
     def _initializeSystemConfig(self):
@@ -227,11 +233,10 @@ class ConfigManager:
         file included in the source distribution and load it.
         """
         if path.isfile(self.systemConfigFile):
-            print(_('Loading existing system configuration file'))
-
+            #print(_('Loading existing system configuration file'))
+            pass
         else:
-            print(_('Creating new system configuration file'))
-
+            #print(_('Creating new system configuration file'))
             templatePath = path.join(os.path.dirname(gitflow.__file__), "config/template.gitflowplus.flowini")
             shutil.copy(templatePath, self.systemConfigFile)
 

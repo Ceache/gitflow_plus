@@ -62,20 +62,6 @@
     {
       "cmdGeneric": {
         "description": "This is the first",
-        "default": {
-          "options": {
-            "list": "Lists the current command branches",
-            "v": "List the command branches in verbose output"
-          },
-          "usageHelp": "git flow ${command_name} [list] [-v]",
-          "steps": [
-            {
-              "step1": {
-                "transition": "transHelp"
-              }
-            }
-          ]
-        },
         "start": {
           "options": {
             "F": "Do a fetch before starting the new branch"

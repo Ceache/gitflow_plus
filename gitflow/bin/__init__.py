@@ -64,12 +64,14 @@ def main():
     # This initializes the dynamic commands.
     for dynamic in c.getFlowCommands():
         cmd = DynamicCommand(dynamic)
-        cmd.register_parser(placeholder)
+        cmd.register_parser(placeholder, c)
 
+    print("Parseargs")
     args = parser.parse_args()
 
     # Now run the specified command
     try:
+        print("running the command")
         args.func(args)
     except KeyboardInterrupt:
         raise SystemExit('Aborted by user request.')
