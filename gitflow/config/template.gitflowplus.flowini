@@ -13,29 +13,34 @@
   "remote_name": "origin",
   "flow_commands": [
     {
-      "command": "bug",
-      "workflow": "cmdGeneric",
-      "srcBranch": "${branch_develop}"
+      "bug": {
+        "workflow": "cmdGeneric",
+        "srcBranch": "${branch_develop}"
+      }
     },
     {
-      "command": "feature",
-      "workflow": "cmdGeneric",
-      "srcBranch": "${branch_develop}"
+      "feature": {
+        "workflow": "cmdGeneric",
+        "srcBranch": "${branch_develop}"
+      }
     },
     {
-      "command": "support",
-      "workflow": "cmdGeneric",
-      "srcBranch": "${branch_develop}"
+      "support": {
+        "workflow": "cmdGeneric",
+        "srcBranch": "${branch_develop}"
+      }
     },
     {
-      "command": "hotfix",
-      "workflow": "hotfix",
-      "srcBranch": "${branch_master}"
+      "hotfix": {
+        "workflow": "hotfix",
+        "srcBranch": "${branch_master}"
+      }
     },
     {
-      "command": "release",
-      "workflow": "release",
-      "srcBranch": "${branch_master}"
+      "release": {
+        "workflow": "release",
+        "srcBranch": "${branch_master}"
+      }
     }
   ],
   "_comment": "git flow support start [-F] <version> <base>",

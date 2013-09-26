@@ -21,7 +21,7 @@ git-flow
 #
 
 import argparse
-
+import sys
 #from gitflow.core import GitFlow
 from gitflow.util import itersubclasses
 from gitflow.core import GitFlow
@@ -35,6 +35,9 @@ __copyright__ = "2013 Willie Slepecki; Based on code written by: 2010-2011 Vince
 __license__ = "BSD"
 __configFile__ = ".gitflow"
 
+if sys.version_info < (2, 7):
+    raise "must use python 2.7 or greater"
+
 
 def die(*texts):
     raise SystemExit('\n'.join(map(str, texts)))
@@ -46,6 +49,7 @@ class NotEmpty(argparse.Action):
             raise argparse.ArgumentError(self, 'must not by empty.')
         setattr(namespace, self.dest, values)
 
+
 def main():
 
     parser = argparse.ArgumentParser(prog='git flow')
@@ -56,10 +60,10 @@ def main():
         cls.register_parser(placeholder)
 
     c = ConfigManager(GitFlow())
-    
+
     # This initializes the dynamic commands.
     for dynamic in c.getFlowCommands():
-        cmd = DynamicCommand(dynamic, c)
+        cmd = DynamicCommand(dynamic)
         cmd.register_parser(placeholder)
 
     args = parser.parse_args()
