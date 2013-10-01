@@ -64,7 +64,11 @@
         "description": "This is the first",
         "start": {
           "options": {
-            "F": "Do a fetch before starting the new branch"
+            "-F": "Do a fetch before starting the new branch"
+          },
+          "arguments": {
+            "branch": "name of the branch to start",
+            "base": "Override the default branch with this one"
           },
           "usageHelp": "git flow ${command_name} start [-F] <name> [<base>]",
           "steps": [

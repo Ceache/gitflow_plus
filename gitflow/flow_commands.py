@@ -126,27 +126,7 @@ class DynamicCommand():
         #           self.options = []
         #           self.steps = []
 
-    def register_parser(self, parent, config):
-        initMsg = self.flowCommand.workflow.description
-        p = parent.add_parser(self.flowCommand.flowCommand, help=initMsg)
-        sub = p.add_subparsers(title='Actions')
-        #p.set_defaults(func=self.run)
-
-        if len(self.flowCommand.workflow.subCommands) > 0:
-            # we have multiple actions, lets add them
-            for action in self.flowCommand.workflow.subCommands:
-                psub = sub.add_parser(action.subName, 
-                    help=config.resolveConfig(action.usageHelp, self.flowCommand.flowCommand))
-
-                psub.set_defaults(func=self.run)
-
-                for option in action.options:
-                    psub.add_argument(option.option, action='store_true', help=option.description)
-
-                psub.add_argument('name', action=NotEmpty)
-
-        return p
-
+    
     @staticmethod
     def run(args):
         #c = ConfigManager(GitFlow())

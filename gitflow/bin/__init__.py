@@ -29,6 +29,7 @@ from gitflow.flow_exceptions import (GitflowError)
 from gitflow.flow_commands import GitFlowCommand
 from gitflow.flow_commands import DynamicCommand
 from gitflow.config.configmanager import ConfigManager
+from pprint import pprint
 
 
 __copyright__ = "2013 Willie Slepecki; Based on code written by: 2010-2011 Vincent Driessen; 2012-2013 Hartmut Goebel"
@@ -63,16 +64,33 @@ def main():
 
     # This initializes the dynamic commands.
     for dynamic in c.getFlowCommands():
-        cmd = DynamicCommand(dynamic)
-        cmd.register_parser(placeholder, c)
+        initMsg = dynamic.workflow.description
+        p = placeholder.add_parser(dynamic.flowCommand, help=initMsg)
+        sub = p.add_subparsers(title='Actions')
+        #p.set_defaults(func=self.run)
 
-    print("Parseargs")
+        if len(dynamic.workflow.subCommands) > 0:
+            # we have multiple actions, lets add them
+            for action in dynamic.workflow.subCommands:
+                psub = sub.add_parser(action.subName, 
+                    help=c.resolveConfig(action.usageHelp, dynamic.flowCommand))
+
+                # psub.set_defaults(func=self.run)
+
+                for option in action.options:
+                    psub.add_argument(option.option, action='store_true', help=option.description)
+
+                for tmpArg in action.args:
+                    psub.add_argument(tmpArg.arg, action=NotEmpty, help=tmpArg.description)
+
     args = parser.parse_args()
 
     # Now run the specified command
     try:
         print("running the command")
-        args.func(args)
+        # print(sys.argv[1])
+        # print(sys.argv[2])
+        pprint(str(args))
     except KeyboardInterrupt:
         raise SystemExit('Aborted by user request.')
 

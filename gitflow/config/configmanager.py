@@ -36,6 +36,7 @@ class ConfigManager:
 
     WORKFLOWS = 'workflows'
     WORK_OPTIONS = 'options'
+    WORK_ARGUMENTS = 'arguments'
     WORK_USAGEHELP = 'usageHelp'
     WORK_STEPS = 'steps'
     STEP_CONDITION = "condition"
@@ -332,12 +333,19 @@ class WorkflowSubcommand:
         self.subName = key
         self.usageHelp = config.get(ConfigManager.WORK_USAGEHELP)
         self.options = []
+        self.args = []
         self.steps = []
 
         if config.get(ConfigManager.WORK_OPTIONS) is not None:
             options = config.get(ConfigManager.WORK_OPTIONS)
             for option in options:
                 self.options.append(WorkflowSubcommandOption(option, options.get(option)))
+
+        if config.get(ConfigManager.WORK_ARGUMENTS) is not None:
+            args = config.get(ConfigManager.WORK_ARGUMENTS)
+            for arg in args:
+                self.args.append(WorkflowSubcommandArguments(arg, args.get(arg)))
+
 
         steps = config.get(ConfigManager.WORK_STEPS)
 
@@ -383,6 +391,16 @@ class WorkflowStep:
         str_list.append("        transFailNext " + str(self.transFailNext) + "\n")
         return ''.join(str_list)
 
+
+class WorkflowSubcommandArguments:
+    def __init__(self, arg, description):
+        self.arg = arg
+        self.description = description
+
+    def __str__(self):
+        str_list = []
+        str_list.append("      arg " + self.arg + " - " + self.description + "\n")
+        return ''.join(str_list)
 
 class WorkflowSubcommandOption:
     def __init__(self, option, description):
