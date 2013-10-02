@@ -52,7 +52,7 @@
           "steps": [
             {
               "step1": {
-                "transition": "transGup('bla')"
+                "transition": "transGup"
               }
             }
           ]
@@ -70,18 +70,22 @@
             "branch": "name of the branch to start",
             "base": "Override the default branch with this one"
           },
-          "usageHelp": "git flow ${command_name} start [-F] <name> [<base>]",
+          "usageHelp": "git flow ${command_name} start [-F] <branch> [<base>]",
           "steps": [
             {
               "step1": {
-                "transition": "trans_gup"
+                "transition": "transGup"
               },
               "step2": {
-                "condition": "condBranchExist(true, false)",
+                "conditions": [
+                    "condBranchExist(true, false)"
+                ],
                 "transition": "transCreateBranch(checkout -b {1} branch_develop)"
               },
               "step3": {
-                "condition": "condPushRemote(true, true)",
+                "conditions": [
+                    "condPushRemote(true, true)"
+                ],
                 "condFailNext": "transFinish()",
                 "transition": "transPushToRemote(push <remote-name> <branch-name>)"
               }
@@ -89,10 +93,17 @@
           ]
         },
         "next": {
+          "usageHelp": "git flow ${command_name} next <branch>",
+          "arguments": {
+            "branch": "The name of the branch to step next (the branch prefix is optional)"
+          },
           "steps": [
             {
               "step1": {
-                "condition": "condDefault(),condIsNextMaster(true, true)",
+                "conditions": [
+                    "condDefault()",
+                    "condIsNextMaster(true, true)"
+                ],
                 "transition": "transMergeBranch(${branch_develop})"
               },
               "step2": {
@@ -121,11 +132,15 @@
                 "transition": "trans_gup"
               },
               "step2": {
-                "condition": "condBranchExist(true, false)",
+                "conditions": [
+                    "condBranchExist(true, false)"
+                ],
                 "transition": "transCreateBranch(checkout -b {1} branch_develop)"
               },
               "step3": {
-                "condition": "condPushRemote(true, true)",
+                "conditions": [
+                    "condPushRemote(true, true)"
+                ],
                 "transition": "transPushToRemote(push <remote-name> <branch-name>)"
               }
             }

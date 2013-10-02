@@ -116,24 +116,6 @@ class InitCommand(GitFlowCommand):
         
         print('executed InitCommand')
 
-
-class DynamicCommand():
-
-    def __init__(self, cmd):
-        self.flowCommand = cmd
-        #           self.subName = key
-        #           self.usageHelp = config.get(ConfigManager.WORK_USAGEHELP)
-        #           self.options = []
-        #           self.steps = []
-
-    
-    @staticmethod
-    def run(args):
-        #c = ConfigManager(GitFlow())
-
-        #print('executed ' + self.flowCommand.flowCommand)
-        pprint(str(args))
-
 class NotEmpty(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
         if not values:

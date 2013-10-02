@@ -27,7 +27,6 @@ from gitflow.util import itersubclasses
 from gitflow.core import GitFlow
 from gitflow.flow_exceptions import (GitflowError)
 from gitflow.flow_commands import GitFlowCommand
-from gitflow.flow_commands import DynamicCommand
 from gitflow.config.configmanager import ConfigManager
 from pprint import pprint
 
@@ -64,8 +63,8 @@ def main():
 
     # This initializes the dynamic commands.
     for dynamic in c.getFlowCommands():
-        initMsg = dynamic.workflow.description
-        p = placeholder.add_parser(dynamic.flowCommand, help=initMsg)
+        initcmdmsg = dynamic.workflow.description
+        p = placeholder.add_parser(dynamic.flowCommand, help=initcmdmsg)
         sub = p.add_subparsers(title='Actions')
         #p.set_defaults(func=self.run)
 
@@ -90,7 +89,7 @@ def main():
         print("running the command")
         # print(sys.argv[1])
         # print(sys.argv[2])
-        pprint(str(args))
+        #pprint(str(args))
     except KeyboardInterrupt:
         raise SystemExit('Aborted by user request.')
 

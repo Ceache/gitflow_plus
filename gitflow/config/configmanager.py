@@ -11,10 +11,13 @@ from os import path
 from distutils.version import StrictVersion
 from gitflow import i18n
 from gitflow.flow_exceptions import NoRepositoryObject
+from gitflow.flow_conditions import condBranchExist, condIsClean, \
+    condPushRemote, condIsNextMaster, condDefault, ConditionFactory
+from gitflow.flow_transitions import TransitionFactory, transGup
 
 # use ugettext instead of getttext to avoid unicode errors
 _ = i18n.language.ugettext
-
+get_class = lambda x: globals()[x]
 
 class ConfigManager:
     """
@@ -39,7 +42,7 @@ class ConfigManager:
     WORK_ARGUMENTS = 'arguments'
     WORK_USAGEHELP = 'usageHelp'
     WORK_STEPS = 'steps'
-    STEP_CONDITION = "condition"
+    STEP_CONDITIONS = "conditions"
     STEP_COND_CRITICAL_FAIL = "condCriticalFailNext"
     STEP_COND_NON_CRITICAL_FAIL = "condNonCriticalFailNext"
     STEP_TRANSITION = "transition"
@@ -263,7 +266,7 @@ class ConfigManager:
         # Now lets do the flow commands, this pulls everything together
         # into congruent commands
 
-        #self.printConfig()
+        self.printConfig()
 
     def printConfig(self):
         print("")
@@ -355,8 +358,7 @@ class WorkflowSubcommand:
                 #print("step: " + stepkey)
 
     def __str__(self):
-        str_list = []
-        str_list.append("  SubCmd: " + self.subName + "\n")
+        str_list = ["  SubCmd: " + self.subName + "\n"]
 
         if self.usageHelp is not None:
             str_list.append("    **UsageHelp: " + self.usageHelp + "\n")
@@ -375,20 +377,47 @@ class WorkflowStep:
         #pprint.pprint(config)
         #print(key)
         self.stepName = key
-        self.condition = config.get(ConfigManager.STEP_CONDITION)
+        conditionsList = config.get(ConfigManager.STEP_CONDITIONS)
+
+        self.conditions = []
+
+        if conditionsList is not None:
+            for cond in conditionsList:
+                condition = re.sub("\(([^\)]+)\)|\(\)", "", cond)
+                print(condition)
+                condValid = "True"
+                condCritical = "True"
+
+                p = re.compile("(?<=\()(.*?)(?=\))")
+                for m in p.finditer(cond):
+                    conds = m.group().split(",")
+                    if len(conds) == 2:
+                        condValid = str(conds[0].strip().rstrip())
+                        condCritical = str(conds[1].strip().rstrip())
+
+                self.conditions.append(ConditionFactory.buildClass(condition, condValid, condCritical))
+                #matchObj = re.match("/(\((.)\))/", cond, re.M|re.I)
+                #if matchObj:
+                #    print("  ", matchObj.group())
+                #else:
+                #    print("No match!!")
+
+
         self.condCriticalFailNext = config.get(ConfigManager.STEP_COND_CRITICAL_FAIL)
         self.condNonCriticalFailNext = config.get(ConfigManager.STEP_COND_NON_CRITICAL_FAIL)
-        self.transition = config.get(ConfigManager.STEP_TRANSITION)
+        self.transition = TransitionFactory.buildClass(config.get(ConfigManager.STEP_TRANSITION))
         self.transFailNext = config.get(ConfigManager.STEP_TRANITION_FAIL)
 
     def __str__(self):
-        str_list = []
-        str_list.append("      Step " + self.stepName + "\n")
-        str_list.append("        condition " + str(self.condition) + "\n")
-        str_list.append("        condCriticalFailNext " + str(self.condCriticalFailNext) + "\n")
-        str_list.append("        condNonCriticalFailNext " + str(self.condNonCriticalFailNext) + "\n")
-        str_list.append("        transition " + str(self.transition) + "\n")
-        str_list.append("        transFailNext " + str(self.transFailNext) + "\n")
+        str_list = ["      Step " + self.stepName + "\n",
+                    "        condCriticalFailNext " + str(self.condCriticalFailNext) + "\n",
+                    "        condNonCriticalFailNext " + str(self.condNonCriticalFailNext) + "\n",
+                    "        transition " + str(self.transition) + "\n",
+                    "        transFailNext " + str(self.transFailNext) + "\n"]
+
+        for cond in self.conditions:
+            str_list.append(str(cond))
+
         return ''.join(str_list)
 
 
@@ -408,8 +437,7 @@ class WorkflowSubcommandOption:
         self.description = description
 
     def __str__(self):
-        str_list = []
-        str_list.append("      Option " + self.option + " - " + self.description + "\n")
+        str_list = ["      Option " + self.option + " - " + self.description + "\n"]
         return ''.join(str_list)
 
 

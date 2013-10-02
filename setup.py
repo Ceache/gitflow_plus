@@ -19,7 +19,7 @@ import gitflow as distmeta
 
 long_description = codecs.open('README.rst', "r", "utf-8").read()
 
-install_requires = ['argparse', 'pygit2', 'unittest2']
+install_requires = ['argparse', 'unittest2']
 
 setup(
     name="gitflow",
