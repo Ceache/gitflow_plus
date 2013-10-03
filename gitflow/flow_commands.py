@@ -6,7 +6,7 @@ The config file specifies the task chain that is executed for each transition
 import argparse
 from gitflow.config.configmanager import ConfigManager
 from gitflow.core import GitFlow
-from pprint import pprint
+
 
 class GitFlowCommand(object):
     """
@@ -59,6 +59,7 @@ class VersionCommand(GitFlowCommand):
     """
     This command outside of the workflow system will simply print the version of gitflow plus
     """
+
     @classmethod
     def register_parser(cls, parent):
         """
@@ -83,11 +84,40 @@ class VersionCommand(GitFlowCommand):
         print(__version__)
 
 
+class PrintConfigCommand(GitFlowCommand):
+    """
+    This triggers GitFlow to print its configuration to the scren
+    """
+
+    @classmethod
+    def register_parser(cls, parent):
+        """
+        see GitFlowCommand.register_parser comments
+        :param cls:
+        :param parent:
+        :return:
+        """
+        p = parent.add_parser('printcfg', help='Print Gitflow Current Config')
+        p.set_defaults(func=cls.run)
+        return p
+
+    @staticmethod
+    def run(args):
+        """
+        see GitFlowCommand.run comments
+        :param args:
+        :return:
+        """
+        c = ConfigManager(GitFlow())
+        c.printConfig()
+
+
 class InitCommand(GitFlowCommand):
     """
     This is a hard command outside of the workflow.  This initializes the repository
     so it can be used with gitflow.
     """
+
     @classmethod
     def register_parser(cls, parent):
         """
@@ -113,8 +143,9 @@ class InitCommand(GitFlowCommand):
         :param args:
         :return:
         """
-        
+
         print('executed InitCommand')
+
 
 class NotEmpty(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):

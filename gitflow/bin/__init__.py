@@ -28,7 +28,6 @@ from gitflow.core import GitFlow
 from gitflow.flow_exceptions import (GitflowError)
 from gitflow.flow_commands import GitFlowCommand
 from gitflow.config.configmanager import ConfigManager
-from pprint import pprint
 
 
 __copyright__ = "2013 Willie Slepecki; Based on code written by: 2010-2011 Vincent Driessen; 2012-2013 Hartmut Goebel"
@@ -51,7 +50,6 @@ class NotEmpty(argparse.Action):
 
 
 def main():
-
     parser = argparse.ArgumentParser(prog='git flow')
     placeholder = parser.add_subparsers(title='Subcommands')
 
@@ -71,8 +69,8 @@ def main():
         if len(dynamic.workflow.subCommands) > 0:
             # we have multiple actions, lets add them
             for action in dynamic.workflow.subCommands:
-                psub = sub.add_parser(action.subName, 
-                    help=c.resolveConfig(action.usageHelp, dynamic.flowCommand))
+                psub = sub.add_parser(action.subName,
+                                      help=c.resolveConfig(action.usageHelp, dynamic.flowCommand))
 
                 # psub.set_defaults(func=self.run)
 
@@ -90,8 +88,10 @@ def main():
         # print(sys.argv[1])
         # print(sys.argv[2])
         #pprint(str(args))
+        args.func(args)
     except KeyboardInterrupt:
         raise SystemExit('Aborted by user request.')
+
 
 if __name__ == '__main__':
     try:

@@ -52,7 +52,7 @@
           "steps": [
             {
               "step1": {
-                "transition": "transGup"
+                "transition": "transGup()"
               }
             }
           ]
@@ -74,17 +74,17 @@
           "steps": [
             {
               "step1": {
-                "transition": "transGup"
+                "transition": "transGup()"
               },
               "step2": {
                 "conditions": [
-                    "condBranchExist(true, false)"
+                    "condBranchExist(valid=true, critical=false)"
                 ],
-                "transition": "transCreateBranch(checkout -b {1} branch_develop)"
+                "transition": "transCreateBranch()"
               },
               "step3": {
                 "conditions": [
-                    "condPushRemote(true, true)"
+                    "condPushRemote(valid=true, critical=true)"
                 ],
                 "condFailNext": "transFinish()",
                 "transition": "transPushToRemote(push <remote-name> <branch-name>)"
@@ -102,21 +102,21 @@
               "step1": {
                 "conditions": [
                     "condDefault()",
-                    "condIsNextMaster(true, true)"
+                    "condIsNextMaster(valid=true, critical=true)"
                 ],
-                "transition": "transMergeBranch(${branch_develop})"
+                "transition": "transMergeBranch(startBranch=${branch_develop})"
               },
               "step2": {
-                "transition": "transMergeBranch(${branch_next})"
+                "transition": "transMergeBranch(mergeInto=${branch_next})"
               },
               "step3": {
-                "transition": "transGitCommand(checkout -b {1} branch_develop)"
+                "transition": "transGitCommand(git=checkout -b {1} branch_develop)"
               },
               "step4": {
-                "transition": "transDeleteBranch(branch)"
+                "transition": "transDeleteBranch(targetBranch=branch)"
               },
               "step5": {
-                "transition": "transPushToRemote(push <remote-name> <branch-name>)"
+                "transition": "transPushToRemote(git=push <remote-name> <branch-name>)"
               }
             }
           ]
@@ -129,19 +129,19 @@
           "steps": [
             {
               "step1": {
-                "transition": "trans_gup"
+                "transition": "transGup"
               },
               "step2": {
                 "conditions": [
-                    "condBranchExist(true, false)"
+                    "condBranchExist(valid=true, critical=false)"
                 ],
-                "transition": "transCreateBranch(checkout -b {1} branch_develop)"
+                "transition": "transCreateBranch(git=checkout -b {1} branch_develop)"
               },
               "step3": {
                 "conditions": [
-                    "condPushRemote(true, true)"
+                    "condPushRemote(valid=true, critical=true)"
                 ],
-                "transition": "transPushToRemote(push <remote-name> <branch-name>)"
+                "transition": "transPushToRemote(git=push <remote-name> <branch-name>)"
               }
             }
           ]
@@ -150,16 +150,16 @@
           "steps": [
             {
               "step1": {
-                "transition": "transMergeBranch"
+                "transition": "transMergeBranch()"
               },
               "step2": {
-                "transition": "transGitCommand(checkout -b {1} branch_develop)"
+                "transition": "transGitCommand(git=checkout -b {1} branch_develop)"
               },
               "step3": {
-                "transition": "transDeleteBranch(branch)"
+                "transition": "transDeleteBranch(targetBranch=branch)"
               },
               "step4": {
-                "transition": "transPushToRemote(push <remote-name> <branch-name>)"
+                "transition": "transPushToRemote(git=push <remote-name> <branch-name>)"
               }
             }
           ]
@@ -173,7 +173,7 @@
           "steps": [
             {
               "step1": {
-                "transition": "checkout -b release-1.2 develop"
+                "transition": "transGitCommand(git=checkout -b release-1.2 develop)"
               }
             }
           ]
