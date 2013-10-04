@@ -32,6 +32,9 @@ class BaseTransition(GitflowCoreCommands):
 
 class transGup(BaseTransition):
     def runTransition(self):
+        #git fetch origin && git rebase -p
+        #git push -u bit --all
+        #git push -u bit --tags
         print("ran transGup")
 
 

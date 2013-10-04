@@ -4,7 +4,7 @@ This file contains all the tasks that can be used to assemble workflows
 The config file specifies the task chain that is executed for each transition
 """
 import argparse
-from gitflow.config.configmanager import ConfigManager
+from gitflow.flow_config import ConfigManager
 from gitflow.core import GitFlow
 
 

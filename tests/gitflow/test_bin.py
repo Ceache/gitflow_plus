@@ -7,9 +7,8 @@
 
 import sys
 import re
-from functools import wraps
 import gitflow
-from gitflow.config.configmanager import ConfigManager
+from gitflow.flow_config import ConfigManager
 from tests.helpers import copy_from_fixture
 
 from unittest2 import TestCase
