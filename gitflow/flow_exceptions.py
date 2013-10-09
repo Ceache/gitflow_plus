@@ -59,8 +59,13 @@ class GitCommandError(GitflowError):
     """
     pass
 
+
 class NotInitialized(GitflowError):
-    pass
+    def __init__(self, msg="This repo has not yet been initialized for git-flow."):
+        self.message = msg
+
+    def __str__(self):
+        return self.message
 
 class StatusError(GitflowError):
     pass

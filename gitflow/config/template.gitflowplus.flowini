@@ -66,25 +66,34 @@
           "options": {
             "-F": "Do a fetch before starting the new branch"
           },
-          "arguments": {
-            "branch": "name of the branch to start",
-            "base": "Override the default branch with this one"
-          },
+          "arguments": [{
+                "arg": "branch",
+                "description": "name of the branch to start",
+                "optional": false
+            }, {
+                "arg": "base",
+                "description": "Override the default branch with this one",
+                "default_value": "${branch_develop}",
+                "optional": true
+            }],
           "usageHelp": "git flow ${command_name} start [-F] <branch> [<base>]",
           "steps": [
             {
               "step1": {
+                "conditions": [
+                  "condIsClean()"
+                ],
                 "transition": "transGup()"
               },
               "step2": {
                 "conditions": [
-                    "condBranchExist(valid=true, critical=false)"
+                  "condBranchExist(valid=true, critical=false)"
                 ],
                 "transition": "transCreateBranch()"
               },
               "step3": {
                 "conditions": [
-                    "condPushRemote(valid=true, critical=true)"
+                  "condPushRemote(valid=true, critical=true)"
                 ],
                 "condFailNext": "transFinish()",
                 "transition": "transPushToRemote(push <remote-name> <branch-name>)"
@@ -94,15 +103,17 @@
         },
         "next": {
           "usageHelp": "git flow ${command_name} next <branch>",
-          "arguments": {
-            "branch": "The name of the branch to step next (the branch prefix is optional)"
-          },
+          "arguments": [{
+                "arg": "branch",
+                "description": "The name of the branch to step next (the branch prefix is optional",
+                "optional": false
+            }],
           "steps": [
             {
               "step1": {
                 "conditions": [
-                    "condDefault()",
-                    "condIsNextMaster(valid=true, critical=true)"
+                  "condDefault()",
+                  "condIsNextMaster(valid=true, critical=true)"
                 ],
                 "transition": "transMergeBranch(startBranch=${branch_develop})"
               },
@@ -133,13 +144,13 @@
               },
               "step2": {
                 "conditions": [
-                    "condBranchExist(valid=true, critical=false)"
+                  "condBranchExist(valid=true, critical=false)"
                 ],
                 "transition": "transCreateBranch(git=checkout -b {1} branch_develop)"
               },
               "step3": {
                 "conditions": [
-                    "condPushRemote(valid=true, critical=true)"
+                  "condPushRemote(valid=true, critical=true)"
                 ],
                 "transition": "transPushToRemote(git=push <remote-name> <branch-name>)"
               }

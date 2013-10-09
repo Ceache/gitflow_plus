@@ -5,7 +5,6 @@ Copyright (c) 2012-2013 Hartmut Goebel
 Distributed under a BSD-like license. For full terms see the file LICENSE.txt
 """
 
-from os import path
 import sys
 import time
 import datetime
@@ -34,25 +33,6 @@ def datetime_to_timestamp(d):
     :return:
     """
     return time.mktime(d.timetuple()) + d.microsecond / 1e6
-
-
-def requires_repo(f):
-    """
-    This is an annotation method that is used to check that
-    a git repository is initialized.  if it doesn't, an exception is raised
-    :param f:
-    :return boolean:
-    :raise NotInitialized:
-    """
-
-    @wraps(f)
-    def _inner(self, *args, **kwargs):
-        if self.repo is None:
-            msg = 'This repo has not yet been initialized for git-flow.'
-            raise NotInitialized(msg)
-        return f(self, *args, **kwargs)
-
-    return _inner
 
 
 def requires_initialized(f):

@@ -3,10 +3,28 @@ import collections
 from gitflow import *
 from gitflow.flow_transitions import TransitionFactory
 from gitflow.flow_conditions import ConditionFactory
-#from gitflow.flow_config import ConfigManager
+from gitflow.flow_documenter import BLUE, LIGHT_BLUE, GREEN, CYAN, PURPLE, \
+    BROWN, LIGHT_GRAY, DARK_GRAY, LIGHT_GREEN, LIGHT_CYAN, \
+    LIGHT_RED, LIGHT_PURPLE, YELLOW, WHITE, RED, ENDC, formatValuePair, indentText, \
+    colorText, formatWarningKeyValueSet
+import pprint
+
+
+def executeWorkflow(subcmd, args):
+    for step in subcmd.steps:
+        for condition in step.conditions:
+            condition.checkCondition(args)
+
+        step.transition.runTransition(args)
 
 
 class FlowCommand:
+    """
+    This is the top level class of the dynamic workflow.  This maps to the
+    flow_commands section of the configuration file where it outlines the
+    various primary commands in the dynamic workflow.  This also holds which
+    workflow is configured for that particular command.
+    """
     def __init__(self, cmdName, branch, workflow):
         self.flowCommand = cmdName
         self.srcBranch = branch
@@ -21,6 +39,10 @@ class FlowCommand:
 
 
 class WorkflowCommand:
+    """
+    This is the workflow command.  A workflow can be assigned to multiple commands.
+    This is how we address duplicate possible workflows.
+    """
     def __init__(self, config, key):
         self.cmdName = key
         self.description = config.get(WORK_DESCRIPTION)
@@ -43,11 +65,15 @@ class WorkflowCommand:
 
 
 class WorkflowSubcommand:
+    """
+    These subcommands are the individual sub commands within the flow command.  Examples
+    would be like start, stop, publish, etc.
+    """
     def __init__(self, config, key):
         self.subName = key
         self.usageHelp = config.get(WORK_USAGEHELP)
         self.options = []
-        self.args = []
+        #self.args = []
         self.steps = []
 
         if config.get(WORK_OPTIONS) is not None:
@@ -56,9 +82,8 @@ class WorkflowSubcommand:
                 self.options.append(WorkflowSubcommandOption(option, options.get(option)))
 
         if config.get(WORK_ARGUMENTS) is not None:
-            args = config.get(WORK_ARGUMENTS)
-            for arg in args:
-                self.args.append(WorkflowSubcommandArguments(arg, args.get(arg)))
+            self.args = config.get(WORK_ARGUMENTS)
+            #pprint.pprint(self.args)
 
         steps = config.get(WORK_STEPS)
 
@@ -70,7 +95,7 @@ class WorkflowSubcommand:
     def __str__(self):
         str_list = [colorText(LIGHT_BLUE, indentText(2) + "Sub Command: ", COLOR_ENABLED)
                     + colorText(YELLOW, self.subName, COLOR_ENABLED) + "\n",
-                    formatWarningKeyValueSet("UsageHelp", self.usageHelp)]
+                    formatWarningKeyValueSet(indentText(3) + "UsageHelp", self.usageHelp) + "\n"]
 
         for option in self.options:
             str_list.append(str(option))
@@ -78,6 +103,16 @@ class WorkflowSubcommand:
         for step in self.steps:
             str_list.append(str(step))
 
+        return ''.join(str_list)
+
+
+class WorkflowSubcommandOption:
+    def __init__(self, option, description):
+        self.option = option
+        self.description = description
+
+    def __str__(self):
+        str_list = ["      Option " + self.option + " - " + self.description + "\n"]
         return ''.join(str_list)
 
 
@@ -92,55 +127,46 @@ class WorkflowStep:
 
         if conditionsList is not None:
             for cond in conditionsList:
-                self.conditions.append(ConditionFactory.buildClass(self._getMethodName(cond),
-                                                                   self._getParameters(cond)))
+                self.conditions.append(ConditionFactory.buildClass(_getMethodName(cond),
+                                                                   _getParameters(cond)))
 
         data = config.get(STEP_TRANSITION)
         self.transition = TransitionFactory.buildClass(
-            self._getMethodName(data), "transFail", self._getParameters(data))
+            _getMethodName(data), "transFail", _getParameters(data))
 
         data = config.get(STEP_COND_CRITICAL_FAIL)
         self.condCriticalFailNext = TransitionFactory.buildClass(
-            self._getMethodName(data), "transFail", self._getParameters(data))
+            _getMethodName(data), "transFail", _getParameters(data))
 
         data = config.get(STEP_COND_NON_CRITICAL_FAIL)
         self.condNonCriticalFailNext = TransitionFactory.buildClass(
-            self._getMethodName(data), "transFail", self._getParameters(data))
+            _getMethodName(data), "transFail", _getParameters(data))
 
         data = config.get(STEP_TRANITION_FAIL)
         self.transFailNext = TransitionFactory.buildClass(
-            self._getMethodName(data), "transFail", self._getParameters(data))
+            _getMethodName(data), "transFail", _getParameters(data))
 
     def __str__(self):
-        str_list = ["      Step " + self.stepName + "\n",
-                    "        transition \n" + str(self.transition) + "\n",
-                    "        condCriticalFailNext \n" + str(self.condCriticalFailNext) + "\n",
-                    "        condNonCriticalFailNext \n" + str(self.condNonCriticalFailNext) + "\n",
-                    "        transFailNext \n" + str(self.transFailNext) + "\n"]
+        str_list = [formatValuePair(indentText(3) + "Step", self.stepName) + "\n"]
 
-        for cond in self.conditions:
-            str_list.append(str(cond))
+        if len(self.conditions) == 0:
+            str_list.append(colorText(LIGHT_PURPLE, indentText(4) + "No Conditions Set\n", COLOR_ENABLED))
+        else:
+            for cond in self.conditions:
+                str_list.append(str(cond))
 
-        return ''.join(str_list)
+        str_list.append(formatWarningKeyValueSet(indentText(4) + "transition",
+                                                 self.transition) +"\n")
 
+        str_list.append(formatWarningKeyValueSet(indentText(4) + "condCriticalFailNext",
+                                                 self.condCriticalFailNext) + "\n")
 
-class WorkflowSubcommandArguments:
-    def __init__(self, arg, description):
-        self.arg = arg
-        self.description = description
+        str_list.append(formatWarningKeyValueSet(indentText(4) + "condNonCriticalFailNext",
+                                                 self.condNonCriticalFailNext) + "\n")
 
-    def __str__(self):
-        str_list = ["      arg " + self.arg + " - " + self.description + "\n"]
-        return ''.join(str_list)
+        str_list.append(formatWarningKeyValueSet(indentText(4) + "transFailNext",
+                                                 self.transFailNext) + "\n")
 
-
-class WorkflowSubcommandOption:
-    def __init__(self, option, description):
-        self.option = option
-        self.description = description
-
-    def __str__(self):
-        str_list = ["      Option " + self.option + " - " + self.description + "\n"]
         return ''.join(str_list)
 
 

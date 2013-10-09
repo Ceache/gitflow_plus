@@ -5,7 +5,7 @@ The config file specifies the task chain that is executed for each transition
 """
 import argparse
 from gitflow.flow_config import ConfigManager
-from gitflow.core import GitFlow
+from gitflow.flow_documenter import printConfig
 
 
 class GitFlowCommand(object):
@@ -108,8 +108,8 @@ class PrintConfigCommand(GitFlowCommand):
         :param args:
         :return:
         """
-        c = ConfigManager(GitFlow())
-        c.printConfig()
+        c = ConfigManager()
+        printConfig(c)
 
 
 class InitCommand(GitFlowCommand):

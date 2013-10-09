@@ -24,11 +24,11 @@ import argparse
 import sys
 #from gitflow.core import GitFlow
 from gitflow.util import itersubclasses
-from gitflow.core import GitFlow
 from gitflow.flow_exceptions import (GitflowError)
 from gitflow.flow_commands import GitFlowCommand
 from gitflow.flow_config import ConfigManager
-
+from gitflow.flow_workflow import executeWorkflow
+import pprint
 
 __copyright__ = "2013 Willie Slepecki; Based on code written by: 2010-2011 Vincent Driessen; 2012-2013 Hartmut Goebel"
 __license__ = "BSD"
@@ -57,7 +57,8 @@ def main():
     for cls in itersubclasses(GitFlowCommand):
         cls.register_parser(placeholder)
 
-    c = ConfigManager(GitFlow())
+    c = ConfigManager()
+    c.loadConfig()
 
     # This initializes the dynamic commands.
     for dynamic in c.getFlowCommands():
@@ -77,18 +78,38 @@ def main():
                 for option in action.options:
                     psub.add_argument(option.option, action='store_true', help=option.description)
 
-                for tmpArg in action.args:
-                    psub.add_argument(tmpArg.arg, action=NotEmpty, help=tmpArg.description)
+                try:
+                    for tmpArg in action.args:
+                        if tmpArg.get("optional"):
+                            #default = None
+
+                            defaultVal = c.resolveVariable(tmpArg.get("default_value"))
+
+                            psub.add_argument(tmpArg.get("arg"), nargs="?", default=defaultVal,
+                                              help=tmpArg.get("description"))
+                        else:
+                            psub.add_argument(tmpArg.get("arg"), action=NotEmpty,
+                                              help=tmpArg.get("description"))
+                except AttributeError:
+                    pass
 
     args = parser.parse_args()
 
     # Now run the specified command
     try:
-        print("running the command")
-        # print(sys.argv[1])
-        # print(sys.argv[2])
-        #pprint(str(args))
-        args.func(args)
+        try:
+            args.func(args)
+        except AttributeError:
+            cmd = c.getFlowCommand(sys.argv[1])
+            for scmd in cmd.workflow.subCommands:
+                if scmd.subName == sys.argv[2]:
+                    print("running the command")
+                    pprint.pprint(args)
+                    executeWorkflow(scmd, args)
+            #print(sys.argv[1])
+            #print(sys.argv[2])
+
+
     except KeyboardInterrupt:
         raise SystemExit('Aborted by user request.')
 

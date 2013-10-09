@@ -16,7 +16,11 @@ import re
 __all__ = ['FLOW_DIR', 'SYS_CONFIG_FILE', 'PERC_CONFIG_FILE', 'pdev',
            'pmast', 'pcmd', 'BRANCH_DEVELOP', 'BRANCH_MASTER', 'WORKFLOWS',
            'WORK_DESCRIPTION', 'WORK_USAGEHELP', 'WORK_OPTIONS',
-           'WORK_ARGUMENTS', 'WORK_STEPS', 'STEP_CONDITIONS', 'STEP_TRANSITION']
+           'WORK_ARGUMENTS', 'WORK_STEPS', 'STEP_CONDITIONS', 'STEP_TRANSITION',
+           'STEP_COND_CRITICAL_FAIL', 'STEP_COND_NON_CRITICAL_FAIL', 'STEP_TRANITION_FAIL',
+           'FLOW_COMMANDS', 'REMOTE_NAME', 'CONFIG_VERSION', 'SOURCE_BRANCH', 'SOURCE_WORKFLOW',
+           'AUTOPUSH_REMOTES', 'MAINLINE_BRANCHES', 'COLOR_ENABLED', 'MODE_COLOR_ENABLED',
+           'MODE_COLOR_DIABLED', 'switch']
 
 __version__ = ".".join(map(str, VERSION[0:3])) + "".join(VERSION[3:])
 __author__ = "Willie Slepecki, Hartmut Goebel, Vincent Driessen"
@@ -26,23 +30,6 @@ __docformat__ = "restructuredtext"
 __copyright__ = "2013 Willie Slepecki; Based on code written by: 2010-2011 Vincent Driessen; 2012-2013 Hartmut Goebel"
 __license__ = "BSD"
 
-
-BLUE = "\033[0;34m"
-LIGHT_BLUE = "\033[1;34m"
-GREEN = "\033[0;32m"
-CYAN = "\033[0;36m"
-PURPLE = "\033[0;35m"
-BROWN = "\033[0;33m"
-LIGHT_GRAY = "\033[0;37m"
-DARK_GRAY = "\033[1;30m"
-LIGHT_GREEN = "\033[1;32m"
-LIGHT_CYAN = "\033[1;36m"
-LIGHT_RED = "\033[1;31m"
-LIGHT_PURPLE = "\033[1;35m"
-YELLOW = "\033[1;33m"
-WHITE = "\033[1;37m"
-RED = "\033[0;31m"
-ENDC = "\033[0;0m"
 
 MODE_COLOR_ENABLED = 1
 MODE_COLOR_DIABLED = 0
@@ -83,50 +70,6 @@ PERC_CONFIG_FILE = 'personal.flowini'
 pdev = re.compile("\$\{branch_develop\}")
 pmast = re.compile('\$\{branch_master\}')
 pcmd = re.compile('\$\{command_name\}')
-
-
-def indentText(indentLevel):
-    a = 0
-    ret = ""
-    while a < indentLevel*2:
-        a += 1
-        ret += " "
-
-    return ret
-
-
-def colorText(color, text, mode):
-    for case in switch(mode):
-        if case(MODE_COLOR_ENABLED):
-            return color + text + ENDC
-        if case(MODE_COLOR_DIABLED):
-            return text
-
-
-def formatValuePair(key, value):
-    ret = colorText(LIGHT_BLUE, key, COLOR_ENABLED) + ": "
-    ret += colorText(LIGHT_RED, value, COLOR_ENABLED)
-    return ret
-
-
-def formatHeader(text):
-    return colorText(LIGHT_PURPLE, text, COLOR_ENABLED)
-
-
-def formatWarningKeyValueSet(key, value):
-    if value is not None:
-        titleColor = LIGHT_BLUE
-        valueColor = LIGHT_GREEN
-        valueText = value
-    else:
-        titleColor = LIGHT_CYAN
-        valueColor = LIGHT_RED
-        valueText = "**NOT SET**"
-
-    str_list = [colorText(titleColor, indentText(2) + key, COLOR_ENABLED),
-                ": ",
-                colorText(valueColor, valueText, COLOR_ENABLED) + "\n"]
-    return ''.join(str_list)
 
 
 class switch(object):

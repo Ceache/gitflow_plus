@@ -1,8 +1,5 @@
 from flow_exceptions import WorkflowInitializationError
 
-# https://bitbucket.org/BruceEckel/python-3-patterns-idioms/src/b1be62c8c0e547f271704adbbbfcb2f6d1caf5a0/code/StateMachine/vendingmachine/VendingMachine.py?at=default
-# https://python-3-patterns-idioms-test.readthedocs.org/en/latest/StateMachine.html
-# http://stackoverflow.com/questions/226976/how-can-i-know-in-git-if-a-branch-has-been-already-merged-into-master
 class State:
     def __init__(self, name): self.name = name
     def __str__(self): return self.name

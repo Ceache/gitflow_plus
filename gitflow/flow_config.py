@@ -1,5 +1,10 @@
 __author__ = 'scphantm'
 
+# https://bitbucket.org/BruceEckel/python-3-patterns-idioms/src/b1be62c8c0e547f271704adbbbfcb2f6d1caf5a0/code/StateMachine/vendingmachine/VendingMachine.py?at=default
+# https://python-3-patterns-idioms-test.readthedocs.org/en/latest/StateMachine.html
+# http://stackoverflow.com/questions/226976/how-can-i-know-in-git-if-a-branch-has-been-already-merged-into-master
+
+
 import os
 import shutil
 import gitflow
@@ -26,12 +31,13 @@ class ConfigManager(object):
     class handles everything that the ConfigObj does not do like
     configuring a new system
     """
+    _shared_state = {}
 
     # defining a new compare routine to check version numbers.  this is used for the system
     # that upgrades versions from one to the next.
     _compareVersion = lambda self, version1, version2: StrictVersion(version1).__cmp__(version2)
 
-    def __init__(self, repo, initializeBlank=True):
+    def __init__(self):
         """
         This is the constructor.  Here we set the initial fields for the
         configuration system
@@ -49,34 +55,47 @@ class ConfigManager(object):
             # Changes in the working tree not yet staged for the next commit
             diff()
         """
+        self.__dict__ = self._shared_state
 
-        #set the configuration system version.  This will be used to
-        #determine if the configuration on needs updated or not
+    def loadConfig(self, initializeBlank=True):
+        self.repo = None
+
+        # repository has a property called workingdir.
+        # this block is saying if what you passed is a repo object
+        # then set the working_dir field to the path in the object
+        # otherwise we are assuming you sent a directory path
+        #if isinstance(working_dir, Repo):
+        #    self.working_dir = working_dir.working_dir
+        #else:
+
+        #self.working_dir = working_dir
+
+        # todo : not sure if this is still needed, if not get rid of it
+        #self.git = Git(self.working_dir)
+
+        # try to initialize the repo object.  if it fails, keep going
+        # the field will just be null and other error checks take care
+        # of making sure the repo exists before trying to put anything
+        # in it.
+        try:
+            self.repo = Repo(".")
+            if self.repo is None:
+                raise NoRepositoryObject()
+        except GitflowError:
+            pass
+
         self.version = "0.0.1"
-
-        # set the flow directory name here until I figure out a better way
         self.flowDir = FLOW_DIR
 
-        #make sure we got a copy of the repository object
-        if repo is None:
-            raise NoRepositoryObject()
-        else:
-            self.repo = repo
-
-        # the file name for the configuration settings
         self.configFolder = path.join(self.repo.working_dir, self.flowDir)
         self.systemConfigFile = path.join(self.configFolder, SYS_CONFIG_FILE)
         self.personalConfigFile = path.join(self.configFolder, PERC_CONFIG_FILE)
-
-        # Check that the folder exist and load the files
         if not path.isdir(self.configFolder):
             os.mkdir(self.configFolder)
 
-        # these are the system config initializers
         if initializeBlank:
             self._initializeSystemConfig()
 
-        # these are the personal configs
         if initializeBlank:
             self._initializePersonalConfig()
 
@@ -190,9 +209,11 @@ class ConfigManager(object):
             inputText = pcmd.sub(replaceText, inputText)
             return inputText
 
-    def _resolveVariable(self, inputText):
-        inputText = pdev.sub(self.getBranchDevelop(), inputText)
-        inputText = pmast.sub(self.getBranchMaster(), inputText)
+    def resolveVariable(self, inputText):
+        if inputText is not None:
+            inputText = pdev.sub(self.getBranchDevelop(), inputText)
+            inputText = pmast.sub(self.getBranchMaster(), inputText)
+
         return inputText
 
     def _initializeSystemConfig(self):
@@ -217,7 +238,7 @@ class ConfigManager(object):
         json_text = open(self.systemConfigFile).read()
         self.systemConfig = json.loads(json_text, object_pairs_hook=collections.OrderedDict)
         #self.printConfig()
-        json_text = self._resolveVariable(json_text)
+        json_text = self.resolveVariable(json_text)
         # print(json_text)
         self.systemConfig = json.loads(json_text, object_pairs_hook=collections.OrderedDict)
 
