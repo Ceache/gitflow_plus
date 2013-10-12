@@ -1,15 +1,18 @@
 from os import path
+from gitflow.__init__ import (CONFIG_VERSION,
+                              PERC_CONFIG_FILE
+                              )
 from unittest2 import TestCase
-from config.configmanager import ConfigManager
+from gitflow.flow_config import ConfigManager
 from tests.helpers import (copy_from_fixture, remote_clone_from_fixture,
                            all_commits, sandboxed, fake_commit)
 from tests.helpers.factory import create_sandbox, create_git_repo
-from const import CONFIG_VERSION, FLOW_DIR
+import pprint
 
 
 class TestGitFlowBasics(TestCase):
     """
-    Test cases that run the config manager thru its pases
+    Test cases that run the config manager thru its paces
     """
     @copy_from_fixture('blank_repo')
     def test_version_number_calculator(self):
@@ -17,7 +20,7 @@ class TestGitFlowBasics(TestCase):
         Test that ensures the version calculator is running properly
         :return:
         """
-        c = ConfigManager(self.repo)
+        c = ConfigManager()
 
         self.assertEquals(c._compareVersion('2.0.0', '1.0.0'), 1)
         self.assertEquals(c._compareVersion('1.0.0', '2.0.0'), -1)
@@ -40,6 +43,7 @@ class TestGitFlowBasics(TestCase):
         """
         self._initRepo()
 
+
     @copy_from_fixture('blank_repo')
     def testInitializeFolder2(self):
         """
@@ -59,16 +63,19 @@ class TestGitFlowBasics(TestCase):
         :return:
         """
         c = self._initRepo()
-        ignoreFilename = path.join(self.repo.workdir, '.gitignore')
+        ignoreFilename = path.join(self.repo.working_dir, '.gitignore')
 
-        #if path.isfile(ignoreFilename):
+        print(ignoreFilename)
 
-        f = open(ignoreFilename, 'r')
+        try:
+            f = open(ignoreFilename, 'r')
+        except (IOError):
+            self.assertFalse(True, "GitIgnore doesn't exist")
 
         i = 0
 
         for line in f:
-            if line == c.personalConfigFile:
+            if line == PERC_CONFIG_FILE:
                 i += 1
 
         f.close()
@@ -83,21 +90,22 @@ class TestGitFlowBasics(TestCase):
         i = 0
 
         for line in f:
-            if line == c.personalConfigFile:
+            if line == PERC_CONFIG_FILE:
                 i += 1
 
         if i != 1:
             self.assertFalse(True)
 
-    def _initRepo(self, existing = False):
+    def _initRepo(self, existing=False):
         # make sure the config folder doesn't exist
-        flowdir = path.join(self.repo.workdir, '.flow')
+        flowdir = path.join(self.repo.working_dir, '.flow')
 
         if not existing:
             # real quick, make sure nothing is there first
             self.assertFalse(path.isdir(flowdir))
 
-        c = ConfigManager(self.repo)
+        c = ConfigManager()
+        c.loadConfig(existingRepo=self.repo)
 
         #now make sure the folder exists
         self.assertTrue(path.isdir(flowdir))

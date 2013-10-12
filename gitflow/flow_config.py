@@ -10,13 +10,26 @@ import shutil
 import gitflow
 import json
 import collections
+import gitdb
+from git.repo import Repo
 
 from os import path
 from distutils.version import StrictVersion
 from __init__ import *
 from gitflow import i18n
 from gitflow.flow_exceptions import NoRepositoryObject
-from gitflow.flow_workflow import FlowCommand, WorkflowCommand
+
+import re
+from gitflow.flow_transitions import TransitionFactory
+from gitflow.flow_documenter import BLUE, LIGHT_BLUE, GREEN, CYAN, PURPLE, \
+    BROWN, LIGHT_GRAY, DARK_GRAY, LIGHT_GREEN, LIGHT_CYAN, \
+    LIGHT_RED, LIGHT_PURPLE, YELLOW, WHITE, RED, ENDC, formatValuePair, indentText, \
+    colorText, formatWarningKeyValueSet
+import pprint
+
+from flow_core import requires_repo, _procParamBool, _transBool
+import pprint
+
 
 from gitflow.flow_core import *
 
@@ -57,7 +70,7 @@ class ConfigManager(object):
         """
         self.__dict__ = self._shared_state
 
-    def loadConfig(self, initializeBlank=True):
+    def loadConfig(self, initializeBlank=True, repo_dir=".", existingRepo=None):
         self.repo = None
 
         # repository has a property called workingdir.
@@ -78,7 +91,11 @@ class ConfigManager(object):
         # of making sure the repo exists before trying to put anything
         # in it.
         try:
-            self.repo = Repo(".")
+            if existingRepo is None:
+                self.repo = Repo(repo_dir)
+            else:
+                self.repo = existingRepo
+
             if self.repo is None:
                 raise NoRepositoryObject()
         except GitflowError:
@@ -96,12 +113,12 @@ class ConfigManager(object):
         if initializeBlank:
             self._initializeSystemConfig()
 
-        if initializeBlank:
-            self._initializePersonalConfig()
+        #if initializeBlank:
+        #    self._initializePersonalConfig()
 
             # This checks the configuration system
             #self._sanityCheck()
-        self.checkEntryInGitIgnore(self.personalConfigFile)
+        self.checkEntryInGitIgnore(PERC_CONFIG_FILE)
 
     def checkEntryInGitIgnore(self, entry):
         """
@@ -235,7 +252,10 @@ class ConfigManager(object):
 
         #We are parsing the file twice because we need to resolve variables.  In order
         # to get the info to resolve those variables, we need to parse it once first
-        json_text = open(self.systemConfigFile).read()
+        f = open(self.systemConfigFile)
+        json_text = f.read()
+        f.close()
+
         self.systemConfig = json.loads(json_text, object_pairs_hook=collections.OrderedDict)
         #self.printConfig()
         json_text = self.resolveVariable(json_text)
@@ -246,3 +266,293 @@ class ConfigManager(object):
         # to flow commands next
         self._initWorkflows()
         self._initFlowCommands()
+
+
+
+def executeWorkflow(subcmd, args):
+    for step in subcmd.steps:
+        for condition in step.conditions:
+            if condition.checkCondition(args):
+                print(colorText(LIGHT_GREEN, "condition passed", COLOR_ENABLED))
+            else:
+                print(colorText(LIGHT_RED, "raise condition error", COLOR_ENABLED))
+
+        step.transition.runTransition(args)
+
+
+class FlowCommand:
+    """
+    This is the top level class of the dynamic workflow.  This maps to the
+    flow_commands section of the configuration file where it outlines the
+    various primary commands in the dynamic workflow.  This also holds which
+    workflow is configured for that particular command.
+    """
+    def __init__(self, cmdName, branch, workflow):
+        self.flowCommand = cmdName
+        self.srcBranch = branch
+        self.workflow = workflow
+
+    def __str__(self):
+        str_list = [colorText(YELLOW, self.flowCommand, COLOR_ENABLED) + "\n",
+                    formatValuePair(indentText(1) + "srcBranch", self.srcBranch) + "\n",
+                    str(self.workflow)]
+
+        return ''.join(str_list)
+
+
+class WorkflowCommand:
+    """
+    This is the workflow command.  A workflow can be assigned to multiple commands.
+    This is how we address duplicate possible workflows.
+    """
+    def __init__(self, config, key):
+        self.cmdName = key
+        self.description = config.get(WORK_DESCRIPTION)
+
+        self.subCommands = []
+        for sub in config:
+            if type(config.get(sub)) is collections.OrderedDict:
+                self.subCommands.append(WorkflowSubcommand(config.get(sub), sub))
+
+    def __str__(self):
+        str_list = [formatValuePair(indentText(1) + "Workflow", self.cmdName) + "\n"]
+
+        if self.description is not None:
+            str_list.append(formatValuePair(indentText(1) + "description", self.description) + "\n")
+
+        for sub in self.subCommands:
+            str_list.append(str(sub))
+
+        return ''.join(str_list)
+
+
+class WorkflowSubcommand:
+    """
+    These subcommands are the individual sub commands within the flow command.  Examples
+    would be like start, stop, publish, etc.
+    """
+    def __init__(self, config, key):
+        self.subName = key
+        self.usageHelp = config.get(WORK_USAGEHELP)
+        self.options = []
+        #self.args = []
+        self.steps = []
+
+        if config.get(WORK_OPTIONS) is not None:
+            options = config.get(WORK_OPTIONS)
+            for option in options:
+                self.options.append(WorkflowSubcommandOption(option, options.get(option)))
+
+        if config.get(WORK_ARGUMENTS) is not None:
+            self.args = config.get(WORK_ARGUMENTS)
+            #pprint.pprint(self.args)
+
+        steps = config.get(WORK_STEPS)
+
+        for step in steps:
+            for stepkey in step.keys():
+                self.steps.append(WorkflowStep(step.get(stepkey), stepkey))
+                #print("step: " + stepkey)
+
+    def __str__(self):
+        str_list = [colorText(LIGHT_BLUE, indentText(2) + "Sub Command: ", COLOR_ENABLED)
+                    + colorText(YELLOW, self.subName, COLOR_ENABLED) + "\n",
+                    formatWarningKeyValueSet(indentText(3) + "UsageHelp", self.usageHelp) + "\n"]
+
+        for option in self.options:
+            str_list.append(str(option))
+
+        for step in self.steps:
+            str_list.append(str(step))
+
+        return ''.join(str_list)
+
+
+class WorkflowSubcommandOption:
+    def __init__(self, option, description):
+        self.option = option
+        self.description = description
+
+    def __str__(self):
+        str_list = ["      Option " + self.option + " - " + self.description + "\n"]
+        return ''.join(str_list)
+
+
+class WorkflowStep:
+    def __init__(self, config, key):
+        #pprint.pprint(config)
+        #print(key)
+        self.stepName = key
+        conditionsList = config.get(STEP_CONDITIONS)
+
+        self.conditions = []
+
+        if conditionsList is not None:
+            for cond in conditionsList:
+                self.conditions.append(ConditionFactory.buildClass(_getMethodName(cond),
+                                                                   _getParameters(cond)))
+
+        data = config.get(STEP_TRANSITION)
+        self.transition = TransitionFactory.buildClass(
+            _getMethodName(data), "transFail", _getParameters(data))
+
+        data = config.get(STEP_COND_CRITICAL_FAIL)
+        self.condCriticalFailNext = TransitionFactory.buildClass(
+            _getMethodName(data), "transFail", _getParameters(data))
+
+        data = config.get(STEP_COND_NON_CRITICAL_FAIL)
+        self.condNonCriticalFailNext = TransitionFactory.buildClass(
+            _getMethodName(data), "transFail", _getParameters(data))
+
+        data = config.get(STEP_TRANITION_FAIL)
+        self.transFailNext = TransitionFactory.buildClass(
+            _getMethodName(data), "transFail", _getParameters(data))
+
+    def __str__(self):
+        str_list = [formatValuePair(indentText(3) + "Step", self.stepName) + "\n"]
+
+        if len(self.conditions) == 0:
+            str_list.append(colorText(LIGHT_PURPLE, indentText(4) + "No Conditions Set\n", COLOR_ENABLED))
+        else:
+            for cond in self.conditions:
+                str_list.append(str(cond))
+
+        str_list.append(formatWarningKeyValueSet(indentText(4) + "transition",
+                                                 self.transition) +"\n")
+
+        str_list.append(formatWarningKeyValueSet(indentText(4) + "condCriticalFailNext",
+                                                 self.condCriticalFailNext) + "\n")
+
+        str_list.append(formatWarningKeyValueSet(indentText(4) + "condNonCriticalFailNext",
+                                                 self.condNonCriticalFailNext) + "\n")
+
+        str_list.append(formatWarningKeyValueSet(indentText(4) + "transFailNext",
+                                                 self.transFailNext) + "\n")
+
+        return ''.join(str_list)
+
+
+def _getParameters(lookin):
+    if lookin is None:
+        return None
+    else:
+        p = re.compile("(?<=\()(.*?)(?=\))")
+        d = collections.OrderedDict()
+
+        for m in p.finditer(lookin):
+            conds = m.group().split(",")
+            for cond in conds:
+                ltemp = cond.split("=")
+                if len(ltemp) == 2:
+                    d[str(ltemp[0].strip().rstrip())] = str(ltemp[1].strip().rstrip())
+                    #pprint.pprint(d)
+        return d
+
+
+def _getMethodName(lookin):
+    if lookin is not None:
+        return re.sub("\(([^\)]+)\)|\(\)", "", lookin)
+    else:
+        return None
+
+
+class BaseCondition():
+    PASS = 1
+    CRITICAL_FAIL = 2
+    WARNING = 3
+
+    PARAM_VALID = 'valid'
+    PARAM_CRITICAL = 'critical'
+
+    def __init__(self, params):
+        # for conditions, the parameters are optional.  If
+        # an option is not entered, its defaulted to TRUE
+        self.valid = _procParamBool(params, self.PARAM_VALID, True)
+        self.critical = _procParamBool(params, self.PARAM_CRITICAL, True)
+        self.config = ConfigManager()
+        self.rawParams = params
+
+    def checkCondition(self, args):
+        raise NotImplementedError("Should have implemented this")
+
+    def __str__(self):
+        str_list = [formatValuePair(indentText(4) + "Condition", self.__class__.__name__) + "\n",
+                    formatValuePair(indentText(5) + "valid Check", _transBool(self.valid)) + "\n",
+                    formatValuePair(indentText(5) + "critical Check", _transBool(self.critical)) + "\n"]
+
+        return ''.join(str_list)
+
+    def _checkCondition(self, testValue, warnMsg):
+        if self.valid == testValue:
+            # we got the answer we wanted.  send a true
+            return True
+        else:
+            if self.critical:
+                # this is a critical failure, send a false
+                return False
+            else:
+                # It is a non critical failure.  Log the warning
+                # and return a true
+                warn(warnMsg)
+                return True
+
+
+def _flipBool(inBool):
+    """
+    A simple method that flips the boolean.  This is needed
+    to keep the configuration file straight
+    """
+    if inBool:
+        return False
+    else:
+        return True
+
+
+class condIsClean(BaseCondition):
+    @requires_repo
+    def checkCondition(self, args):
+        """
+        Returns whether or not the current working directory contains
+        uncommitted changes.
+        """
+
+        # for the check to work, the response from is_dirty
+        # must be reversed
+        return self._checkCondition(_flipBool(self.config.repo.is_dirty(untracked_files=True)),
+                                    _('WARN: Non-Critical condition IsClean failed'))
+
+
+class condBranchExist(BaseCondition):
+    def checkCondition(self, args):
+        print("  valid Check: " + _transBool(self.valid))
+        print("  critical Check: " + _transBool(self.critical))
+        print("  class Name: " + self.__class__.__name__)
+
+
+class condPushRemote(BaseCondition):
+    def checkCondition(self, args):
+        print("  valid Check: " + _transBool(self.valid))
+        print("  critical Check: " + _transBool(self.critical))
+        print("  class Name: " + self.__class__.__name__)
+
+
+class condIsNextMaster(BaseCondition):
+    def checkCondition(self, args):
+        print("  valid Check: " + _transBool(self.valid))
+        print("  critical Check: " + _transBool(self.critical))
+        print("  class Name: " + self.__class__.__name__)
+
+
+class condDefault(BaseCondition):
+    def checkCondition(self, args):
+        print("  valid Check: " + _transBool(self.valid))
+        print("  critical Check: " + _transBool(self.critical))
+        print("  class Name: " + self.__class__.__name__)
+
+
+class ConditionFactory():
+    @staticmethod
+    def buildClass(condition, params):
+        constructor = globals()[condition]
+        instance = constructor(params)
+        return instance

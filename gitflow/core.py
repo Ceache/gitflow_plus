@@ -56,22 +56,7 @@ def requires_initialized(f):
     return _inner
 
 
-def info(*texts):
-    """
-    Takes in an array of strings and prints them, one item of the array on each line
-    :param texts:
-    """
-    for txt in texts:
-        print(txt)
 
-
-def warn(*texts):
-    """
-    Takes in an array of text strings and prints them to the stderr stream
-    :param texts:
-    """
-    for txt in texts:
-        sys.stderr.write(txt)
 
 
 class _NONE:

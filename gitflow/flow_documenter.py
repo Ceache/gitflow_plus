@@ -2,7 +2,6 @@ __author__ = 'LID4EC9'
 
 import inspect
 from __init__ import *
-from gitflow.flow_transitions import BaseTransition
 
 BLUE = "\033[0;34m"
 LIGHT_BLUE = "\033[1;34m"

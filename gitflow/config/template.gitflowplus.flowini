@@ -81,7 +81,7 @@
             {
               "step1": {
                 "conditions": [
-                  "condIsClean()"
+                  "condIsClean(valid=true, critical=false, untracked_files=true)"
                 ],
                 "transition": "transGup()"
               },

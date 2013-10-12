@@ -3,7 +3,9 @@ __author__ = 'LID4EC9'
 from git import Repo
 from flow_exceptions import NotInitialized, GitflowError
 from functools import wraps
+from flow_documenter import colorText, YELLOW, COLOR_ENABLED
 import pprint
+import sys
 
 
 def _procParamString(inputParamDic, key, default):
@@ -49,6 +51,24 @@ def _transBool(b):
         return "False"
 
 
+def info(*texts):
+    """
+    Takes in an array of strings and prints them, one item of the array on each line
+    :param texts:
+    """
+    for txt in texts:
+        print(txt)
+
+
+def warn(*texts):
+    """
+    Takes in an array of text strings and prints them to the stderr stream
+    :param texts:
+    """
+    for txt in texts:
+        sys.stderr.write(colorText(YELLOW, txt + "\n", COLOR_ENABLED))
+
+
 def requires_repo(f):
     """
     This is an annotation method that is used to check that
@@ -60,8 +80,6 @@ def requires_repo(f):
 
     @wraps(f)
     def _inner(self, *args, **kwargs):
-
-        pprint.pprint(self.config)
         if self.config.repo is None:
             raise NotInitialized()
         return f(self, *args, **kwargs)

@@ -26,8 +26,7 @@ import sys
 from gitflow.util import itersubclasses
 from gitflow.flow_exceptions import (GitflowError)
 from gitflow.flow_commands import GitFlowCommand
-from gitflow.flow_config import ConfigManager
-from gitflow.flow_workflow import executeWorkflow
+from gitflow.flow_config import ConfigManager, executeWorkflow
 import pprint
 
 __copyright__ = "2013 Willie Slepecki; Based on code written by: 2010-2011 Vincent Driessen; 2012-2013 Hartmut Goebel"

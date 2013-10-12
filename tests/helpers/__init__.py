@@ -11,7 +11,7 @@ import tempfile
 from functools import wraps
 
 from unittest2 import TestCase
-from pygit2 import Repository
+from git import Repo
 
 __copyright__ = "2010-2011 Vincent Driessen; 2012-2013 Hartmut Goebel"
 __license__ = "BSD"
@@ -33,7 +33,7 @@ def sandboxed(f):
         if os.path.exists(ram_disk):
             rdir = ram_disk
         self.sandbox = tempfile.mkdtemp(dir=rdir)
-        self.addCleanup(shutil.rmtree, self.sandbox)
+        #self.addCleanup(shutil.rmtree, self.sandbox)
 
         os.chdir(self.sandbox)
 
@@ -81,7 +81,7 @@ def copy_from_fixture(fixture_name):
             shutil.copytree(src, dest)
             os.chdir(dest)
             shutil.move('dot_git', '.git')
-            self.repo = Repository(dest)
+            self.repo = Repo(dest)
             f(self, *args, **kwargs)
         return _inner
     return _outer
@@ -103,7 +103,7 @@ def clone_from_fixture(fixture_name):
         def _inner(self, *args, **kwargs):
             root = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
             git_dir = os.path.join(root, 'fixtures', fixture_name, 'dot_git')
-            self.repo = Repository(git_dir).clone(self.sandbox)
+            self.repo = Repo(git_dir).clone(self.sandbox)
             f(self, *args, **kwargs)
         return _inner
     return _outer
@@ -147,7 +147,7 @@ def remote_clone_from_fixture(fixture_name, copy_config=True):
             shutil.copytree(src, dest)
             os.chdir(dest)
             shutil.move('dot_git', '.git')
-            self.remote = Repository(dest)
+            self.remote = Repo(dest)
             clone = os.path.join(self.sandbox, 'clone')
             self.repo = self.remote.clone(clone, origin='my-remote')
             if copy_config:
@@ -221,3 +221,13 @@ def all_commits(repo, heads=None):
     for h in heads:
         s |= set(repo.iter_commits(h))
     return s
+
+
+def list_files(startpath):
+    for root, dirs, files in os.walk(startpath):
+        level = root.replace(startpath, '').count(os.sep)
+        indent = ' ' * 4 * (level)
+        print('{}{}/'.format(indent, os.path.basename(root)))
+        subindent = ' ' * 4 * (level + 1)
+        for f in files:
+            print('{}{}'.format(subindent, f))
