@@ -34,7 +34,7 @@ class TestGitFlowBasics(TestCase):
         self.assertEquals(c._compareVersion('1.1.0', '1.10.0'), -1)
 
     @copy_from_fixture('blank_repo')
-    def testInitializeFolder(self):
+    def test_InitializeFolder(self):
         """
         This will test that the system can create a new folder in the
         repo and create the defalut folders in it
@@ -45,7 +45,7 @@ class TestGitFlowBasics(TestCase):
 
 
     @copy_from_fixture('blank_repo')
-    def testInitializeFolder2(self):
+    def test_InitializeFolder2(self):
         """
         just seeing if it will pass twice
 
@@ -57,7 +57,7 @@ class TestGitFlowBasics(TestCase):
         self.assertEquals(c.systemConfig[CONFIG_VERSION], c.version)
 
     @copy_from_fixture('blank_repo')
-    def testverifyGitIgnoreAdded(self):
+    def test_verifyGitIgnoreAdded(self):
         """
         We are ensuring that the gitignore file is being updated correctly
         :return:

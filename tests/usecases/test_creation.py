@@ -7,7 +7,7 @@
 
 from unittest2 import TestCase, skip
 
-from gitflow.core import GitFlow
+from unused_code.core import GitFlow
 from tests.helpers.factory import create_git_repo
 
 __copyright__ = "2010-2011 Vincent Driessen; 2012-2013 Hartmut Goebel"

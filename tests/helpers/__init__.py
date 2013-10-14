@@ -33,7 +33,7 @@ def sandboxed(f):
         if os.path.exists(ram_disk):
             rdir = ram_disk
         self.sandbox = tempfile.mkdtemp(dir=rdir)
-        #self.addCleanup(shutil.rmtree, self.sandbox)
+        self.addCleanup(shutil.rmtree, self.sandbox, True)
 
         os.chdir(self.sandbox)
 

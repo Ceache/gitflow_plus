@@ -1,6 +1,6 @@
 __author__ = 'LID4EC9'
 
-from flow_core import _procParamString
+from flow_core import getParamString
 import pprint
 
 
@@ -12,10 +12,10 @@ class BaseTransition():
     TRANS_DEFAULT = False
 
     def __init__(self, params):
-        self.startBranch = _procParamString(params, self.PARAM_START_BRANCH, None)
-        self.git = _procParamString(params, self.PARAM_GIT, None)
-        self.mergeInto = _procParamString(params, self.PARAM_MERGE_INTO, None)
-        self.targetBranch = _procParamString(params, self.PARAM_TARGET_BRANCH, None)
+        self.startBranch = getParamString(params, self.PARAM_START_BRANCH, None)
+        self.git = getParamString(params, self.PARAM_GIT, None)
+        self.mergeInto = getParamString(params, self.PARAM_MERGE_INTO, None)
+        self.targetBranch = getParamString(params, self.PARAM_TARGET_BRANCH, None)
 
     def runTransition(self, args):
         raise NotImplementedError("Should have implemented this")

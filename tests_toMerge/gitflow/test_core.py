@@ -5,9 +5,11 @@
 # Distributed under a BSD-like license. For full terms see the file LICENSE.txt
 #
 
-from unittest2 import TestCase
 import os
 import sys
+
+from unittest2 import TestCase
+
 try:
     import cStringIO as StringIO
 except:
@@ -16,7 +18,7 @@ from ConfigParser import NoOptionError, NoSectionError
 
 from git import GitCommandError
 
-from gitflow.core import GitFlow
+from unused_code.core import GitFlow
 from gitflow.branches import BranchManager
 from gitflow.exceptions import (BranchExistsError, NotInitialized, MergeError,
                                 NoSuchBranchError, NoSuchRemoteError,

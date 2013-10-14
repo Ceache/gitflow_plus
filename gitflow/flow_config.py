@@ -27,7 +27,7 @@ from gitflow.flow_documenter import BLUE, LIGHT_BLUE, GREEN, CYAN, PURPLE, \
     colorText, formatWarningKeyValueSet
 import pprint
 
-from flow_core import requires_repo, _procParamBool, _transBool
+from flow_core import requires_repo, getParamBool, boolToString
 import pprint
 
 
@@ -467,8 +467,8 @@ class BaseCondition():
     def __init__(self, params):
         # for conditions, the parameters are optional.  If
         # an option is not entered, its defaulted to TRUE
-        self.valid = _procParamBool(params, self.PARAM_VALID, True)
-        self.critical = _procParamBool(params, self.PARAM_CRITICAL, True)
+        self.valid = getParamBool(params, self.PARAM_VALID, True)
+        self.critical = getParamBool(params, self.PARAM_CRITICAL, True)
         self.config = ConfigManager()
         self.rawParams = params
 
@@ -477,8 +477,8 @@ class BaseCondition():
 
     def __str__(self):
         str_list = [formatValuePair(indentText(4) + "Condition", self.__class__.__name__) + "\n",
-                    formatValuePair(indentText(5) + "valid Check", _transBool(self.valid)) + "\n",
-                    formatValuePair(indentText(5) + "critical Check", _transBool(self.critical)) + "\n"]
+                    formatValuePair(indentText(5) + "valid Check", boolToString(self.valid)) + "\n",
+                    formatValuePair(indentText(5) + "critical Check", boolToString(self.critical)) + "\n"]
 
         return ''.join(str_list)
 
@@ -524,29 +524,29 @@ class condIsClean(BaseCondition):
 
 class condBranchExist(BaseCondition):
     def checkCondition(self, args):
-        print("  valid Check: " + _transBool(self.valid))
-        print("  critical Check: " + _transBool(self.critical))
+        print("  valid Check: " + boolToString(self.valid))
+        print("  critical Check: " + boolToString(self.critical))
         print("  class Name: " + self.__class__.__name__)
 
 
 class condPushRemote(BaseCondition):
     def checkCondition(self, args):
-        print("  valid Check: " + _transBool(self.valid))
-        print("  critical Check: " + _transBool(self.critical))
+        print("  valid Check: " + boolToString(self.valid))
+        print("  critical Check: " + boolToString(self.critical))
         print("  class Name: " + self.__class__.__name__)
 
 
 class condIsNextMaster(BaseCondition):
     def checkCondition(self, args):
-        print("  valid Check: " + _transBool(self.valid))
-        print("  critical Check: " + _transBool(self.critical))
+        print("  valid Check: " + boolToString(self.valid))
+        print("  critical Check: " + boolToString(self.critical))
         print("  class Name: " + self.__class__.__name__)
 
 
 class condDefault(BaseCondition):
     def checkCondition(self, args):
-        print("  valid Check: " + _transBool(self.valid))
-        print("  critical Check: " + _transBool(self.critical))
+        print("  valid Check: " + boolToString(self.valid))
+        print("  critical Check: " + boolToString(self.critical))
         print("  class Name: " + self.__class__.__name__)
 
 

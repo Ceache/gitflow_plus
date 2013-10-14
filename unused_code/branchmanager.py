@@ -46,7 +46,7 @@ class BranchManager(object):
     prefix = property(_get_prefix, _set_prefix)
 
     def __init__(self, gitflow, prefix=None):
-        from gitflow.core import GitFlow
+        from unused_code.core import GitFlow
         assert isinstance(gitflow, GitFlow), "Argument 'gitflow' must be a GitFlow instance."
         self.gitflow = gitflow
         if not prefix is None:

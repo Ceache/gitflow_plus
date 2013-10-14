@@ -1,14 +1,20 @@
 __author__ = 'LID4EC9'
 
-from git import Repo
-from flow_exceptions import NotInitialized, GitflowError
 from functools import wraps
-from flow_documenter import colorText, YELLOW, COLOR_ENABLED
-import pprint
 import sys
 
+from flow_exceptions import NotInitialized
+from flow_documenter import colorText, YELLOW, COLOR_ENABLED
 
-def _procParamString(inputParamDic, key, default):
+
+def getParamString(inputParamDic, key, default=None):
+    """
+    Gets a value from a dictionary as a string.  the real purpose
+    of this is to add a default value parameter to your values.
+    :param inputParamDic:
+    :param key:
+    :param default:
+    """
     ret = default
     if inputParamDic is not None:
         if inputParamDic.get(key) is not None:
@@ -17,20 +23,47 @@ def _procParamString(inputParamDic, key, default):
     return ret
 
 
-def _procParamBool(inputParamDic, key, default):
+def getParamBool(inputParamDic, key, default=None):
+    """
+    Gets the key specified from the specified dictionary object and returns
+    the result as a boolean.  This uses the method :method:`stringToBool` to convert the
+    value.
+    :param inputParamDic:
+    :param key:
+    :param default:
+    """
     ret = default
     if inputParamDic.get(key) is not None:
         if isinstance(inputParamDic[key], str):
-            ret = to_bool(inputParamDic[key])
+            ret = stringToBool(inputParamDic[key])
         else:
             ret = inputParamDic[key]
 
     return ret
 
 
-def to_bool(value):
-    valid = {'true': True, 't': True, '1': True,
-             'false': False, 'f': False, '0': False}
+def boolToString(b):
+    """
+    This converts a boolean value to a string.
+    :param b:
+    """
+
+    if b is None:
+        raise ValueError('invalid literal for boolean: None')
+
+    if b is True:
+        return "True"
+    else:
+        return "False"
+
+
+def stringToBool(value):
+    """
+    This converts a string to a boolean
+    :param value:
+    """
+    valid = {'true': True, 't': True, '1': True, 'yes': True,
+             'false': False, 'f': False, '0': False, 'no': False}
 
     if not isinstance(value, str):
         raise ValueError('invalid literal for boolean. Not a string.')
@@ -41,14 +74,6 @@ def to_bool(value):
         return valid[lower_value]
     else:
         raise ValueError('invalid literal for boolean: "%s"' % value)
-
-
-def _transBool(b):
-    #print(type(b))
-    if b is True:
-        return "True"
-    else:
-        return "False"
 
 
 def info(*texts):

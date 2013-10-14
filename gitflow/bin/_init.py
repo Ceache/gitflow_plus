@@ -16,7 +16,7 @@ except:
     # readline is optional and may not be available on all installations
     pass
 
-from gitflow.core import GitFlow as CoreGitFlow, warn, info
+from unused_code.core import GitFlow as CoreGitFlow, warn, info
 
 __copyright__ = "2013 Willie Slepecki; Based on code written by: 2010-2011 Vincent Driessen; 2012-2013 Hartmut Goebel"
 __license__ = "BSD"

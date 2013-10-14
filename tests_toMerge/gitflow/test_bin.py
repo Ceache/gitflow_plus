@@ -7,7 +7,7 @@
 
 import sys
 import re
-from functools import wraps
+
 try:
     from cStringIO import StringIO
 except:
@@ -16,7 +16,7 @@ except:
 from unittest2 import TestCase
 
 import gitflow
-from gitflow.core import GitFlow, Repo
+from unused_code.core import GitFlow, Repo
 from gitflow.exceptions import (NoSuchBranchError, NoSuchRemoteError,
                                 AlreadyInitialized, NotInitialized,
                                 BaseNotOnBranch)
@@ -28,8 +28,8 @@ from gitflow.bin import (main as Main,
 
 from gitflow.branches import BranchManager
 from tests.helpers import (copy_from_fixture, remote_clone_from_fixture,
-                           all_commits, sandboxed, fake_commit)
-from tests.helpers.factory import create_sandbox, create_git_repo
+                           sandboxed, fake_commit)
+from tests.helpers.factory import create_git_repo
 
 __copyright__ = "2010-2011 Vincent Driessen; 2012-2013 Hartmut Goebel"
 __license__ = "BSD"

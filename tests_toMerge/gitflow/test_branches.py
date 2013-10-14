@@ -9,7 +9,7 @@ from unittest2 import TestCase
 
 from git import GitCommandError
 
-from gitflow.core import GitFlow
+from unused_code.core import GitFlow
 from gitflow.exceptions import (
     NoSuchRemoteError, MergeError, BranchExistsError, BaseNotOnBranch,
     BranchTypeExistsError, PrefixNotUniqueError, NoSuchBranchError,
